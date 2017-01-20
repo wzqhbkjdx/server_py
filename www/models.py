@@ -44,3 +44,13 @@ class Comment(Model):
     content = TextField()
     created_at = FloatField(default = time.time)
 
+class DeviceInfo(Model):
+    __table__ = 'deviceInfo'
+
+    idenf = StringField(primary_key=True, default=next_id, ddl='varchar(50)')
+    density = FloatField()
+    dpi = FloatField()
+    scaleDensity = FloatField()
+    bestProvider = StringField(ddl='varchar(50)')
+
+

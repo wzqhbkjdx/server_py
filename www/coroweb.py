@@ -35,6 +35,7 @@ def get_required_kw_args(fn):
     for name, param in params.items():
         if param.kind == inspect.Parameter.KEYWORD_ONLY and param.default == inspect.Parameter.empty:
             args.append(name)
+            print('args: %s' % args)
     return tuple(args)
 
 def get_name_kw_args(fn):

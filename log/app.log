@@ -1,0 +1,402 @@
+INFO:root:init_jinjia2...
+INFO:root:set jinja2 templates path: /home/bym/pytest/awesome-python3-webapp/www/templates
+INFO:root:found model: User (table: users)
+INFO:root: found mapping: admin ==> <BooleanField, boolean:None>
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: passwd ==> <StringField, varchar(50):None>
+INFO:root: found mapping: email ==> <StringField, varchar(50):None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root:found model: Blog (table: blogs)
+INFO:root: found mapping: summary ==> <StringField, varchar(200):None>
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root:found model: Comment (table: comments)
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: blog_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root:add route GET /api/users => api_get_users ()
+INFO:root:add route GET / => index (request)
+INFO:root:add static /static/ => /home/bym/pytest/awesome-python3-webapp/www/static
+INFO:root:server started at http://127.0.0.1:9000...
+INFO:root:Request: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {'request': <Request GET / >}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:08:35:45 +0000] "GET / HTTP/1.1" 200 5561 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:init_jinjia2...
+INFO:root:set jinja2 templates path: /home/bym/pytest/awesome-python3-webapp/www/templates
+INFO:root:found model: User (table: users)
+INFO:root: found mapping: passwd ==> <StringField, varchar(50):None>
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root: found mapping: image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: email ==> <StringField, varchar(50):None>
+INFO:root: found mapping: admin ==> <BooleanField, boolean:None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root:found model: Blog (table: blogs)
+INFO:root: found mapping: summary ==> <StringField, varchar(200):None>
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root:found model: Comment (table: comments)
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: blog_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root:add route GET /api/users => api_get_users ()
+INFO:root:add route GET / => index (request)
+INFO:root:add static /static/ => /home/bym/pytest/awesome-python3-webapp/www/static
+INFO:root:server started at http://127.0.0.1:9000...
+INFO:root:Request: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {'request': <Request GET / >}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:08:36:14 +0000] "GET / HTTP/1.1" 200 5561 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {'request': <Request GET / >}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:08:40:42 +0000] "GET / HTTP/1.1" 200 5561 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /favicon.ico
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:08:40:42 +0000] "GET /favicon.ico HTTP/1.1" 404 14 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:init_jinjia2...
+INFO:root:set jinja2 templates path: /home/bym/pytest/awesome-python3-webapp/www/templates
+INFO:root:found model: User (table: users)
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: email ==> <StringField, varchar(50):None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: passwd ==> <StringField, varchar(50):None>
+INFO:root: found mapping: image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: admin ==> <BooleanField, boolean:None>
+INFO:root:found model: Blog (table: blogs)
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root: found mapping: summary ==> <StringField, varchar(200):None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root:found model: Comment (table: comments)
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root: found mapping: blog_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root:add route GET /api/users => api_get_users ()
+INFO:root:add route POST /api/users => api_register_user (email,name,passwd)
+INFO:root:add route GET / => index (request)
+INFO:root:add route GET /register => register ()
+INFO:root:add route GET /signin => signin ()
+INFO:root:add static /static/ => /home/bym/pytest/awesome-python3-webapp/www/static
+INFO:root:server started at http://127.0.0.1:9000...
+INFO:root:Request: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {'request': <Request GET / >}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:51:43 +0000] "GET / HTTP/1.1" 200 5561 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/css/uikit.min.css
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:51:43 +0000] "GET /static/css/uikit.min.css HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/css/uikit.gradient.min.css
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:51:43 +0000] "GET /static/css/uikit.gradient.min.css HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/css/awesome.css
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:51:43 +0000] "GET /static/css/awesome.css HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/jquery.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:51:43 +0000] "GET /static/js/jquery.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/sha1.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:51:43 +0000] "GET /static/js/sha1.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/uikit.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:51:43 +0000] "GET /static/js/uikit.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/sticky.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:51:43 +0000] "GET /static/js/sticky.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/vue.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:51:43 +0000] "GET /static/js/vue.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/awesome.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:51:43 +0000] "GET /static/js/awesome.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/fonts/fontawesome-webfont.woff
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:51:43 +0000] "GET /static/fonts/fontawesome-webfont.woff HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /favicon.ico
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:51:43 +0000] "GET /favicon.ico HTTP/1.1" 404 14 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /register
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:51:51 +0000] "GET /register HTTP/1.1" 200 6445 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': '40a021290a51e04e5c5b28d9a3a839086077123e', 'name': 'wzqhbkjdx', 'email': 'wzqhbkjdx@126.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:13 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': '40a021290a51e04e5c5b28d9a3a839086077123e', 'name': 'wzq', 'email': 'wzqhbkjdx@126.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:24 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': '40a021290a51e04e5c5b28d9a3a839086077123e', 'name': 'wzq', 'email': 'wzqhbkjdx@126.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:26 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': '40a021290a51e04e5c5b28d9a3a839086077123e', 'name': '123', 'email': 'wzqhbkjdx@126.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:31 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /register
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:32 +0000] "GET /register HTTP/1.1" 200 6445 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/css/uikit.min.css
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:32 +0000] "GET /static/css/uikit.min.css HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/css/uikit.gradient.min.css
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:32 +0000] "GET /static/css/uikit.gradient.min.css HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/css/awesome.css
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:32 +0000] "GET /static/css/awesome.css HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/jquery.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:32 +0000] "GET /static/js/jquery.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/sha1.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:32 +0000] "GET /static/js/sha1.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/uikit.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:32 +0000] "GET /static/js/uikit.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/sticky.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:32 +0000] "GET /static/js/sticky.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/vue.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:32 +0000] "GET /static/js/vue.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/awesome.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:32 +0000] "GET /static/js/awesome.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/fonts/fontawesome-webfont.woff
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:32 +0000] "GET /static/fonts/fontawesome-webfont.woff HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /register
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:44 +0000] "GET /register HTTP/1.1" 200 6445 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/css/uikit.min.css
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:44 +0000] "GET /static/css/uikit.min.css HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/css/uikit.gradient.min.css
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:44 +0000] "GET /static/css/uikit.gradient.min.css HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/css/awesome.css
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:44 +0000] "GET /static/css/awesome.css HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/jquery.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:44 +0000] "GET /static/js/jquery.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/sha1.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:44 +0000] "GET /static/js/sha1.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/uikit.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:44 +0000] "GET /static/js/uikit.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/sticky.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:44 +0000] "GET /static/js/sticky.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/vue.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:44 +0000] "GET /static/js/vue.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/awesome.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:44 +0000] "GET /static/js/awesome.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/fonts/fontawesome-webfont.woff
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:52:44 +0000] "GET /static/fonts/fontawesome-webfont.woff HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': 'ffcbc6173518b4260fb40b9ec11ac8a7b2692511', 'name': 'haha', 'email': 'haha@126.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:53:52 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': 'ffcbc6173518b4260fb40b9ec11ac8a7b2692511', 'name': '必须是中文吗', 'email': 'haha@126.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:44 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': 'ffcbc6173518b4260fb40b9ec11ac8a7b2692511', 'name': '必须是中文吗', 'email': 'haha@126.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:44 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': 'ffcbc6173518b4260fb40b9ec11ac8a7b2692511', 'name': '必须是中文吗', 'email': 'haha@126.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:44 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': 'ffcbc6173518b4260fb40b9ec11ac8a7b2692511', 'name': '必须是中文吗', 'email': 'haha@126.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:45 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': 'ffcbc6173518b4260fb40b9ec11ac8a7b2692511', 'name': '必须是中文吗', 'email': 'haha@126.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:45 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': 'ffcbc6173518b4260fb40b9ec11ac8a7b2692511', 'name': '必须是中文吗', 'email': 'haha@126.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:46 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': 'ffcbc6173518b4260fb40b9ec11ac8a7b2692511', 'name': '必须是中文吗', 'email': 'haha@126.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:46 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': 'ffcbc6173518b4260fb40b9ec11ac8a7b2692511', 'name': '必须是中文吗', 'email': 'haha@126.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:46 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': 'ffcbc6173518b4260fb40b9ec11ac8a7b2692511', 'name': '必须是中文吗', 'email': 'haha@126.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:46 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': 'ffcbc6173518b4260fb40b9ec11ac8a7b2692511', 'name': '必须是中文吗', 'email': 'haha@126.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:48 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /register
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:51 +0000] "GET /register HTTP/1.1" 200 6445 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/css/uikit.min.css
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:51 +0000] "GET /static/css/uikit.min.css HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/css/uikit.gradient.min.css
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:51 +0000] "GET /static/css/uikit.gradient.min.css HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/css/awesome.css
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:51 +0000] "GET /static/css/awesome.css HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/jquery.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:51 +0000] "GET /static/js/jquery.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/sha1.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:51 +0000] "GET /static/js/sha1.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/uikit.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:51 +0000] "GET /static/js/uikit.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/sticky.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:51 +0000] "GET /static/js/sticky.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/vue.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:51 +0000] "GET /static/js/vue.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/awesome.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:51 +0000] "GET /static/js/awesome.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/fonts/fontawesome-webfont.woff
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:09:54:51 +0000] "GET /static/fonts/fontawesome-webfont.woff HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': 'f93f401b676bedbccc66687207c1ae9cb4b4420a', 'name': 'what name is valid', 'email': 'your-name@example.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:10:00:20 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: POST /api/users
+INFO:root:Response handler...
+INFO:root:call with args: {'passwd': '9ec11f7948d199cdbf267b83837c70660429c404', 'name': 'what name is valid', 'email': 'your-name@example.com'}
+INFO:aiohttp.access:127.0.0.1 - - [18/Jan/2017:10:00:53 +0000] "POST /api/users HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:init_jinjia2...
+INFO:root:set jinja2 templates path: /home/bym/pytest/awesome-python3-webapp/www/templates
+INFO:root:found model: User (table: users)
+INFO:root: found mapping: passwd ==> <StringField, varchar(50):None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root: found mapping: image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: email ==> <StringField, varchar(50):None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: admin ==> <BooleanField, boolean:None>
+INFO:root:found model: Blog (table: blogs)
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: summary ==> <StringField, varchar(200):None>
+INFO:root:found model: Comment (table: comments)
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: blog_id ==> <StringField, varchar(50):None>
+INFO:root:found model: DeviceInfo (table: deviceInfo)
+INFO:root: found mapping: dpi ==> <FloatField, real:None>
+INFO:root: found mapping: density ==> <FloatField, real:None>
+INFO:root: found mapping: scaleDensity ==> <FloatField, real:None>
+INFO:root: found mapping: idenf ==> <StringField, varchar(50):None>
+INFO:root:add route GET /api/users => api_get_users ()
+INFO:root:add route POST /api/users => api_register_user (email,name,passwd)
+INFO:root:add route GET / => index (request)
+INFO:root:add route GET /register => register ()
+INFO:root:add route GET /signin => signin ()
+INFO:root:add static /static/ => /home/bym/pytest/awesome-python3-webapp/www/static
+INFO:root:server started at http://127.0.0.1:9000...
+INFO:root:Request: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {'request': <Request GET / >}
+INFO:aiohttp.access:127.0.0.1 - - [19/Jan/2017:10:42:50 +0000] "GET / HTTP/1.1" 200 5561 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/css/uikit.min.css
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [19/Jan/2017:10:42:50 +0000] "GET /static/css/uikit.min.css HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/css/uikit.gradient.min.css
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [19/Jan/2017:10:42:50 +0000] "GET /static/css/uikit.gradient.min.css HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/css/awesome.css
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [19/Jan/2017:10:42:50 +0000] "GET /static/css/awesome.css HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/jquery.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [19/Jan/2017:10:42:50 +0000] "GET /static/js/jquery.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/sha1.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [19/Jan/2017:10:42:50 +0000] "GET /static/js/sha1.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/sticky.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [19/Jan/2017:10:42:50 +0000] "GET /static/js/sticky.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/uikit.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [19/Jan/2017:10:42:50 +0000] "GET /static/js/uikit.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/vue.min.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [19/Jan/2017:10:42:50 +0000] "GET /static/js/vue.min.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/js/awesome.js
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [19/Jan/2017:10:42:50 +0000] "GET /static/js/awesome.js HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /static/fonts/fontawesome-webfont.woff
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [19/Jan/2017:10:42:50 +0000] "GET /static/fonts/fontawesome-webfont.woff HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /favicon.ico
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [19/Jan/2017:10:42:50 +0000] "GET /favicon.ico HTTP/1.1" 404 14 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:Request: GET /register
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:aiohttp.access:127.0.0.1 - - [19/Jan/2017:10:42:53 +0000] "GET /register HTTP/1.1" 200 6335 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"

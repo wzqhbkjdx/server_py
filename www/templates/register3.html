@@ -1,0 +1,98 @@
+{% extends '__base__.html' %}
+
+{% block title %}注册{% endblock %}
+
+{% block beforehead %}
+
+<script>
+
+function validateEmail(email) {
+    var re = /^[a-z0-9\.\-\_]+\@[a-z0-9\-\_]+(\.[a-z0-9\-\_]+){1,4}$/;
+    return re.test(email.toLowerCase());
+}
+
+$(function () {
+    var vm = new Vue({
+        el: '#vm',
+        data: {
+            density:'',
+            dpi:'',
+            scaleDensity:'',
+            bestProvider:'',
+        },
+        methods: {
+            submit: function (event) {
+                event.preventDefault();
+                var $form = $('#vm');
+                alert("确定添加该设备信息到服务器吗？");
+
+                $form.postJSON('/api/di', {
+                    density:this.density,
+                    dpi:this.dpi,
+                    scaleDensity:this.scaleDensity,
+                    bestProvider:this.bestProvider,
+                }, function (err, r) {
+                    if (err) {
+                        return $form.showFormError(err);
+                    }
+                    //return location.assign('/');
+                    if(r===1){
+                        alert("添加成功！");
+                    }
+                    return location.assign('/register3');
+                });
+            }
+        }
+    });
+    $('#vm').show();
+});
+
+</script>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="uk-width-2-3">
+        <h3>添加设备信息！</h3>
+        <form id="vm" v-on="submit: submit" class="uk-form uk-form-stacked">
+
+            <div class="uk-alert uk-alert-danger uk-hidden"></div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">density</label>
+                <div class="uk-form-controls">
+                    <input v-model="density" type="text" maxlength="50" placeholder="density" class="uk-width-1-1">
+                </div>
+            </div> 
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">dpi</label>
+                <div class="uk-form-controls">
+                    <input v-model="dpi" type="text" maxlength="50" placeholder="dpi" class="uk-width-1-1">
+                </div>
+            </div> 
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">scaleDensity</label>
+                <div class="uk-form-controls">
+                    <input v-model="scaleDensity" type="text" maxlength="50" placeholder="scaleDensity" class="uk-width-1-1">
+                </div>
+            </div> 
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">bestProvider</label>
+                <div class="uk-form-controls">
+                    <input v-model="bestProvider" type="text" maxlength="50" placeholder="bestProvider" class="uk-width-1-1">
+                </div>
+            </div> 
+
+
+
+            <div class="uk-form-row">
+                <button type="submit" class="uk-button uk-button-primary"><i class="uk-icon-user"></i> Add</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
