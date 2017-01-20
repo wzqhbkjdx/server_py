@@ -10,8 +10,9 @@ from aiohttp import web
 from apis import APIValueError, APIResourceNotFoundError, APIError
 
 from coroweb import get, post
-from models import User, Comment, Blog, next_id, DeviceInfo
+from models import User, Comment, Blog, next_id, DeviceInfo, Remain
 from config import configs
+import random
 
 #@get('/')
 #async def index(request):
@@ -95,6 +96,18 @@ def signin():
     return {
         '__template__':'signin.html'
     }
+
+@get('/remain')
+async def get_remain():
+    max_id =  await Remain.selectMaxId('id')
+    m = 0
+    for k, v in max_id.items():
+        m = int(v) 
+        print('max: %s'% m)
+    rd = random.randint(1, m)
+    result = await Remain.findSpecItem('id', rd)
+    return result['num']
+
 
     
 @post('/api/users')

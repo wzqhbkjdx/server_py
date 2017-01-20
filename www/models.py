@@ -44,6 +44,12 @@ class Comment(Model):
     content = TextField()
     created_at = FloatField(default = time.time)
 
+class Remain(Model):
+    __table__='remain'
+    
+    idenf = StringField(primary_key=True, default=next_id, ddl='varchar(50)')
+    num = StringField(ddl='varchar(50)')
+
 class DeviceInfo(Model):
     __table__ = 'deviceInfo'
 
