@@ -19,6 +19,62 @@ $(function () {
             dpi:'',
             scaleDensity:'',
             bestProvider:'',
+            gclGetCid:'',
+            gclGetLac:'',
+            gclGetPsc:'',
+            cellLocation:'',
+            deviceId:'',
+            androidid:'',
+            networkOperator:'',
+            networkOperatorName:'',
+            networkType:'',
+            simSerialNumber:'',
+            simOperator:'',
+            simOperatorName:'',
+            subscriberId:'',
+            getSerial:'',
+            dataActivity:'',
+            board:'',
+            brand:'',
+            bootloader:'',
+            display:'',
+            device:'',
+            fingerPrint:'',
+            hardwear:'',
+            manufacturer:'',
+            model:'',
+            product:'',
+            relea:'',
+            sdk:'',
+            sdkInt:'',
+            extraInfo:'',
+            reason:'',
+            subType:'',
+            subTypeName:'',
+            type:'',
+            typeName:'',
+            macAddress:'',
+            bssid:'',
+            ipAddress:'',
+            networkId:'',
+            ssid:'',
+            rssi:'',
+            widthPixels:'',
+            heightPixels:'',
+            width:'',
+            height:'',
+            rotation:'',
+            version:'',
+            line1Number:'',
+            tags:'',
+            phoneTime:'',
+            phoneType:'',
+            phoneUser:'',
+            host:'',
+            radioVersion:'',
+            codeName:'',
+            incremental:'',
+            buildID:'',
         },
         methods: {
             submit: function (event) {
@@ -31,8 +87,66 @@ $(function () {
                     dpi:this.dpi,
                     scaleDensity:this.scaleDensity,
                     bestProvider:this.bestProvider,
+                    gclGetCid:this.gclGetCid,
+                    gclGetLac:this.gclGetLac,
+                    gclGetPsc:this.gclGetPsc,
+                    cellLocation:this.cellLocation,
+                    deviceId:this.deviceId,
+                    androidid:this.androidid,
+                    networkOperator:this.networkOperator,
+                    networkOperatorName:this.networkOperatorName,
+                    networkType:this.networkType,
+                    simSerialNumber: this.simSerialNumber,
+                    simOperator: this.simOperator,
+                    simOperatorName: this.simOperatorName,
+                    subscriberId: this.subscriberId,
+                    getSerial: this.getSerial,
+                    dataActivity: this.dataActivity,
+                    board: this.board,
+                    brand: this.brand,
+                    bootloader: this.bootloader,
+                    display: this.display,
+                    device: this.device,
+                    fingerPrint: this.fingerPrint,
+                    hardwear: this.hardwear,
+                    manufacturer: this.manufacturer,
+                    model:this.model,
+                    product: this.product,
+                    relea: this.relea,
+                    sdk: this.sdk,
+                    sdkInt: this.sdkInt,
+                    extraInfo: this.extraInfo,
+                    reason: this.reason,
+                    subType: this.subType,
+                    subTypeName: this.subTypeName,
+                    type: this.type,
+                    typeName: this.typeName,
+                    macAddress: this.macAddress,
+                    bssid: this.bssid,
+                    ipAddress: this.ipAddress,
+                    networkId: this.networkId,
+                    ssid: this.ssid,
+                    rssi: this.rssi,
+                    widthPixels: this.widthPixels,
+                    heightPixels: this.heightPixels,
+                    width: this.width,
+                    height: this.height,
+                    rotation: this.rotation,
+                    version: this.version,
+                    line1Number: this.line1Number,
+                    tags: this.tags,
+                    phoneTime: this.phoneTime,
+                    phoneType: this.phoneType,
+                    phoneUser: this.phoneUser,
+                    host: this.host,
+                    radioVersion: this.radioVersion,
+                    codeName: this.codeName,
+                    incremental: this.incremental,
+                    buildID: this.buildID,
+
                 }, function (err, r) {
                     if (err) {
+                        alert('添加失败，字段有误，请检查。')
                         return $form.showFormError(err);
                     }
                     //return location.assign('/');
@@ -60,33 +174,424 @@ $(function () {
             <div class="uk-alert uk-alert-danger uk-hidden"></div>
 
             <div class="uk-form-row">
-                <label class="uk-form-label">density</label>
+                <label class="uk-form-label">density(real)</label>
                 <div class="uk-form-controls">
                     <input v-model="density" type="text" maxlength="50" placeholder="density" class="uk-width-1-1">
                 </div>
-            </div> 
+            </div>
 
             <div class="uk-form-row">
-                <label class="uk-form-label">dpi</label>
+                <label class="uk-form-label">dpi(real)</label>
                 <div class="uk-form-controls">
                     <input v-model="dpi" type="text" maxlength="50" placeholder="dpi" class="uk-width-1-1">
                 </div>
-            </div> 
+            </div>
 
             <div class="uk-form-row">
-                <label class="uk-form-label">scaleDensity</label>
+                <label class="uk-form-label">scaleDensity(real)</label>
                 <div class="uk-form-controls">
                     <input v-model="scaleDensity" type="text" maxlength="50" placeholder="scaleDensity" class="uk-width-1-1">
                 </div>
-            </div> 
+            </div>
 
             <div class="uk-form-row">
                 <label class="uk-form-label">bestProvider</label>
                 <div class="uk-form-controls">
                     <input v-model="bestProvider" type="text" maxlength="50" placeholder="bestProvider" class="uk-width-1-1">
                 </div>
-            </div> 
+            </div>
 
+            <div class="uk-form-row">
+                <label class="uk-form-label">gclGetCid(int)</label>
+                <div class="uk-form-controls">
+                    <input v-model="gclGetCid" type="text" maxlength="50" placeholder="gclGetCid" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">gclGetLac(int)</label>
+                <div class="uk-form-controls">
+                    <input v-model="gclGetLac" type="text" maxlength="50" placeholder="gclGetLac" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">gclGetPsc(int)</label>
+                <div class="uk-form-controls">
+                    <input v-model="gclGetPsc" type="text" maxlength="50" placeholder="gclGetPsc" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">cellLocation</label>
+                <div class="uk-form-controls">
+                    <input v-model="cellLocation" type="text" maxlength="50" placeholder="cellLocation" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">deviceId</label>
+                <div class="uk-form-controls">
+                    <input v-model="deviceId" type="text" maxlength="50" placeholder="deviceId" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">androidid</label>
+                <div class="uk-form-controls">
+                    <input v-model="androidid" type="text" maxlength="50" placeholder="androidid" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">networkOperator</label>
+                <div class="uk-form-controls">
+                    <input v-model="networkOperator" type="text" maxlength="50" placeholder="networkOperator" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">networkOperatorName</label>
+                <div class="uk-form-controls">
+                    <input v-model="networkOperatorName" type="text" maxlength="50" placeholder="networkOperatorName" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">networkType</label>
+                <div class="uk-form-controls">
+                    <input v-model="networkType" type="text" maxlength="50" placeholder="networkType" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">simSerialNumber</label>
+                <div class="uk-form-controls">
+                    <input v-model="simSerialNumber" type="text" maxlength="50" placeholder="simSerialNumber" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">simOperator</label>
+                <div class="uk-form-controls">
+                    <input v-model="simOperator" type="text" maxlength="50" placeholder="simOperator" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">simOperatorName</label>
+                <div class="uk-form-controls">
+                    <input v-model="simOperatorName" type="text" maxlength="50" placeholder="simOperatorName" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">subscriberId</label>
+                <div class="uk-form-controls">
+                    <input v-model="subscriberId" type="text" maxlength="50" placeholder="subscriberId" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">getSerial</label>
+                <div class="uk-form-controls">
+                    <input v-model="getSerial" type="text" maxlength="50" placeholder="getSerial" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">dataActivity</label>
+                <div class="uk-form-controls">
+                    <input v-model="dataActivity" type="text" maxlength="50" placeholder="dataActivity" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">board</label>
+                <div class="uk-form-controls">
+                    <input v-model="board" type="text" maxlength="50" placeholder="board" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">brand</label>
+                <div class="uk-form-controls">
+                    <input v-model="brand" type="text" maxlength="50" placeholder="brand" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">bootloader</label>
+                <div class="uk-form-controls">
+                    <input v-model="bootloader" type="text" maxlength="50" placeholder="bootloader" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">display</label>
+                <div class="uk-form-controls">
+                    <input v-model="display" type="text" maxlength="50" placeholder="display" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">device</label>
+                <div class="uk-form-controls">
+                    <input v-model="device" type="text" maxlength="50" placeholder="device" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">fingerPrint</label>
+                <div class="uk-form-controls">
+                    <input v-model="fingerPrint" type="text" maxlength="100" placeholder="fingerPrint" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">hardwear</label>
+                <div class="uk-form-controls">
+                    <input v-model="hardwear" type="text" maxlength="50" placeholder="hardwear" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">manufacturer</label>
+                <div class="uk-form-controls">
+                    <input v-model="manufacturer" type="text" maxlength="50" placeholder="manufacturer" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">model</label>
+                <div class="uk-form-controls">
+                    <input v-model="model" type="text" maxlength="50" placeholder="model" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">product</label>
+                <div class="uk-form-controls">
+                    <input v-model="product" type="text" maxlength="50" placeholder="product" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">relea</label>
+                <div class="uk-form-controls">
+                    <input v-model="relea" type="text" maxlength="50" placeholder="relea" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">sdk(int)</label>
+                <div class="uk-form-controls">
+                    <input v-model="sdk" type="text" maxlength="50" placeholder="sdk" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">sdkInt(int)</label>
+                <div class="uk-form-controls">
+                    <input v-model="sdkInt" type="text" maxlength="50" placeholder="sdkInt" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">extraInfo</label>
+                <div class="uk-form-controls">
+                    <input v-model="extraInfo" type="text" maxlength="50" placeholder="extraInfo" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">reason</label>
+                <div class="uk-form-controls">
+                    <input v-model="reason" type="text" maxlength="50" placeholder="reason" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">subType</label>
+                <div class="uk-form-controls">
+                    <input v-model="subType" type="text" maxlength="50" placeholder="subType" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">subTypeName</label>
+                <div class="uk-form-controls">
+                    <input v-model="subTypeName" type="text" maxlength="50" placeholder="subTypeName" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">type</label>
+                <div class="uk-form-controls">
+                    <input v-model="type" type="text" maxlength="50" placeholder="type" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">typeName</label>
+                <div class="uk-form-controls">
+                    <input v-model="typeName" type="text" maxlength="50" placeholder="typeName" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">macAddress</label>
+                <div class="uk-form-controls">
+                    <input v-model="macAddress" type="text" maxlength="50" placeholder="macAddress" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">bssid</label>
+                <div class="uk-form-controls">
+                    <input v-model="bssid" type="text" maxlength="50" placeholder="bssid" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">ipAddress</label>
+                <div class="uk-form-controls">
+                    <input v-model="ipAddress" type="text" maxlength="50" placeholder="ipAddress" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">networkId</label>
+                <div class="uk-form-controls">
+                    <input v-model="networkId" type="text" maxlength="50" placeholder="networkId" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">ssid</label>
+                <div class="uk-form-controls">
+                    <input v-model="ssid" type="text" maxlength="50" placeholder="ssid" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">rssi</label>
+                <div class="uk-form-controls">
+                    <input v-model="rssi" type="text" maxlength="50" placeholder="rssi" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">widthPixels</label>
+                <div class="uk-form-controls">
+                    <input v-model="widthPixels" type="text" maxlength="50" placeholder="widthPixels" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">heightPixels</label>
+                <div class="uk-form-controls">
+                    <input v-model="heightPixels" type="text" maxlength="50" placeholder="heightPixels" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">width(int)</label>
+                <div class="uk-form-controls">
+                    <input v-model="width" type="text" maxlength="50" placeholder="width" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">height(int)</label>
+                <div class="uk-form-controls">
+                    <input v-model="height" type="text" maxlength="50" placeholder="height" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">rotation(int)</label>
+                <div class="uk-form-controls">
+                    <input v-model="rotation" type="text" maxlength="50" placeholder="rotation" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">version</label>
+                <div class="uk-form-controls">
+                    <input v-model="version" type="text" maxlength="50" placeholder="version" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">line1Number</label>
+                <div class="uk-form-controls">
+                    <input v-model="line1Number" type="text" maxlength="50" placeholder="line1Number" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">tags</label>
+                <div class="uk-form-controls">
+                    <input v-model="tags" type="text" maxlength="50" placeholder="tags" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">phoneTime</label>
+                <div class="uk-form-controls">
+                    <input v-model="phoneTime" type="text" maxlength="50" placeholder="phoneTime" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">phoneType</label>
+                <div class="uk-form-controls">
+                    <input v-model="phoneType" type="text" maxlength="50" placeholder="phoneType" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">phoneUser</label>
+                <div class="uk-form-controls">
+                    <input v-model="phoneUser" type="text" maxlength="50" placeholder="phoneUser" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">host</label>
+                <div class="uk-form-controls">
+                    <input v-model="host" type="text" maxlength="50" placeholder="host" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">radioVersion</label>
+                <div class="uk-form-controls">
+                    <input v-model="radioVersion" type="text" maxlength="50" placeholder="radioVersion" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">codeName</label>
+                <div class="uk-form-controls">
+                    <input v-model="codeName" type="text" maxlength="50" placeholder="codeName" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">incremental</label>
+                <div class="uk-form-controls">
+                    <input v-model="incremental" type="text" maxlength="50" placeholder="incremental" class="uk-width-1-1">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">buildID</label>
+                <div class="uk-form-controls">
+                    <input v-model="buildID" type="text" maxlength="50" placeholder="buildID" class="uk-width-1-1">
+                </div>
+            </div>
 
 
             <div class="uk-form-row">

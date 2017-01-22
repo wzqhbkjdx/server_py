@@ -10,7 +10,7 @@ create table deviceInfo (
 	gclGetCid integer,
 	gclGetLac integer,
 	gclGetPsc integer,
-	cellLocaton varchar(50),
+	cellLocation varchar(50),
 	deviceId varchar(100),
 	androidid varchar(100),
 	networkOperator varchar(50),

@@ -3,7 +3,7 @@
 
 import time, uuid
 
-from orm import Model, StringField, BooleanField, FloatField, TextField
+from orm import Model, StringField, BooleanField, FloatField, TextField, IntegerField
 
 def next_id():
     return '%015d%s000' % (int(time.time() * 1000), uuid.uuid4().hex)
@@ -58,5 +58,112 @@ class DeviceInfo(Model):
     dpi = FloatField()
     scaleDensity = FloatField()
     bestProvider = StringField(ddl='varchar(50)')
+    gclGetCid = IntegerField()
+    gclGetLac = IntegerField()
+    gclGetPsc = IntegerField()
+    
+    cellLocation = StringField(ddl='varchar(50)')
 
+    deviceId = StringField(ddl='varchar(100)')
 
+    androidid = StringField(ddl = 'varchar(100)')
+
+    networkOperator = StringField('varchar(50)')
+
+    networkOperatorName = StringField('varchar(50)')
+
+    networkType = StringField('varchar(50)')
+
+    simSerialNumber = StringField('varchar(50)')
+
+    simOperator = StringField('varchar(50)')
+
+    simOperatorName = StringField('varchar(50)')
+
+    subscriberId = StringField('varchar(50)')
+
+    getSerial = StringField('varchar(50)')
+    
+    dataActivity = StringField('varchar(50)')
+
+    board = StringField('varchar(50)')
+
+    brand = StringField('varchar(50)')
+
+    bootloader = StringField('varchar(50)')
+    
+    display = StringField('varchar(50)')
+
+    device = StringField('varchar(50)')
+
+    fingerPrint = StringField('varchar(100)')
+
+    hardwear = StringField('varchar(50)')
+
+    manufacturer = StringField('varchar(50)')
+
+    model = StringField('varchar(50)')
+
+    product = StringField('varchar(50)')
+
+    relea = StringField('varchar(50)')
+
+    sdk = IntegerField()
+
+    sdkInt = IntegerField()
+
+    extraInfo = StringField('varchar(50)')
+
+    reason = StringField('varchar(50)')
+
+    subType = StringField('varchar(50)')
+
+    subTypeName = StringField('varchar(50)')
+
+    type = StringField('varchar(50)')
+
+    typeName = StringField('varchar(50)')
+
+    macAddress = StringField('varchar(50)')
+
+    bssid = StringField('varchar(50)')
+
+    ipAddress = StringField('varchar(50)')
+
+    networkId = StringField('varchar(50)')
+
+    ssid = StringField('varchar(50)')
+
+    rssi = StringField('varchar(50)')
+
+    widthPixels = StringField('varchar(50)')
+
+    heightPixels = StringField('varchar(50)')
+
+    width = IntegerField()
+
+    height = IntegerField()
+
+    rotation = IntegerField()
+
+    version = StringField('varchar(50)')
+
+    line1Number = StringField('varchar(50)')
+
+    tags = StringField('varchar(50)')
+
+    phoneTime = StringField('varchar(50)')
+
+    phoneType = StringField('varchar(50)')
+
+    phoneUser = StringField('varchar(50)')
+
+    host = StringField('varchar(50)')
+
+    radioVersion = StringField('varchar(50)')
+
+    codeName = StringField('varchar(50)')
+
+    incremental = StringField('varchar(50)')
+
+    buildID = StringField('varchar(50)')

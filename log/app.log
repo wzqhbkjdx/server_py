@@ -400,3 +400,49 @@ INFO:root:Request: GET /register
 INFO:root:Response handler...
 INFO:root:call with args: {}
 INFO:aiohttp.access:127.0.0.1 - - [19/Jan/2017:10:42:53 +0000] "GET /register HTTP/1.1" 200 6335 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+INFO:root:init_jinjia2...
+INFO:root:set jinja2 templates path: /home/bym/pytest/awesome-python3-webapp/www/templates
+INFO:root:found model: User (table: users)
+INFO:root: found mapping: image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: email ==> <StringField, varchar(50):None>
+INFO:root: found mapping: admin ==> <BooleanField, boolean:None>
+INFO:root: found mapping: passwd ==> <StringField, varchar(50):None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root:found model: Blog (table: blogs)
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root: found mapping: summary ==> <StringField, varchar(200):None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root:found model: Comment (table: comments)
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: blog_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root:found model: Remain (table: remain)
+INFO:root: found mapping: num ==> <StringField, varchar(50):None>
+INFO:root: found mapping: idenf ==> <StringField, varchar(50):None>
+INFO:root:found model: DeviceInfo (table: deviceInfo)
+INFO:root: found mapping: dpi ==> <FloatField, real:None>
+INFO:root: found mapping: scaleDensity ==> <FloatField, real:None>
+INFO:root: found mapping: idenf ==> <StringField, varchar(50):None>
+INFO:root: found mapping: bestProvider ==> <StringField, varchar(50):None>
+INFO:root: found mapping: density ==> <FloatField, real:None>
+INFO:root:add route POST /api/di => add_device_info (density,dpi,scaleDensity,bestProvider)
+INFO:root:add route GET /api/users => api_get_users ()
+INFO:root:add route POST /api/users => api_register_user (email,name,passwd)
+INFO:root:add route GET /remain => get_remain ()
+INFO:root:add route GET / => index (request)
+INFO:root:add route GET /register => register ()
+INFO:root:add route GET /register3 => register3 ()
+INFO:root:add route GET /signin => signin ()
+INFO:root:add static /static/ => /home/bym/pytest/awesome-python3-webapp/www/static
+INFO:root:server started at http://127.0.0.1:9000...

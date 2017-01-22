@@ -1,0 +1,121 @@
+{% extends '__base__.html' %}
+
+{% block title %}日志{% endblock %}
+
+{% block beforehead %}
+
+<script>
+</script>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="uk-width-medium-1-1">
+    {% for device in devices %}
+        <article class="uk-article">
+            <table border="2">
+            <tr>
+                <td> density: {{ device.density }} </td>
+                <td> dpi:{{ device.dpi }} </td> 
+                <td> scaleDensity:{{ device.scaleDensity }} </td>
+                <td> bestProvider:{{ device.bestProvider }} </td>
+                <td>gclGetCid:{{ device.gclGetCid }} </td>
+                <td>gclGetLac: {{ device.gclGetLac }} </td>
+                
+            </tr>
+
+            <tr>
+                <td>gclGetPsc: {{ device.gclGetPsc }}</td>
+                <td>cellLoaction: {{ device.cellLocation }}</td>
+                <td>deviceId: {{ device.deviceId }}</td>
+                <td>androidid: {{ device.androidid }}</td>
+                <td>networkOperator: {{ device.networkOperator }}</td>
+                <td>networkOperatorName: {{ device.networkOperatorName }}</td>
+                
+            </tr>
+
+            <tr>
+                <td>networkType: {{ device.networkType }}</td>
+                <td>simSerialNumber: {{ device.simSerialNumber }}</td>
+                <td>simOperator: {{ device.simOperator }}</td>
+                <td>simOperatorName: {{ device.simOperatorName }}</td>
+                <td>subscriberId: {{ device.subscriberId }}</td>
+                <td>getSerial: {{ device.getSerial }}</td>
+                
+            </tr>
+
+            <tr>
+                <td>dataActivity: {{ device.dataActivity }}</td>
+                <td>board: {{ device.board }}</td>
+                <td>brand: {{ device.brand }}</td>
+                <td>bootloader: {{ device.brand }}</td>
+                <td>display: {{ device.display }}</td>
+                <td>device: {{ device.device }}</td>
+            </tr>
+
+            <tr>
+                <td>fingerPrint: {{ device.fingerPrint }}</td>
+                <td>hardwear: {{ device.hardwear }}</td>
+                <td>manufacturer: {{ device.manufacturer }}</td>
+                <td>model: {{ device.model }}</td>
+                <td>product: {{ device.product }}</td>
+                <td>relea: {{ device.relea }}</td>
+            </tr>
+
+            <tr>
+                <td>sdk: {{ device.sdk }}</td>
+                <td>sdkInt: {{ device.sdkInt }}</td>
+                <td>extraInfo:{{ device.extraInfo }}</td>
+                <td>reason: {{ device.reason }}</td>
+                <td>subType: {{ device.subType }}</td>
+                <td>subTypeName: {{ device.subTypeName }}</td>
+            </tr>
+
+            <tr>
+                <td>type: {{ device.type }}</td>
+                <td>typeName: {{ device.typeName }}</td>
+                <td>macAddress: {{ device.macAddress }}</td>
+                <td>bssid: {{ device.bssid }}</td>
+                <td>ipAddress: {{ device.ipAddress }}</td>
+                <td>networkId: {{ device.networkId }}</td>
+                
+            </tr>
+
+            <tr>
+                <td>ssid: {{ device.ssid }} </td>
+                <td>rssi: {{ device.rssi }}</td>
+                <td>widthPixels: {{ device.widthPixels }}</td>
+                <td>heightPixels: {{ device.heightPixels}}</td>
+                <td>width: {{ device.width }}</td>
+                <td>height: {{ device.height }}</td>
+                
+            </tr>
+
+            <tr>
+                <td>rotation: {{ device.rotation }}</td>
+                <td>version: {{ device.version }}</td>
+                <td>line1Number: {{ device.line1Number }}</td>
+                <td>tags: {{ device.tags }}</td>
+                <td>phoneTime: {{ device.phoneTime }}</td>
+                <td>phoneType: {{ device.phoneType }}</td>
+                
+            </tr>
+
+            <tr>
+                <td>phoneUser::  {{ device.phoneUser }}</td>
+                <td>host: {{ device.host }}</td>
+                <td>radioVersion: {{ device.radioVersion }}</td>
+                <td>codeName: {{ device.codeName }}</td>
+                <td>incremental: {{ device.incremental }}</td>
+                <td>buildID: {{ device.buildID }}</td>
+            </tr>
+
+           </table>
+        </article>
+        <hr class="uk-article-divider">
+    {% endfor %}
+    </div>
+
+
+{% endblock %}

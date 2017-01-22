@@ -32,9 +32,19 @@ def index(request):
         Blog(id='3', name='Learn Swift', summary=summary, created_at=time.time()-7200)
     ]
     return {
-        '__template__':'blogs.html',
+        '__template__':'deviceInfo.html',
         'blogs':blogs
     }
+
+@get('/deviceInfo')
+async def get_all_deviceInfo():
+    devices = await DeviceInfo.findAll()
+    return {
+        '__template__': 'deviceInfo.html',
+        'devices':devices
+    }
+
+
 
 @get('/api/users')
 async def api_get_users():
@@ -109,6 +119,7 @@ async def get_remain():
     return result['num']
 
 
+
     
 @post('/api/users')
 async def api_register_user(*, email, name, passwd):
@@ -139,7 +150,67 @@ async def api_register_user(*, email, name, passwd):
 
 @post('/api/di')
 async def add_device_info(*, density, dpi, scaleDensity,
-                         bestProvider): 
+                         bestProvider,
+                         gclGetCid,
+                         gclGetLac,
+                         gclGetPsc,
+                         cellLocation,
+                         deviceId,
+                         androidid,
+                         networkOperator,
+                         networkOperatorName,
+                         networkType,
+                         simSerialNumber,
+                         simOperator,
+                         simOperatorName,
+                         subscriberId,
+                         getSerial,
+                         dataActivity,
+                         board,
+                         brand,
+                         bootloader,
+                         display,
+                         device,
+                         fingerPrint,
+                         hardwear,
+                         manufacturer,
+                         model,
+                         product,
+                         relea,
+                         sdk,
+                         sdkInt,
+                         extraInfo,
+                         reason,
+                         subType,
+                         subTypeName,
+                         type,
+                         typeName,
+                         macAddress,
+                         bssid,
+                         ipAddress,
+                         networkId,
+                         ssid,
+                         rssi,
+                         widthPixels,
+                         heightPixels,
+                         width,
+                         height,
+                         rotation,
+                         version,
+                         line1Number,
+                         tags,
+                         phoneTime,
+                         phoneType,
+                         phoneUser,
+                         host,
+                         radioVersion,
+                         codeName,
+                         incremental,
+                         buildID
+                         
+                         
+                         ): 
+
     print('density: %s' % density)
     print('add deviceInfo: %s' % dpi)
     print('scaleDensity: %s' % scaleDensity)
@@ -149,7 +220,65 @@ async def add_device_info(*, density, dpi, scaleDensity,
                     density=float(density),
                     dpi = float(dpi),
                     scaleDensity = float(scaleDensity),
-                    bestProvider = bestProvider
+                    bestProvider = bestProvider,
+                    gclGetCid = int(gclGetCid),
+                    gclGetLac = int(gclGetLac),
+                    gclGetPsc = int(gclGetPsc),
+                    cellLocation = cellLocation,
+                    deviceId = deviceId,
+                    androidid = androidid,
+                    networkOperator = networkOperator,
+                    networkOperatorName = networkOperatorName,
+                    networkType = networkType,
+                    simSerialNumber = simSerialNumber,
+                    simOperator = simOperator,
+                    simOperatorName = simOperatorName,
+                    subscriberId = subscriberId,
+                    getSerial = getSerial,
+                    dataActivity = dataActivity,
+                    board = board,
+                    brand = brand,
+                    bootloader = bootloader,
+                    display = display,
+                    device = device,
+                    fingerPrint = fingerPrint,
+                    hardwear = hardwear,
+                    manufacturer = manufacturer,
+                    model = model,
+                    product = product,
+                    relea = relea,
+                    sdk = int(sdk),
+                    sdkInt = int(sdkInt),
+                    extraInfo = extraInfo,
+                    reason = reason,
+                    subType = subType,
+                    subTypeName = subTypeName,
+                    type = type,
+                    typeName = typeName,
+                    macAddress = macAddress,
+                    bssid = bssid,
+                    ipAddress = ipAddress,
+                    networkId = networkId,
+                    ssid = ssid,
+                    rssi = rssi,
+                    widthPixels = widthPixels,
+                    heightPixels = heightPixels,
+                    width = int(width),
+                    height = int(height),
+                    rotation = int(rotation),
+                    version = version,
+                    line1Number = line1Number,
+                    tags = tags,
+                    phoneTime = phoneTime,
+                    phoneType = phoneType,
+                    phoneUser = phoneUser,
+                    host = host,
+                    radioVersion = radioVersion,
+                    codeName = codeName,
+                    incremental = incremental,
+                    buildID = buildID
+
+
                    ) 
     rows = await di.save()
     return rows

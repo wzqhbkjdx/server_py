@@ -205,6 +205,7 @@ class Model(dict, metaclass=ModelMetaclass):
                 raise ValueError('Invalid limit value: %s' % str(limit))
         rs = await select(' '.join(sql), args)
         return [cls(**r) for r in rs]
+        #return rs
     
     @classmethod
     async def findNumber(cls, selectField, where=None, args=None):
