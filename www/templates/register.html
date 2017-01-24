@@ -41,9 +41,9 @@ $(function () {
                     // name: this.name.trim(),
                     // email: email,
                     // passwd: CryptoJS.SHA1(email + ':' + this.password1).toString()
-                    density : density,
-                    dpi : dpi,
-                    scaleDensity : scaleDensity
+                    density : this.density,
+                    dpi : this.dpi,
+                    scaleDensity : this.scaleDensity
                 }, function (err, r) {
                     if (err) {
                         return $form.showFormError(err);

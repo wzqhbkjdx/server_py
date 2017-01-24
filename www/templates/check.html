@@ -1,0 +1,120 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+
+{% extends '__base__.html' %}
+
+{% block title %}注册{% endblock %}
+
+{% block beforehead %}
+
+<script>
+
+var flag = false;
+
+$(function () {
+    var vm = new Vue({
+        el: '#vm',
+        data: {
+            idenf:'',
+        },
+        methods: {
+            submit: function (event) {
+                event.preventDefault();
+                var $form = $('#vm');
+
+                if(flag === true) {
+
+                	// alert("second")
+                	$form.postJSON('/api/check', { 
+                		idenf:this.idenf, 
+                	}, 
+                		function (err, r) {
+                			// alert(r.dpi);
+                			document.getElementById("idenfer").value = r.idenf;
+                			document.getElementById("density").value = r.density;
+                			document.getElementById("dpi").value = r.dpi;
+
+
+                			document.getElementById('idenfer').readOnly = true;
+                			document.getElementById("density").readOnly = true;
+                			document.getElementById("dpi").readOnly = true;
+
+                    		if (err) {
+                        		return $form.showFormError(err);
+                    		}
+                    		return;
+                    	//return location.assign('/');
+                	});
+
+                } else {
+                	alert("third")
+                }
+                
+                // return $form.showFormError(density);
+                
+                
+            }
+        }
+    });
+    $('#vm').show();
+});
+
+function edit() {
+	flag = false;
+	document.getElementById('idenfer').readOnly = false;
+    document.getElementById("density").readOnly = false;
+    document.getElementById("dpi").readOnly = false;
+}
+
+function check() {
+	flag = true;
+}
+
+</script>
+
+{% endblock %}
+
+{% block content %}
+
+    <!-- <div class="uk-width-2-3"> -->
+        <form id="vm" v-on="submit: submit" class="uk-form uk-form-stacked">
+
+            <table >
+            	<tr>
+            		<td><label><b>idenf:</b></label></td>
+            		<td><input type="text" v-model="idenf" name="idenf" id = "input_idenf" style="width:500px;"></td>
+                	<td><button type="submit" class="uk-button uk-button-primary" onclick="check()">查询</button></td>
+            	</tr>
+
+            	<tr>
+            		<td><label><b>idenf:</b></label></td>
+            		<td><input type="text" v-model="idenfer" name="idenfer" id = "idenfer" style="width:500px;"></td>
+            	</tr>
+
+            	<tr>
+            		<td><label><b>density:</b></label></td>
+            		<td><input type="text" v-model="density" name="density" id = "density"></td>
+            	</tr>
+
+            	<tr>
+            		<td><label><b>dpi:</b></label></td>
+            		<td><input type="text" v-model="dpi" name="dpi" id = "dpi"></td>
+            	</tr>
+
+            	<tr>
+
+            	</tr>
+
+
+            </table>
+
+            
+           
+           <button type="submit" class="uk-button uk-button-primary" onclick="edit()">编辑</button>
+            
+
+        </form>
+
+    <!-- </div> -->
+
+{% endblock %}
+	

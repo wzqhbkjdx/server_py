@@ -53,6 +53,12 @@ async def api_get_users():
         u.passwd = '******'
     return dict(user=users)
 
+@get('/check')
+def check_edit_info():
+    return {
+        '__template__':'check.html'
+    }
+
 
 _RE_EMAIL = re.compile(r'^[a-z0-9\.\-\_]+\@[a-z0-9\-\_]+(\.[a-z0-9\-\_]+){1,4}$')
 _RE_SHA1 = re.compile(r'^[0-9a-f]{40}$')
@@ -118,7 +124,12 @@ async def get_remain():
     result = await Remain.findSpecItem('id', rd)
     return result['num']
 
-
+@post('/api/check')
+async def check_by_idenf(* ,idenf):
+    print('check by idenf: %s' % idenf)
+    deviceInfo = await DeviceInfo.find(idenf)
+    print('deviceInfo dpi: %s' % deviceInfo.dpi)
+    return deviceInfo
 
     
 @post('/api/users')

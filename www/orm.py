@@ -147,7 +147,7 @@ class ModelMetaclass(type):
         attrs['__fields__'] = fields
         attrs['__select__'] = 'select %s, %s from %s' % (primary_key, ', '.join(escaped_fields),tableName)
         attrs['__insert__'] = 'insert into %s(%s, %s) values (%s)' % (tableName, ','.join(escaped_fields), primary_key, create_args_string(len(escaped_fields) + 1))
-        attrs['__update__'] = 'update %s set %s where %s=?' % (tableName, ', '.join(map(lambda f: '`%s`=?' % (mappings.get(f).name or f), fields)), primary_key)
+        attrs['__update__'] = 'update %s set %s where %s=?' % (tableName, ', '.join(map(lambda f: '%s=?' % (mappings.get(f).name or f), fields)), primary_key)
         attrs['__delete__'] = 'delete from %s where %s=?' % (tableName, primary_key)
         attrs['__select_max_id__'] = 'select max(id) from %s' % tableName
         return type.__new__(cls, name, bases, attrs)
@@ -226,6 +226,7 @@ class Model(dict, metaclass=ModelMetaclass):
         if len(rs) == 0:
             return None
         return cls(**rs[0])
+        #return rs
 
     @classmethod
     async def findSpecItem(cls, sp, num):
@@ -255,13 +256,15 @@ class Model(dict, metaclass=ModelMetaclass):
     async def update(self):
         args = list(map(self.getValue, self.__fields__))
         args.append(self.getValue(self.__primary_key__))
-        rows = await execute(self.__update__, args)
+        print(args)
+        print(self.__update__)
+        rows = await execute(self.__update__, args, False)
         if rows != 1:
             logging.warn('failed to insert record: affected rows: %s' % rows)
 
     async def remove(self):
         args = [self.getValue(self.__primary_key__)]
-        rows = await execute(self.__delete__, args)
+        rows = await execute(self.__delete__, args, False)
         if rows != 1:
             logging.warn('failed to remove by primary key: affected rows: %s' % rows)
 
