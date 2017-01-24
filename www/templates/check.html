@@ -2,71 +2,510 @@
 
 {% extends '__base__.html' %}
 
-{% block title %}注册{% endblock %}
+{% block title %}修改{% endblock %}
 
 {% block beforehead %}
 
 <script>
 
-var flag = false;
+var flag = 0;
+var deleteFlag = false;
+
+
+// flag = 0 : normal
+// flag = 1 : check
+// flag = 2 : edit
+// flag = 3 : save
+// flag = 4 : delete
 
 $(function () {
     var vm = new Vue({
         el: '#vm',
         data: {
             idenf:'',
+            density:'',
+            dpi:'',
+            scaleDensity:'',
+            bestProvider:'',
+            gclGetCid:'',
+            gclGetLac:'',
+            gclGetPsc:'',
+            cellLocation:'',
+            deviceId:'',
+            androidid:'',
+            networkOperator:'',
+            networkOperatorName:'',
+            networkType:'',
+            simSerialNumber:'',
+            simOperator:'',
+            simOperatorName:'',
+            subscriberId:'',
+            getSerial:'',
+            dataActivity:'',
+            board:'',
+            brand:'',
+            bootloader:'',
+            display:'',
+            device:'',
+            fingerPrint:'',
+            hardwear:'',
+            manufacturer:'',
+            model:'',
+            product:'',
+            relea:'',
+            sdk:'',
+            sdkInt:'',
+            extraInfo:'',
+            reason:'',
+            subType:'',
+            subTypeName:'',
+            type:'',
+            typeName:'',
+            macAddress:'',
+            bssid:'',
+            ipAddress:'',
+            networkId:'',
+            ssid:'',
+            rssi:'',
+            widthPixels:'',
+            heightPixels:'',
+            width:'',
+            height:'',
+            rotation:'',
+            version:'',
+            line1Number:'',
+            tags:'',
+            phoneTime:'',
+            phoneType:'',
+            phoneUser:'',
+            host:'',
+            radioVersion:'',
+            codeName:'',
+            incremental:'',
+            buildID:'',
         },
         methods: {
             submit: function (event) {
                 event.preventDefault();
                 var $form = $('#vm');
 
-                if(flag === true) {
+                if(flag === 1) {
 
-                	// alert("second")
+                	// alert("check")
                 	$form.postJSON('/api/check', { 
                 		idenf:this.idenf, 
                 	}, 
                 		function (err, r) {
-                			// alert(r.dpi);
+                			if(r === undefined) {
+                				alert('查询失败，数据库中没有该条目存在');
+                				return;
+                			}
+                			// 
                 			document.getElementById("idenfer").value = r.idenf;
                 			document.getElementById("density").value = r.density;
                 			document.getElementById("dpi").value = r.dpi;
+                			document.getElementById("scaleDensity").value = r.scaleDensity;
+                			document.getElementById("bestProvider").value = r.bestProvider;
+                			document.getElementById("gclGetCid").value = r.gclGetCid;
+                			document.getElementById("gclGetLac").value = r.gclGetLac;
+                			document.getElementById("gclGetPsc").value = r.gclGetPsc;
+                			document.getElementById("cellLocation").value = r.cellLocation;                			
+                			document.getElementById("deviceId").value = r.deviceId;
+                			document.getElementById("androidid").value = r.androidid;
+                			document.getElementById("networkOperator").value = r.networkOperator;
+                			document.getElementById("networkOperatorName").value = r.networkOperatorName;
+                			document.getElementById("networkType").value = r.networkType;
+                			document.getElementById("simSerialNumber").value = r.simSerialNumber;
+                			document.getElementById("simOperator").value = r.simOperator;
+                			document.getElementById("simOperatorName").value = r.simOperatorName;
+                			document.getElementById("subscriberId").value = r.subscriberId;
+                			document.getElementById("getSerial").value = r.getSerial;
+                			document.getElementById("dataActivity").value = r.dataActivity;
+                			document.getElementById("board").value = r.board;
+                			document.getElementById("brand").value = r.brand;
+                			document.getElementById("bootloader").value = r.bootloader;
+                			document.getElementById("display").value = r.display;
+                			document.getElementById("device").value = r.device;
+                			document.getElementById("fingerPrint").value = r.fingerPrint;
+                			document.getElementById("hardwear").value = r.hardwear;
+                			document.getElementById("manufacturer").value = r.manufacturer;
+                			document.getElementById("model").value = r.model;
+                			document.getElementById("product").value = r.product;
+                			document.getElementById("relea").value = r.relea;
+                			document.getElementById("sdk").value = r.sdk;
+                			document.getElementById("sdkInt").value = r.sdkInt;
+                			document.getElementById("extraInfo").value = r.extraInfo;
+                			document.getElementById("reason").value = r.reason;
+                			document.getElementById("subType").value = r.subType;
+                			document.getElementById("subTypeName").value = r.subTypeName;
+                			document.getElementById("type").value = r.type;
+                			document.getElementById("typeName").value = r.typeName;
+                			document.getElementById("macAddress").value = r.macAddress;
+                			document.getElementById("bssid").value = r.bssid;
+                			document.getElementById("ipAddress").value = r.ipAddress;
+                			document.getElementById("networkId").value = r.networkId;
+                			document.getElementById("ssid").value = r.ssid;
+                			document.getElementById("rssi").value = r.rssi;
+                			document.getElementById("widthPixels").value = r.widthPixels;
+                			document.getElementById("heightPixels").value = r.heightPixels;
+                			document.getElementById("width").value = r.width;
+                			document.getElementById("height").value = r.height;
+                			document.getElementById("rotation").value = r.rotation;
+                			document.getElementById("version").value = r.version;
+                			document.getElementById("line1Number").value = r.line1Number;
+                			document.getElementById("tags").value = r.tags;
+                			document.getElementById("phoneTime").value = r.phoneTime;
+                			document.getElementById("phoneType").value = r.phoneType;
+                			document.getElementById("phoneUser").value = r.phoneUser;
+                			document.getElementById("host").value = r.host;
+                			document.getElementById("radioVersion").value = r.radioVersion;
+                			document.getElementById("codeName").value = r.codeName;
+                			document.getElementById("incremental").value = r.incremental;
+                			document.getElementById("buildID").value = r.buildID;
 
 
                 			document.getElementById('idenfer').readOnly = true;
                 			document.getElementById("density").readOnly = true;
                 			document.getElementById("dpi").readOnly = true;
+                			document.getElementById("scaleDensity").readOnly = true;
+                			document.getElementById("bestProvider").readOnly = true;
+                			document.getElementById("gclGetCid").readOnly = true;
+                			document.getElementById("gclGetLac").readOnly = true;
+                			document.getElementById("gclGetPsc").readOnly = true;
+                			document.getElementById("cellLocation").readOnly = true;                			
+                			document.getElementById("deviceId").readOnly = true;
+                			document.getElementById("androidid").readOnly = true;
+                			document.getElementById("networkOperator").readOnly = true;
+                			document.getElementById("networkOperatorName").readOnly = true;
+                			document.getElementById("networkType").readOnly = true;
+                			document.getElementById("simSerialNumber").readOnly = true;
+                			document.getElementById("simOperator").readOnly = true;
+                			document.getElementById("simOperatorName").readOnly = true;
+                			document.getElementById("subscriberId").readOnly = true;
+                			document.getElementById("getSerial").readOnly = true;
+                			document.getElementById("dataActivity").readOnly = true;
+                			document.getElementById("board").readOnly = true;
+                			document.getElementById("brand").readOnly = true;
+                			document.getElementById("bootloader").readOnly = true;
+                			document.getElementById("display").readOnly = true;
+                			document.getElementById("device").readOnly = true;
+                			document.getElementById("fingerPrint").readOnly = true;
+                			document.getElementById("hardwear").readOnly = true;
+                			document.getElementById("manufacturer").readOnly = true;
+                			document.getElementById("model").readOnly = true;
+                			document.getElementById("product").readOnly = true;
+                			document.getElementById("relea").readOnly = true;
+                			document.getElementById("sdk").readOnly = true;
+                			document.getElementById("sdkInt").readOnly = true;
+                			document.getElementById("extraInfo").readOnly = true;
+                			document.getElementById("reason").readOnly = true;
+                			document.getElementById("subType").readOnly = true;
+                			document.getElementById("subTypeName").readOnly = true;
+                			document.getElementById("type").readOnly = true;
+                			document.getElementById("typeName").readOnly = true;
+                			document.getElementById("macAddress").readOnly = true;
+                			document.getElementById("bssid").readOnly = true;
+                			document.getElementById("ipAddress").readOnly = true;
+                			document.getElementById("networkId").readOnly = true;
+                			document.getElementById("ssid").readOnly = true;
+                			document.getElementById("rssi").readOnly = true;
+                			document.getElementById("widthPixels").readOnly = true;
+                			document.getElementById("heightPixels").readOnly = true;
+                			document.getElementById("width").readOnly = true;
+                			document.getElementById("height").readOnly = true;
+                			document.getElementById("rotation").readOnly = true;
+                			document.getElementById("version").readOnly = true;
+                			document.getElementById("line1Number").readOnly = true;
+                			document.getElementById("tags").readOnly = true;
+                			document.getElementById("phoneTime").readOnly = true;
+                			document.getElementById("phoneType").readOnly = true;
+                			document.getElementById("phoneUser").readOnly = true;
+                			document.getElementById("host").readOnly = true;
+                			document.getElementById("radioVersion").readOnly = true;
+                			document.getElementById("codeName").readOnly = true;
+                			document.getElementById("incremental").readOnly = true;
+                			document.getElementById("buildID").readOnly = true;
+
 
                     		if (err) {
                         		return $form.showFormError(err);
                     		}
                     		return;
-                    	//return location.assign('/');
+                    	
                 	});
 
-                } else {
-                	alert("third")
+                } else if (flag === 2) {
+                	alert("已进入编辑状态");
+                } else if (flag === 3) {
+                	alert("save");
+
+                	$form.postJSON('/api/update', { 
+                		idenf:document.getElementById("idenfer").value,
+                		density:document.getElementById("density").value,
+	                    dpi:document.getElementById("dpi").value,
+	                    scaleDensity:document.getElementById("scaleDensity").value,
+	                    bestProvider:document.getElementById("bestProvider").value,
+	                    gclGetCid:document.getElementById("gclGetCid").value,
+	                    gclGetLac:document.getElementById("gclGetLac").value,
+	                    gclGetPsc:document.getElementById("gclGetPsc").value,
+	                    cellLocation:document.getElementById("cellLocation").value,
+	                    deviceId:document.getElementById("deviceId").value,
+	                    androidid:document.getElementById("androidid").value,
+	                    networkOperator:document.getElementById("networkOperator").value,
+	                    networkOperatorName:document.getElementById("networkOperatorName").value,
+	                    networkType:document.getElementById("networkType").value,
+	                    simSerialNumber: document.getElementById("simSerialNumber").value,
+	                    simOperator: document.getElementById("simOperator").value,
+	                    simOperatorName: document.getElementById("simOperatorName").value,
+	                    subscriberId: document.getElementById("subscriberId").value,
+	                    getSerial: document.getElementById("getSerial").value,
+	                    dataActivity: document.getElementById("dataActivity").value,
+	                    board: document.getElementById("board").value,
+	                    brand: document.getElementById("brand").value,
+	                    bootloader: document.getElementById("bootloader").value,
+	                    display: document.getElementById("display").value,
+	                    device: document.getElementById("device").value,
+	                    fingerPrint: document.getElementById("fingerPrint").value,
+	                    hardwear: document.getElementById("hardwear").value,
+	                    manufacturer: document.getElementById("manufacturer").value,
+	                    model:document.getElementById("model").value,
+	                    product: document.getElementById("product").value,
+	                    relea: document.getElementById("relea").value,
+	                    sdk: document.getElementById("sdk").value,
+	                    sdkInt: document.getElementById("sdkInt").value,
+	                    extraInfo: document.getElementById("extraInfo").value,
+	                    reason: document.getElementById("reason").value,
+	                    subType: document.getElementById("subType").value,
+	                    subTypeName: document.getElementById("subTypeName").value,
+	                    type: document.getElementById("type").value,
+	                    typeName: document.getElementById("typeName").value,
+	                    macAddress: document.getElementById("macAddress").value,
+	                    bssid: document.getElementById("bssid").value,
+	                    ipAddress: document.getElementById("ipAddress").value,
+	                    networkId: document.getElementById("networkId").value,
+	                    ssid: document.getElementById("ssid").value,
+	                    rssi: document.getElementById("rssi").value,
+	                    widthPixels: document.getElementById("widthPixels").value,
+	                    heightPixels: document.getElementById("heightPixels").value,
+	                    width: document.getElementById("width").value,
+	                    height: document.getElementById("height").value,
+	                    rotation: document.getElementById("rotation").value,
+	                    version: document.getElementById("version").value,
+	                    line1Number: document.getElementById("line1Number").value,
+	                    tags: document.getElementById("tags").value,
+	                    phoneTime: document.getElementById("phoneTime").value,
+	                    phoneType: document.getElementById("phoneType").value,
+	                    phoneUser: document.getElementById("phoneUser").value,
+	                    host: document.getElementById("host").value,
+	                    radioVersion: document.getElementById("radioVersion").value,
+	                    codeName: document.getElementById("codeName").value,
+	                    incremental: document.getElementById("incremental").value,
+	                    buildID: document.getElementById("buildID").value,
+                	}, 
+                		function (err, r) {
+                			// alert(r.dpi);
+                			
+                			if(r === 1) {
+                				alert("保存修改成功！")
+                			} else {
+                				alert("修改失败，请稍后重试。")
+                			}
+
+                    		if (err) {
+                        		return $form.showFormError(err);
+                    		}
+                    		return;
+                    	
+                	});
+
+
+                } else if (flag === 4) {
+
+                	if(deleteFlag === false) {
+                		// alert("deleteFlag: " + deleteFlag);
+                		return;
+                	} else {
+                		// alert("deleteFlag: " + deleteFlag);
+
+                		$form.postJSON('/api/delete', { 
+                		idenf:document.getElementById("idenfer").value,
+                		density:document.getElementById("density").value,
+	                    dpi:document.getElementById("dpi").value,
+	                    scaleDensity:document.getElementById("scaleDensity").value,
+	                    bestProvider:document.getElementById("bestProvider").value,
+	                    gclGetCid:document.getElementById("gclGetCid").value,
+	                    gclGetLac:document.getElementById("gclGetLac").value,
+	                    gclGetPsc:document.getElementById("gclGetPsc").value,
+	                    cellLocation:document.getElementById("cellLocation").value,
+	                    deviceId:document.getElementById("deviceId").value,
+	                    androidid:document.getElementById("androidid").value,
+	                    networkOperator:document.getElementById("networkOperator").value,
+	                    networkOperatorName:document.getElementById("networkOperatorName").value,
+	                    networkType:document.getElementById("networkType").value,
+	                    simSerialNumber: document.getElementById("simSerialNumber").value,
+	                    simOperator: document.getElementById("simOperator").value,
+	                    simOperatorName: document.getElementById("simOperatorName").value,
+	                    subscriberId: document.getElementById("subscriberId").value,
+	                    getSerial: document.getElementById("getSerial").value,
+	                    dataActivity: document.getElementById("dataActivity").value,
+	                    board: document.getElementById("board").value,
+	                    brand: document.getElementById("brand").value,
+	                    bootloader: document.getElementById("bootloader").value,
+	                    display: document.getElementById("display").value,
+	                    device: document.getElementById("device").value,
+	                    fingerPrint: document.getElementById("fingerPrint").value,
+	                    hardwear: document.getElementById("hardwear").value,
+	                    manufacturer: document.getElementById("manufacturer").value,
+	                    model:document.getElementById("model").value,
+	                    product: document.getElementById("product").value,
+	                    relea: document.getElementById("relea").value,
+	                    sdk: document.getElementById("sdk").value,
+	                    sdkInt: document.getElementById("sdkInt").value,
+	                    extraInfo: document.getElementById("extraInfo").value,
+	                    reason: document.getElementById("reason").value,
+	                    subType: document.getElementById("subType").value,
+	                    subTypeName: document.getElementById("subTypeName").value,
+	                    type: document.getElementById("type").value,
+	                    typeName: document.getElementById("typeName").value,
+	                    macAddress: document.getElementById("macAddress").value,
+	                    bssid: document.getElementById("bssid").value,
+	                    ipAddress: document.getElementById("ipAddress").value,
+	                    networkId: document.getElementById("networkId").value,
+	                    ssid: document.getElementById("ssid").value,
+	                    rssi: document.getElementById("rssi").value,
+	                    widthPixels: document.getElementById("widthPixels").value,
+	                    heightPixels: document.getElementById("heightPixels").value,
+	                    width: document.getElementById("width").value,
+	                    height: document.getElementById("height").value,
+	                    rotation: document.getElementById("rotation").value,
+	                    version: document.getElementById("version").value,
+	                    line1Number: document.getElementById("line1Number").value,
+	                    tags: document.getElementById("tags").value,
+	                    phoneTime: document.getElementById("phoneTime").value,
+	                    phoneType: document.getElementById("phoneType").value,
+	                    phoneUser: document.getElementById("phoneUser").value,
+	                    host: document.getElementById("host").value,
+	                    radioVersion: document.getElementById("radioVersion").value,
+	                    codeName: document.getElementById("codeName").value,
+	                    incremental: document.getElementById("incremental").value,
+	                    buildID: document.getElementById("buildID").value,
+                	}, 
+                		function (err, r) {
+                			// alert(r.dpi);
+                			
+                			if(r === 1) {
+                				alert("成功删除！")
+                			} else {
+                				alert("删除失败! 请稍后重试。")
+                			}
+
+                    		if (err) {
+                        		return $form.showFormError(err);
+                    		}
+                    		return;
+                    	
+                	});
+
+
+                	}
+                	
                 }
                 
-                // return $form.showFormError(density);
                 
-                
+                	
             }
         }
     });
     $('#vm').show();
 });
 
-function edit() {
-	flag = false;
-	document.getElementById('idenfer').readOnly = false;
-    document.getElementById("density").readOnly = false;
-    document.getElementById("dpi").readOnly = false;
+function check() {
+	flag = 1;
 }
 
-function check() {
-	flag = true;
+function edit() {
+	flag = 2;
+	document.getElementById('idenfer').disable = true;
+	document.getElementById("density").readOnly = false;
+	document.getElementById("dpi").readOnly = false;
+	document.getElementById("scaleDensity").readOnly = false;
+	document.getElementById("bestProvider").readOnly = false;
+	document.getElementById("gclGetCid").readOnly = false;
+	document.getElementById("gclGetLac").readOnly = false;
+	document.getElementById("gclGetPsc").readOnly = false;
+	document.getElementById("cellLocation").readOnly = false;                			
+	document.getElementById("deviceId").readOnly = false;
+	document.getElementById("androidid").readOnly = false;
+	document.getElementById("networkOperator").readOnly = false;
+	document.getElementById("networkOperatorName").readOnly = false;
+	document.getElementById("networkType").readOnly = false;
+	document.getElementById("simSerialNumber").readOnly = false;
+	document.getElementById("simOperator").readOnly = false;
+	document.getElementById("simOperatorName").readOnly = false;
+	document.getElementById("subscriberId").readOnly = false;
+	document.getElementById("getSerial").readOnly = false;
+	document.getElementById("dataActivity").readOnly = false;
+	document.getElementById("board").readOnly = false;
+	document.getElementById("brand").readOnly = false;
+	document.getElementById("bootloader").readOnly = false;
+	document.getElementById("display").readOnly = false;
+	document.getElementById("device").readOnly = false;
+	document.getElementById("fingerPrint").readOnly = false;
+	document.getElementById("hardwear").readOnly = false;
+	document.getElementById("manufacturer").readOnly = false;
+	document.getElementById("model").readOnly = false;
+	document.getElementById("product").readOnly = false;
+	document.getElementById("relea").readOnly = false;
+	document.getElementById("sdk").readOnly = false;
+	document.getElementById("sdkInt").readOnly = false;
+	document.getElementById("extraInfo").readOnly = false;
+	document.getElementById("reason").readOnly = false;
+	document.getElementById("subType").readOnly = false;
+	document.getElementById("subTypeName").readOnly = false;
+	document.getElementById("type").readOnly = false;
+	document.getElementById("typeName").readOnly = false;
+	document.getElementById("macAddress").readOnly = false;
+	document.getElementById("bssid").readOnly = false;
+	document.getElementById("ipAddress").readOnly = false;
+	document.getElementById("networkId").readOnly = false;
+	document.getElementById("ssid").readOnly = false;
+	document.getElementById("rssi").readOnly = false;
+	document.getElementById("widthPixels").readOnly = false;
+	document.getElementById("heightPixels").readOnly = false;
+	document.getElementById("width").readOnly = false;
+	document.getElementById("height").readOnly = false;
+	document.getElementById("rotation").readOnly = false;
+	document.getElementById("version").readOnly = false;
+	document.getElementById("line1Number").readOnly = false;
+	document.getElementById("tags").readOnly = false;
+	document.getElementById("phoneTime").readOnly = false;
+	document.getElementById("phoneType").readOnly = false;
+	document.getElementById("phoneUser").readOnly = false;
+	document.getElementById("host").readOnly = false;
+	document.getElementById("radioVersion").readOnly = false;
+	document.getElementById("codeName").readOnly = false;
+	document.getElementById("incremental").readOnly = false;
+	document.getElementById("buildID").readOnly = false;
+}
+
+
+
+function save() {
+	flag = 3;
+}
+
+function delet() {
+
+	var a = window.confirm("点击 “确定” 或者 “取消”");
+
+	if(a === true) {
+		deleteFlag = true;
+	} else {
+		deleteFlag = false;
+	}
+
+
+	flag = 4;
 }
 
 </script>
@@ -78,39 +517,318 @@ function check() {
     <!-- <div class="uk-width-2-3"> -->
         <form id="vm" v-on="submit: submit" class="uk-form uk-form-stacked">
 
-            <table >
-            	<tr>
-            		<td><label><b>idenf:</b></label></td>
-            		<td><input type="text" v-model="idenf" name="idenf" id = "input_idenf" style="width:500px;"></td>
-                	<td><button type="submit" class="uk-button uk-button-primary" onclick="check()">查询</button></td>
-            	</tr>
+        <font color="#1de9b6"><label><b>idenf:</b></label>
+        <input type="text" v-model="idenf" name="idenf" id = "input_idenf" style="width:450px;">
+        <button type="submit" class="uk-button uk-button-primary" onclick="check()">查询</button>
+        <button type="submit" class="uk-button uk-button-primary" onclick="edit()">编辑</button>
+        <button type="submit" class="uk-button uk-button-primary" onclick="save()">保存</button>
+        <button type="submit" class="uk-button uk-button-primary" onclick="delet()">删除</button>
 
+            <table >
+            	
             	<tr>
             		<td><label><b>idenf:</b></label></td>
-            		<td><input type="text" v-model="idenfer" name="idenfer" id = "idenfer" style="width:500px;"></td>
+            		<td><input type="text" v-model="idenfer" name="idenfer" id = "idenfer" style="width:450px;"></td>       
             	</tr>
 
             	<tr>
             		<td><label><b>density:</b></label></td>
-            		<td><input type="text" v-model="density" name="density" id = "density"></td>
-            	</tr>
+            		<td><input type="text" v-model="density" name="density" id = "density" style="width:400px;"></td>
 
-            	<tr>
             		<td><label><b>dpi:</b></label></td>
-            		<td><input type="text" v-model="dpi" name="dpi" id = "dpi"></td>
+            		<td><input type="text" v-model="dpi" name="dpi" id = "dpi" style="width:400px;"></td>
+
+            	</tr>
+
+            		<td><label><b>scaleDensity:</b></label></td>
+            		<td><input type="text" v-model="scaleDensity" name="scaleDensity" id = "scaleDensity" style="width:400px;"></td>
+
+            		<td><label><b>bestProvider:</b></label></td>
+            		<td><input type="text" v-model="bestProvider" name="bestProvider" id = "bestProvider" style="width:400px;"></td>
+
+            	<tr>
+            		
+            		<td><label><b>gclGetCid:</b></label></td>
+            		<td><input type="text" v-model="gclGetCid" name="gclGetCid" id = "gclGetCid" style="width:400px;"></td>
+
+            		<td><label><b>gclGetLac:</b></label></td>
+            		<td><input type="text" v-model="gclGetLac" name="gclGetLac" id = "gclGetLac" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		
+            		<td><label><b>gclGetPsc:</b></label></td>
+            		<td><input type="text" v-model="gclGetPsc" name="gclGetPsc" id = "gclGetPsc" style="width:400px;"></td>
+
+            		<td><label><b>cellLocation:</b></label></td>
+            		<td><input type="text" v-model="cellLocation" name="cellLocation" id = "cellLocation" style="width:400px;"></td>
+
             	</tr>
 
             	<tr>
 
+            		<td><label><b>deviceId:</b></label></td>
+            		<td><input type="text" v-model="deviceId" name="deviceId" id = "deviceId" style="width:400px;"></td>
+
+            		<td><label><b>androidid:</b></label></td>
+            		<td><input type="text" v-model="androidid" name="androidid" id = "androidid" style="width:400px;"></td>
+            		
             	</tr>
 
+            	<tr>
+            		<td><label><b>networkOperator:</b></label></td>
+            		<td><input type="text" v-model="networkOperator" name="networkOperator" id = "networkOperator" style="width:400px;"></td>
+
+            		<td><label><b>networkOperatorName:</b></label></td>
+            		<td><input type="text" v-model="networkOperatorName" name="networkOperatorName" id = "networkOperatorName" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		<td><label><b>networkType:</b></label></td>
+            		<td><input type="text" v-model="networkType" name="networkType" id = "networkType" style="width:400px;"></td>
+
+            		<td><label><b>simSerialNumber:</b></label></td>
+            		<td><input type="text" v-model="simSerialNumber" name="simSerialNumber" id = "simSerialNumber" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		<td><label><b>simOperator:</b></label></td>
+            		<td><input type="text" v-model="simOperator" name="simOperator" id = "simOperator" style="width:400px;"></td>
+
+            		<td><label><b>simOperatorName:</b></label></td>
+            		<td><input type="text" v-model="simOperatorName" name="simOperatorName" id = "simOperatorName" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		<td><label><b>subscriberId:</b></label></td>
+            		<td><input type="text" v-model="subscriberId" name="subscriberId" id = "subscriberId" style="width:400px;"></td>
+
+            		<td><label><b>getSerial:</b></label></td>
+            		<td><input type="text" v-model="getSerial" name="getSerial" id = "getSerial" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		<td><label><b>dataActivity:</b></label></td>
+            		<td><input type="text" v-model="dataActivity" name="dataActivity" id = "dataActivity" style="width:400px;"></td>
+
+            		<td><label><b>board:</b></label></td>
+            		<td><input type="text" v-model="board" name="board" id = "board" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		<td><label><b>brand:</b></label></td>
+            		<td><input type="text" v-model="brand" name="brand" id = "brand" style="width:400px;"></td>
+
+            		<td><label><b>bootloader:</b></label></td>
+            		<td><input type="text" v-model="bootloader" name="bootloader" id = "bootloader" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		<td><label><b>display:</b></label></td>
+            		<td><input type="text" v-model="display" name="display" id = "display" style="width:400px;"></td>
+
+            		<td><label><b>device:</b></label></td>
+            		<td><input type="text" v-model="device" name="device" id = "device" style="width:400px;"></td>
+            	</tr>
+
+            	<tr>
+            		<td><label><b>fingerPrint:</b></label></td>
+            		<td><input type="text" v-model="fingerPrint" name="fingerPrint" id = "fingerPrint" style="width:400px;"></td>
+
+            		<td><label><b>hardwear:</b></label></td>
+            		<td><input type="text" v-model="hardwear" name="hardwear" id = "hardwear" style="width:400px;"></td>
+            	</tr>
+
+            	<tr>
+            		<td><label><b>manufacturer:</b></label></td>
+            		<td><input type="text" v-model="manufacturer" name="manufacturer" id = "manufacturer" style="width:400px;"></td>
+
+            		<td><label><b>model:</b></label></td>
+            		<td><input type="text" v-model="model" name="model" id = "model" style="width:400px;"></td>
+            	</tr>
+
+            	<tr>
+            		<td><label><b>product:</b></label></td>
+            		<td><input type="text" v-model="product" name="product" id = "product" style="width:400px;"></td>
+
+            		<td><label><b>relea:</b></label></td>
+            		<td><input type="text" v-model="relea" name="relea" id = "relea" style="width:400px;"></td>
+            	</tr>
+
+
+            	</tr>
+
+            		<td><label><b>sdk:</b></label></td>
+            		<td><input type="text" v-model="sdk" name="sdk" id = "sdk" style="width:400px;"></td>
+
+            		<td><label><b>sdkInt:</b></label></td>
+            		<td><input type="text" v-model="sdkInt" name="sdkInt" id = "sdkInt" style="width:400px;"></td>
+
+            
+
+            	<tr>
+            		
+            		
+
+            		<td><label><b>extraInfo:</b></label></td>
+            		<td><input type="text" v-model="extraInfo" name="extraInfo" id = "extraInfo" style="width:400px;"></td>
+
+            		<td><label><b>reason:</b></label></td>
+            		<td><input type="text" v-model="reason" name="reason" id = "reason" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		
+            		
+
+            		<td><label><b>subType:</b></label></td>
+            		<td><input type="text" v-model="subType" name="subType" id = "subType" style="width:400px;"></td>
+
+            		<td><label><b>subTypeName:</b></label></td>
+            		<td><input type="text" v-model="subTypeName" name="subTypeName" id = "subTypeName" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+
+            		
+
+            		<td><label><b>type:</b></label></td>
+            		<td><input type="text" v-model="type" name="type" id = "type" style="width:400px;"></td>
+
+            		<td><label><b>typeName:</b></label></td>
+            		<td><input type="text" v-model="typeName" name="typeName" id = "typeName" style="width:400px;"></td>
+            		
+            	</tr>
+
+            	<tr>
+            		
+
+            		<td><label><b>macAddress:</b></label></td>
+            		<td><input type="text" v-model="macAddress" name="macAddress" id = "macAddress" style="width:400px;"></td>
+
+            		<td><label><b>bssid:</b></label></td>
+            		<td><input type="text" v-model="bssid" name="bssid" id = "bssid" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		
+
+            		<td><label><b>ipAddress:</b></label></td>
+            		<td><input type="text" v-model="ipAddress" name="ipAddress" id = "ipAddress" style="width:400px;"></td>
+
+            		<td><label><b>networkId:</b></label></td>
+            		<td><input type="text" v-model="networkId" name="networkId" id = "networkId" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		
+
+            		<td><label><b>ssid:</b></label></td>
+            		<td><input type="text" v-model="ssid" name="ssid" id = "ssid" style="width:400px;"></td>
+
+            		<td><label><b>rssi:</b></label></td>
+            		<td><input type="text" v-model="rssi" name="rssi" id = "rssi" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		
+
+            		<td><label><b>widthPixels:</b></label></td>
+            		<td><input type="text" v-model="widthPixels" name="widthPixels" id = "widthPixels" style="width:400px;"></td>
+
+            		<td><label><b>heightPixels:</b></label></td>
+            		<td><input type="text" v-model="heightPixels" name="heightPixels" id = "heightPixels" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		
+
+            		<td><label><b>width:</b></label></td>
+            		<td><input type="text" v-model="width" name="width" id = "width" style="width:400px;"></td>
+
+            		<td><label><b>height:</b></label></td>
+            		<td><input type="text" v-model="height" name="height" id = "height" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		
+
+            		<td><label><b>rotation:</b></label></td>
+            		<td><input type="text" v-model="rotation" name="rotation" id = "rotation" style="width:400px;"></td>
+
+            		<td><label><b>version:</b></label></td>
+            		<td><input type="text" v-model="version" name="version" id = "version" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		
+
+            		<td><label><b>line1Number:</b></label></td>
+            		<td><input type="text" v-model="line1Number" name="line1Number" id = "line1Number" style="width:400px;"></td>
+
+            		<td><label><b>tags:</b></label></td>
+            		<td><input type="text" v-model="tags" name="tags" id = "tags" style="width:400px;"></td>
+            	</tr>
+
+            	<tr>
+            		
+
+            		<td><label><b>phoneTime:</b></label></td>
+            		<td><input type="text" v-model="phoneTime" name="phoneTime" id = "phoneTime" style="width:400px;"></td>
+
+            		<td><label><b>phoneType:</b></label></td>
+            		<td><input type="text" v-model="phoneType" name="phoneType" id = "phoneType" style="width:400px;"></td>
+            	</tr>
+
+            	<tr>
+            		
+
+            		<td><label><b>phoneUser:</b></label></td>
+            		<td><input type="text" v-model="phoneUser" name="phoneUser" id = "phoneUser" style="width:400px;"></td>
+
+            		<td><label><b>host:</b></label></td>
+            		<td><input type="text" v-model="host" name="host" id = "host" style="width:400px;"></td>
+            	</tr>
+
+            	<tr>
+            		
+
+            		<td><label><b>radioVersion:</b></label></td>
+            		<td><input type="text" v-model="radioVersion" name="radioVersion" id = "radioVersion" style="width:400px;"></td>
+
+            		<td><label><b>codeName:</b></label></td>
+            		<td><input type="text" v-model="codeName" name="codeName" id = "codeName" style="width:400px;"></td>
+            	</tr>
+
+            	<tr>
+            		
+
+            		<td><label><b>incremental:</b></label></td>
+            		<td><input type="text" v-model="incremental" name="incremental" id = "incremental" style="width:400px;"></td>
+
+            		<td><label><b>buildID:</b></label></td>
+            		<td><input type="text" v-model="buildID" name="buildID" id = "buildID" style="width:400px;"></td>
+            	</tr>
+
+            	   	
 
             </table>
 
-            
-           
-           <button type="submit" class="uk-button uk-button-primary" onclick="edit()">编辑</button>
-            
 
         </form>
 

@@ -55,7 +55,7 @@ async def execute(sql, args, autocommit=True):
             async with conn.cursor(aiomysql.DictCursor) as cur:
                 await cur.execute(sql.replace('?', '%s'), args)
                 affected = cur.rowcount
-                print(affected)
+                
             if not autocommit:
                 await conn.commit()
         except BaseException as e:
@@ -63,6 +63,7 @@ async def execute(sql, args, autocommit=True):
             if not autocommit:
                 await conn.rollback()
             raise
+        print("affected: %s" % affected)
         return affected
 
 
@@ -126,7 +127,8 @@ class ModelMetaclass(type):
         for k, v in attrs.items():
             if isinstance(v, Field):
                 logging.info(' found mapping: %s ==> %s' % (k, v))
-                #print('found mapping: %s ==> %s' % (k, v))
+
+                print('found mapping: %s ==> %s' % (k, v))
                 mappings[k] = v
                 if v.primary_key:
                     if primary_key:
@@ -147,9 +149,12 @@ class ModelMetaclass(type):
         attrs['__fields__'] = fields
         attrs['__select__'] = 'select %s, %s from %s' % (primary_key, ', '.join(escaped_fields),tableName)
         attrs['__insert__'] = 'insert into %s(%s, %s) values (%s)' % (tableName, ','.join(escaped_fields), primary_key, create_args_string(len(escaped_fields) + 1))
-        attrs['__update__'] = 'update %s set %s where %s=?' % (tableName, ', '.join(map(lambda f: '%s=?' % (mappings.get(f).name or f), fields)), primary_key)
+        # attrs['__update__'] = 'update %s set %s where %s=?' % (tableName, ', '.join(map(lambda f: '%s=?' % (mappings.get(f).name or f), fields)), primary_key)
         attrs['__delete__'] = 'delete from %s where %s=?' % (tableName, primary_key)
         attrs['__select_max_id__'] = 'select max(id) from %s' % tableName
+
+        attrs['__update__'] = 'update %s set %s where %s=?' % (tableName, ', '.join(map(lambda f: '%s=?' % f, fields)), primary_key)
+
         return type.__new__(cls, name, bases, attrs)
         
 
@@ -256,15 +261,17 @@ class Model(dict, metaclass=ModelMetaclass):
     async def update(self):
         args = list(map(self.getValue, self.__fields__))
         args.append(self.getValue(self.__primary_key__))
-        print(args)
-        print(self.__update__)
+        print("update agrs: %s" % args)
+        print("update self update: %s" % self.__update__)
         rows = await execute(self.__update__, args, False)
         if rows != 1:
             logging.warn('failed to insert record: affected rows: %s' % rows)
+        return rows
 
     async def remove(self):
         args = [self.getValue(self.__primary_key__)]
         rows = await execute(self.__delete__, args, False)
         if rows != 1:
             logging.warn('failed to remove by primary key: affected rows: %s' % rows)
+        return rows
 
