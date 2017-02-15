@@ -151,9 +151,13 @@ class ModelMetaclass(type):
         attrs['__insert__'] = 'insert into %s(%s, %s) values (%s)' % (tableName, ','.join(escaped_fields), primary_key, create_args_string(len(escaped_fields) + 1))
         # attrs['__update__'] = 'update %s set %s where %s=?' % (tableName, ', '.join(map(lambda f: '%s=?' % (mappings.get(f).name or f), fields)), primary_key)
         attrs['__delete__'] = 'delete from %s where %s=?' % (tableName, primary_key)
+        attrs['__delete_by_id__'] = 'delete from %s where id=?' % tableName
         attrs['__select_max_id__'] = 'select max(id) from %s' % tableName
+        attrs['__select_random__'] = 'select * from %s order by rand() limit 1' % tableName
+        attrs['__select_all__'] = 'select * from %s' % tableName;
 
         attrs['__update__'] = 'update %s set %s where %s=?' % (tableName, ', '.join(map(lambda f: '%s=?' % f, fields)), primary_key)
+        attrs['__update_by_id__'] = 'update %s set %s where %s=?' % (tableName, ', '.join(map(lambda f: '%s=?' % f, fields)), 'id')
 
         return type.__new__(cls, name, bases, attrs)
         
@@ -234,6 +238,15 @@ class Model(dict, metaclass=ModelMetaclass):
         #return rs
 
     @classmethod
+    async def findById(cls, id):
+        #print('findByid: ' %  id)
+        rs = await select('%s where %s=?' % (cls.__select_all__, 'id'), [id], 1)
+        if len(rs) == 0:
+            return None
+        return cls(**rs[0])
+
+
+    @classmethod
     async def findSpecItem(cls, sp, num):
         rs = await select('%s where %s=?' % (cls.__select__, sp), [num], 1)
         print('%s where %s=?' % (cls.__select__, cls.__primary_key__))
@@ -242,11 +255,34 @@ class Model(dict, metaclass=ModelMetaclass):
         return rs[0]
 
     @classmethod
+    async def findSpecCls(cls, sp, num):
+        rs = await select('%s where %s=?' % (cls.__select__, sp), [num], 1)
+        print('%s where %s=?' % (cls.__select__, cls.__primary_key__))
+        if len(rs) == 0:
+            return None
+        return cls(**rs[0])
+
+    @classmethod
     async def selectMaxId(cls, sp):
         rs = await select(cls.__select_max_id__,[])
         if len(rs) == 0:
             return None
         return cls(**rs[0])
+
+    @classmethod
+    async def selectRandom(cls):
+        rs = await select(cls.__select_random__,[])
+        if len(rs)==0:
+            return None
+        return cls(**rs[0])
+
+    @classmethod
+    async def selectAll(cls):
+        rs = await select(cls.__select_all__, [])
+        if len(rs) == 0:
+            return None
+        return [cls(**r) for r in rs]
+
 
     async def save(self):
         args = list(map(self.getValueOrDefault, self.__fields__))
@@ -268,9 +304,26 @@ class Model(dict, metaclass=ModelMetaclass):
             logging.warn('failed to insert record: affected rows: %s' % rows)
         return rows
 
+    async def update_by_id(self, id):
+        args = list(map(self.getValue, self.__fields__))
+        args.append(id)
+        print('update_by_id args: %s'%  args)
+        rows = await execute(self.__update_by_id__, args, False)
+        if rows != 1:
+            logging.warn('failed to insert record: affected rows: %s' % rows)
+        return rows
+
     async def remove(self):
         args = [self.getValue(self.__primary_key__)]
         rows = await execute(self.__delete__, args, False)
+        if rows != 1:
+            logging.warn('failed to remove by primary key: affected rows: %s' % rows)
+        return rows
+
+    @classmethod
+    async def deleteById(cls, id):
+        rows = await execute(cls.__delete_by_id__, [id], False)
+        print('delete rows: %s' % rows)
         if rows != 1:
             logging.warn('failed to remove by primary key: affected rows: %s' % rows)
         return rows

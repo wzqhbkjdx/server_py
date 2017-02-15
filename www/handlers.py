@@ -13,6 +13,7 @@ from coroweb import get, post
 from models import User, Comment, Blog, next_id, DeviceInfo, Remain
 from config import configs
 import random
+from json import *
 
 #@get('/')
 #async def index(request):
@@ -38,11 +39,17 @@ def index(request):
 
 @get('/deviceInfo')
 async def get_all_deviceInfo():
-    devices = await DeviceInfo.findAll()
+    devices = await DeviceInfo.selectAll()
+    print('deviceInfo.id %s' % devices[2].idenf)
     return {
         '__template__': 'deviceInfo.html',
         'devices':devices
     }
+
+@get('/devInfo')
+async def get_all_dev():
+    devs = await DeviceInfo.selectAll()
+    print('devInfo.id:  %s' % devs[3].id)
 
 
 
@@ -124,12 +131,31 @@ async def get_remain():
     result = await Remain.findSpecItem('id', rd)
     return result['num']
 
+@get('/rd_device')
+async def get_random_deviceInfo():
+    result = await DeviceInfo.selectRandom()
+    k = JSONEncoder().encode(result)
+    return k
+    #return json.dumps(result.__dict__, ensure_ascii = False)
+    #return result
+    #return result.simSerialNumber
+
 @post('/api/check')
 async def check_by_idenf(* ,idenf):
     print('check by idenf: %s' % idenf)
     deviceInfo = await DeviceInfo.find(idenf)
     print('deviceInfo dpi: %s' % deviceInfo.dpi)
+    print('deviceInfo idenf: %s' % deviceInfo.idenf)
     return deviceInfo
+
+@post('/api/cc')
+async def check_test(*, id):
+    #print('check by id' % id)
+    deviceInfo = await DeviceInfo.findById(id)
+    print('deviceInfo dpi: %s' % deviceInfo.dpi)
+    print('deviceInfo idenf: %s ' % deviceInfo.idenf)
+    return deviceInfo
+
 
     
 @post('/api/users')
@@ -158,6 +184,11 @@ async def api_register_user(*, email, name, passwd):
     r.content_type = 'application/json'
     r.body = json.dumps(user, ensure_ascii=False).encode('utf-8')
     return r
+
+#@get('/delete')
+#async def delete_test():
+    #row = await DeviceInfo.deleteById(15)
+    #print(delete affected row: ' % str(row))
 
 @post('/api/di')
 async def add_device_info(*, density, dpi, scaleDensity,
@@ -357,7 +388,9 @@ async def update_device_info(*,
                          radioVersion,
                          codeName,
                          incremental,
-                         buildID):
+                         buildID,
+                         id):
+
 
     di = DeviceInfo( 
                     density=float(density),
@@ -430,7 +463,7 @@ async def update_device_info(*,
     
     print("update fields: %s" % di.__fields__)
 
-    rows = await di.update()
+    rows = await di.update_by_id(id)
 
     print("update rows: %s" % rows)
 
@@ -499,7 +532,8 @@ async def delete_device_info(*,
                          radioVersion,
                          codeName,
                          incremental,
-                         buildID):
+                         buildID,
+                         id):
 
     di = DeviceInfo( 
                     density=float(density),
@@ -569,10 +603,13 @@ async def delete_device_info(*,
     
 
     di.idenf = idenf
+
+    print('deviceInfo.id: %s' % id)
     
     print("delete fields: %s" % di.__fields__)
 
-    rows = await di.remove()
+
+    rows = await DeviceInfo.deleteById(id)
 
     print("delete rows: %s" % rows)
 

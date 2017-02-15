@@ -22,6 +22,7 @@ $(function () {
     var vm = new Vue({
         el: '#vm',
         data: {
+            id:'',
             idenf:'',
             density:'',
             dpi:'',
@@ -91,9 +92,13 @@ $(function () {
 
                 if(flag === 1) {
 
-                	// alert("check")
-                	$form.postJSON('/api/check', { 
-                		idenf:this.idenf, 
+                	// alert(this.id);
+                	$form.postJSON(
+                        // '/api/check', 
+                        '/api/cc', 
+                    { 
+                        // idenf:this.idenf,
+                		id:this.id, 
                 	}, 
                 		function (err, r) {
                 			if(r === undefined) {
@@ -237,7 +242,7 @@ $(function () {
                 } else if (flag === 2) {
                 	alert("已进入编辑状态");
                 } else if (flag === 3) {
-                	alert("save");
+                	// alert("save");
 
                 	$form.postJSON('/api/update', { 
                 		idenf:document.getElementById("idenfer").value,
@@ -301,6 +306,7 @@ $(function () {
 	                    codeName: document.getElementById("codeName").value,
 	                    incremental: document.getElementById("incremental").value,
 	                    buildID: document.getElementById("buildID").value,
+                        id:this.id,
                 	}, 
                 		function (err, r) {
                 			// alert(r.dpi);
@@ -389,6 +395,7 @@ $(function () {
 	                    codeName: document.getElementById("codeName").value,
 	                    incremental: document.getElementById("incremental").value,
 	                    buildID: document.getElementById("buildID").value,
+                        id:this.id,
                 	}, 
                 		function (err, r) {
                 			// alert(r.dpi);
@@ -517,8 +524,9 @@ function delet() {
     <!-- <div class="uk-width-2-3"> -->
         <form id="vm" v-on="submit: submit" class="uk-form uk-form-stacked">
 
-        <font color="#1de9b6"><label><b>idenf:</b></label>
-        <input type="text" v-model="idenf" name="idenf" id = "input_idenf" style="width:450px;">
+        <font color="#1de9b6"><label><b>id:</b></label>
+        <!-- <input type="text" v-model="idenf" name="idenf" id = "input_idenf" style="width:450px;"> -->
+        <input type="text" v-model="id" name="id" id = "input_idenf" style="width:450px;">
         <button type="submit" class="uk-button uk-button-primary" onclick="check()">查询</button>
         <button type="submit" class="uk-button uk-button-primary" onclick="edit()">编辑</button>
         <button type="submit" class="uk-button uk-button-primary" onclick="save()">保存</button>
