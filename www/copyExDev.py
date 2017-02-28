@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
 
 import asyncio
@@ -10,23 +10,17 @@ import struct, socket
 import time
 import datetime
 
+ref = 18
 
-#u = User(name='Test', email='test@example.com',passwd='1234567890', image='about:blank')
-#u2 = User(name = 'Hello', email='hello@backyard.com', passwd='kdlskdls', image='about:blank')
-#di = DeviceInfo(density=2.0, dpi = 320.0, scaleDensity=2.0) 
-#u.id = '0014851368047077e7b332ae8b447b3b651f7617e76db6d000'
-#u.created_at = 12345
-#u.admin = False
+exDeviceInfo = ExDeviceInfo()
+
+exDeviceInfo.ref = ref
+
 loop = asyncio.get_event_loop()
 loop.run_until_complete(orm.get_pool(loop))
-deviceInfo = loop.run_until_complete(DeviceInfo.findSpecCls('id',15))
-
-print(deviceInfo.idenf)
+deviceInfo = loop.run_until_complete(DeviceInfo.findSpecCls('id',ref))
 
 rd = random.randint(1,3)
-
-#bestProvider
-#networkOperator networkOperatorName simOperator simOperatorName subscriberId
 
 subscriberList = [random.choice(string.digits) for i in range(10)]
 
@@ -151,10 +145,67 @@ deviceInfo.phoneTime = get_random_time()
 print(deviceInfo.phoneTime)
 
 
-loop.run_until_complete(deviceInfo.save())
+#copy
+exDeviceInfo.idenf = deviceInfo.idenf
+exDeviceInfo.density = deviceInfo.density
+exDeviceInfo.dpi = deviceInfo.dpi
+exDeviceInfo.scaleDensity = deviceInfo.scaleDensity
+exDeviceInfo.bestProvider = deviceInfo.bestProvider
+exDeviceInfo.gclGetCid = deviceInfo.gclGetCid
+exDeviceInfo.gclGetLac = deviceInfo.gclGetLac
+exDeviceInfo.gclGetPsc = deviceInfo.gclGetPsc
+exDeviceInfo.cellLocation = deviceInfo.cellLocation
+exDeviceInfo.deviceId = deviceInfo.deviceId
+exDeviceInfo.androidid = deviceInfo.androidid
+exDeviceInfo.networkOperator = deviceInfo.networkOperator
+exDeviceInfo.networkOperatorName = deviceInfo.networkOperatorName
+exDeviceInfo.networkType = deviceInfo.networkType
+exDeviceInfo.simSerialNumber = deviceInfo.simSerialNumber
+exDeviceInfo.simOperator = deviceInfo.simOperator
+exDeviceInfo.simOperatorName = deviceInfo.simOperatorName
+exDeviceInfo.subscriberId = deviceInfo.subscriberId
+exDeviceInfo.getSerial = deviceInfo.getSerial
+exDeviceInfo.dataActivity = deviceInfo.dataActivity
+exDeviceInfo.board = deviceInfo.board
+exDeviceInfo.brand = deviceInfo.brand
+exDeviceInfo.bootloader = deviceInfo.bootloader
+exDeviceInfo.display = deviceInfo.display
+exDeviceInfo.device = deviceInfo.device
+exDeviceInfo.fingerPrint = deviceInfo.fingerPrint
+exDeviceInfo.hardwear = deviceInfo.hardwear
+exDeviceInfo.manufacturer = deviceInfo.manufacturer
+exDeviceInfo.model = deviceInfo.model
+exDeviceInfo.product = deviceInfo.product
+exDeviceInfo.relea = deviceInfo.relea
+exDeviceInfo.sdk = deviceInfo.sdk
+exDeviceInfo.sdkInt = deviceInfo.sdkInt
+exDeviceInfo.extraInfo = deviceInfo.extraInfo
+exDeviceInfo.reason = deviceInfo.reason
+exDeviceInfo.subType = deviceInfo.subType
+exDeviceInfo.subTypeName = deviceInfo.subTypeName
+exDeviceInfo.type = deviceInfo.type
+exDeviceInfo.typeName = deviceInfo.typeName
+exDeviceInfo.macAddress = deviceInfo.macAddress
+exDeviceInfo.bssid = deviceInfo.bssid
+exDeviceInfo.ipAddress = deviceInfo.ipAddress
+exDeviceInfo.networkId = deviceInfo.networkId
+exDeviceInfo.ssid = deviceInfo.ssid
+exDeviceInfo.rssi = deviceInfo.rssi
+exDeviceInfo.widthPixels = deviceInfo.widthPixels
+exDeviceInfo.heightPixels = deviceInfo.heightPixels
+exDeviceInfo.width = deviceInfo.width
+exDeviceInfo.height = deviceInfo.height
+exDeviceInfo.rotation = deviceInfo.rotation
+exDeviceInfo.version = deviceInfo.version
+exDeviceInfo.line1Number = deviceInfo.line1Number
+exDeviceInfo.tags = deviceInfo.tags
+exDeviceInfo.phoneTime = deviceInfo.phoneTime
+exDeviceInfo.phoneType = deviceInfo.phoneType
+exDeviceInfo.phoneUser = deviceInfo.phoneUser
+exDeviceInfo.host = deviceInfo.host
+exDeviceInfo.radioVersion = deviceInfo.radioVersion
+exDeviceInfo.codeName = deviceInfo.codeName
+exDeviceInfo.incremental = deviceInfo.incremental
+exDeviceInfo.buildID = deviceInfo.buildID
 
-
-#print(deviceInfo)
-#loop.run_until_complete(u.remove())
-#loop.run_until_complete(u.save())
-#loop.run_until_complete(di.save())
+loop.run_until_complete(exDeviceInfo.save())

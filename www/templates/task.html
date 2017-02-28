@@ -1,0 +1,213 @@
+{% extends '__base__.html' %}
+
+{% block title %}新建任务{% endblock %}
+
+{% block beforehead %}
+
+<script>
+
+
+$(function () {
+    var vm = new Vue({
+        el: '#vm',
+        data: {
+            task_name:'',
+            ip_repeat_days:'',
+            level_2_days:'',
+            level_2_percents:'',
+            level_3_days:'',
+            level_3_percents:'',
+            level_4_days:'',
+            level_4_percents:'',
+            level_5_days:'',
+            level_5_percents:'',
+            level_6_days:'',
+            level_6_percents:'',
+            level_7_days:'',
+            level_7_percents:'',
+            level_8_days:'',
+            level_8_percents:'',
+        },
+        methods: {
+            submit: function (event) {
+                event.preventDefault();
+                var $form = $('#vm');
+
+                var a = window.confirm("确定添加该任务吗？");
+
+				if(a === true) {
+					
+					$form.postJSON('/api/task', {
+                    	task_name:this.task_name,
+                    	ip_repeat_days:this.ip_repeat_days,
+                    	level_2_days:this.level_2_days,
+                    	level_2_percents:this.level_2_percents,
+                    	level_3_days:this.level_3_days,
+                    	level_3_percents:this.level_3_percents,
+                    	level_4_days:this.level_4_days,
+                    	level_4_percents:this.level_4_percents,
+                    	level_5_days:this.level_5_days,
+                    	level_5_percents:this.level_5_percents,
+                    	level_6_days:this.level_6_days,
+                    	level_6_percents:this.level_6_percents,
+                    	level_7_days:this.level_7_days,
+                    	level_7_percents:this.level_7_percents,
+                    	level_8_days:this.level_8_days,
+                    	level_8_percents:this.level_8_percents,
+	                }, function (err, r) {
+
+	                    if (err) {
+	                        alert('添加失败，字段有误，请检查。')
+	                        return $form.showFormError(err);
+	                    }
+	                    
+	                    if(r===1){
+	                        alert("添加成功！");
+	                    } else if (r === 9900) {
+                            alert("任务重名,请修改后重试。");
+                            return;
+                        } 
+	                    return location.assign('/addTask');
+	                });
+
+				} else {
+					
+				}
+
+            }
+        }
+    });
+    $('#vm').show();
+});
+
+</script>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="uk-width-2-3">
+        <h3>添加任务</h3>
+        <form id="vm" v-on="submit: submit" class="uk-form uk-form-stacked">
+
+            <div class="uk-alert uk-alert-danger uk-hidden"></div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">任务名称(不要中文和符号)</label>
+                <div class="uk-form-controls">
+                    <input v-model="task_name" type="text" maxlength="50"  class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">做新增时多少天内IP不能重复</label>
+                <div class="uk-form-controls">
+                    <input v-model="ip_repeat_days" type="text" maxlength="50" class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">留存2级天数</label>
+                <div class="uk-form-controls">
+                    <input v-model="level_2_days" type="text" maxlength="50" class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">留存2级百分比</label>
+                <div class="uk-form-controls">
+                    <input v-model="level_2_percents" type="text" maxlength="50" class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">留存3级天数</label>
+                <div class="uk-form-controls">
+                    <input v-model="level_3_days" type="text" maxlength="50" class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">留存3级百分比</label>
+                <div class="uk-form-controls">
+                    <input v-model="level_3_percents" type="text" maxlength="50" class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">留存4级天数</label>
+                <div class="uk-form-controls">
+                    <input v-model="level_4_days" type="text" maxlength="50" class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">留存4级百分比</label>
+                <div class="uk-form-controls">
+                    <input v-model="level_4_percents" type="text" maxlength="50" class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">留存5级天数</label>
+                <div class="uk-form-controls">
+                    <input v-model="level_5_days" type="text" maxlength="50" class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">留存5级百分比</label>
+                <div class="uk-form-controls">
+                    <input v-model="level_5_percents" type="text" maxlength="50" class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">留存6级天数</label>
+                <div class="uk-form-controls">
+                    <input v-model="level_6_days" type="text" maxlength="50" class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">留存6级百分比</label>
+                <div class="uk-form-controls">
+                    <input v-model="level_6_percents" type="text" maxlength="50" class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">留存7级天数</label>
+                <div class="uk-form-controls">
+                    <input v-model="level_7_days" type="text" maxlength="50" class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">留存7级百分比</label>
+                <div class="uk-form-controls">
+                    <input v-model="level_7_percents" type="text" maxlength="50" class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">留存8级天数</label>
+                <div class="uk-form-controls">
+                    <input v-model="level_8_days" type="text" maxlength="50" class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">留存8级百分比</label>
+                <div class="uk-form-controls">
+                    <input v-model="level_8_percents" type="text" maxlength="50" class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <button type="submit" class="uk-button uk-button-primary"><i class=""></i> Add</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -26,7 +26,7 @@ def _now():
     return datetime.now().strftime('%y-%m-%d_%H.%M.%S')
 
 def build():
-    includes = ['static', 'templates', 'favicon.ico', '*.py']
+    includes = ['static', 'templates', 'favicon.ico', '*.py', '*.sql']
     excludes = ['test', '.*', '*.pyc', '*.pyo']
     local('rm -f dist/%s' % _TAR_FILE)
     with lcd(os.path.join(_current_path(), 'www')):

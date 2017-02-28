@@ -10,10 +10,11 @@ from aiohttp import web
 from apis import APIValueError, APIResourceNotFoundError, APIError
 
 from coroweb import get, post
-from models import User, Comment, Blog, next_id, DeviceInfo, Remain
+from models import User, Comment, Blog, next_id, DeviceInfo, Remain, Task, ExDeviceInfo
 from config import configs
 import random
 from json import *
+from IpAddrGetter import IpGetter
 
 #@get('/')
 #async def index(request):
@@ -22,6 +23,43 @@ from json import *
 #        '__template__' : 'test.html',
 #        'users': users
 #    }
+
+create_table = ['create table if not exists %s (',
+    'id integer not null primary key,' , 
+    'create_time datetime not null,',
+    'update_time timestamp not null,' ,
+    'status integer not null,' ,
+    'day_1 integer not null,' ,
+    'day_2 integer not null,' ,
+    'day_3 integer not null,' ,
+    'day_4 integer not null,' ,
+    'day_5 integer not null,' ,
+    'day_6 integer not null,' ,
+    'day_7 integer not null,' ,
+    'day_8 integer not null,' ,
+    'day_9 integer not null,' ,
+    'day_10 integer not null,',
+    'day_11 integer not null,',
+    'day_12 integer not null,',
+    'day_13 integer not null,',
+    'day_14 integer not null,',
+    'day_15 integer not null,',
+    'day_16 integer not null,',
+    'day_17 integer not null,',
+    'day_18 integer not null,',
+    'day_19 integer not null,',
+    'day_20 integer not null,',
+    'day_21 integer not null,',
+    'day_22 integer not null,',
+    'day_23 integer not null,',
+    'day_24 integer not null,',
+    'day_25 integer not null,',
+    'day_26 integer not null,',
+    'day_27 integer not null,',
+    'day_28 integer not null,',
+    'day_29 integer not null,',
+    'day_30 integer not null',
+') engine=innodb default charset=utf8']
 
 
 @get('/')
@@ -37,19 +75,43 @@ def index(request):
         'blogs':blogs
     }
 
+# @get('/ipTest')
+# async def index(request):
+    # ip_getter = IpGetter()
+    # print('request attr: %s' % dir(request))
+    # print(dir(request.GET))
+    # print(request.host)
+    # print(request.http_range)
+    # print('request %s' % request)
+    # ip_addr = ip_getter.process_request(request)
+    # print('ip_addr %s' % ip_addr)
+    # print(request.__contains__)
+    # print(request.url)
+    # print(''.join(create_table) % 'table_name_remain')
+    # await DeviceInfo.createTable('remain_test_1')
+
+
 @get('/deviceInfo')
 async def get_all_deviceInfo():
     devices = await DeviceInfo.selectAll()
-    print('deviceInfo.id %s' % devices[2].idenf)
+    # print('deviceInfo.id %s' % devices[2].idenf)
     return {
         '__template__': 'deviceInfo.html',
+        'devices':devices
+    }
+
+@get('/exDeviceInfo')
+async def get_all_exDevideInfo():
+    devices = await ExDeviceInfo.selectAll()
+    return {
+        '__template__': 'ex_deviceInfo.html',
         'devices':devices
     }
 
 @get('/devInfo')
 async def get_all_dev():
     devs = await DeviceInfo.selectAll()
-    print('devInfo.id:  %s' % devs[3].id)
+    print('devInfo.id:  %s' % devs[2].id)
 
 
 
@@ -120,6 +182,12 @@ def signin():
         '__template__':'signin.html'
     }
 
+@get('/addTask')
+def add_task():
+    return {
+        '__template__':'task.html'
+    }
+
 @get('/remain')
 async def get_remain():
     max_id =  await Remain.selectMaxId('id')
@@ -133,7 +201,7 @@ async def get_remain():
 
 @get('/rd_device')
 async def get_random_deviceInfo():
-    result = await DeviceInfo.selectRandom()
+    result = await ExDeviceInfo.selectRandom()
     k = JSONEncoder().encode(result)
     return k
     #return json.dumps(result.__dict__, ensure_ascii = False)
@@ -146,6 +214,12 @@ async def check_by_idenf(* ,idenf):
     deviceInfo = await DeviceInfo.find(idenf)
     print('deviceInfo dpi: %s' % deviceInfo.dpi)
     print('deviceInfo idenf: %s' % deviceInfo.idenf)
+    return deviceInfo
+
+@get('/getById')
+async def get_by_id(*, id):
+    deviceInfo = await DeviceInfo.findById(id)
+    #k = JSONEncoder.encode(deviceInfo)
     return deviceInfo
 
 @post('/api/cc')
@@ -189,6 +263,57 @@ async def api_register_user(*, email, name, passwd):
 #async def delete_test():
     #row = await DeviceInfo.deleteById(15)
     #print(delete affected row: ' % str(row))
+
+@post('/api/task')
+async def task_add(*, task_name, 
+                    ip_repeat_days,
+                    level_2_days,
+                    level_2_percents,
+                    level_3_days,
+                    level_3_percents,
+                    level_4_days,
+                    level_4_percents,
+                    level_5_days,
+                    level_5_percents,
+                    level_6_days,
+                    level_6_percents,
+                    level_7_days,
+                    level_7_percents,
+                    level_8_days,
+                    level_8_percents):
+    
+    print('task_name: %s' % task_name)
+
+    print('level_3_days: %s' % level_3_days)
+
+    task = Task(task_name = task_name, 
+            ip_repeat_days = int(ip_repeat_days),
+            level_2_days = int(level_2_days),
+            level_2_percents = float(level_2_percents),
+            level_3_days = int(level_3_days),
+            level_3_percents = float(level_3_percents),
+            level_4_days = int(level_4_days),
+            level_4_percents = float(level_4_percents),
+            level_5_days = int(level_5_days),
+            level_5_percents = float(level_5_percents),
+            level_6_days = int(level_6_days),
+            level_6_percents = float(level_6_percents),
+            level_7_days = int(level_7_days),
+            level_7_percents = float(level_6_percents),
+            level_8_days = int(level_7_days),
+            level_8_percents = float(level_6_percents)
+            )
+
+    result = await Task.selectSpecItem('task_name', task_name)
+
+    if result:
+        return 9900 #任务重名
+    else:
+        rows = await task.save()
+        await Task.createTable(task_name)
+        return rows
+
+
 
 @post('/api/di')
 async def add_device_info(*, density, dpi, scaleDensity,

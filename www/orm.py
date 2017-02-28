@@ -5,6 +5,46 @@ import asyncio, logging
 import aiomysql
 import os
 
+
+create_table = ['create table if not exists %s (',
+    'id integer not null primary key,' , 
+    'create_time datetime not null,',
+    'update_time timestamp not null,' ,
+    'status integer not null,' ,
+    'day_1 integer not null,' ,
+    'day_2 integer not null,' ,
+    'day_3 integer not null,' ,
+    'day_4 integer not null,' ,
+    'day_5 integer not null,' ,
+    'day_6 integer not null,' ,
+    'day_7 integer not null,' ,
+    'day_8 integer not null,' ,
+    'day_9 integer not null,' ,
+    'day_10 integer not null,',
+    'day_11 integer not null,',
+    'day_12 integer not null,',
+    'day_13 integer not null,',
+    'day_14 integer not null,',
+    'day_15 integer not null,',
+    'day_16 integer not null,',
+    'day_17 integer not null,',
+    'day_18 integer not null,',
+    'day_19 integer not null,',
+    'day_20 integer not null,',
+    'day_21 integer not null,',
+    'day_22 integer not null,',
+    'day_23 integer not null,',
+    'day_24 integer not null,',
+    'day_25 integer not null,',
+    'day_26 integer not null,',
+    'day_27 integer not null,',
+    'day_28 integer not null,',
+    'day_29 integer not null,',
+    'day_30 integer not null',
+') engine=innodb default charset=utf8']
+
+
+
 def log(sql, args=()):
     logging.info('SQL: %s' % sql)
 
@@ -158,7 +198,7 @@ class ModelMetaclass(type):
 
         attrs['__update__'] = 'update %s set %s where %s=?' % (tableName, ', '.join(map(lambda f: '%s=?' % f, fields)), primary_key)
         attrs['__update_by_id__'] = 'update %s set %s where %s=?' % (tableName, ', '.join(map(lambda f: '%s=?' % f, fields)), 'id')
-
+        attrs['__create_table__'] = ''.join(create_table)
         return type.__new__(cls, name, bases, attrs)
         
 
@@ -263,6 +303,14 @@ class Model(dict, metaclass=ModelMetaclass):
         return cls(**rs[0])
 
     @classmethod
+    async def selectSpecItem(cls, sp, num):
+        rs = await select('%s where %s=?' % (cls.__select_all__, sp), [num], 1)
+        print('%s where %s=?' % (cls.__select_all__, sp))
+        if len(rs) == 0:
+            return None
+        return rs[0]
+
+    @classmethod
     async def selectMaxId(cls, sp):
         rs = await select(cls.__select_max_id__,[])
         if len(rs) == 0:
@@ -327,4 +375,8 @@ class Model(dict, metaclass=ModelMetaclass):
         if rows != 1:
             logging.warn('failed to remove by primary key: affected rows: %s' % rows)
         return rows
+
+    @classmethod
+    async def createTable(cls, tab_name):
+        rows = await execute(cls.__create_table__ % tab_name, [], False)
 
