@@ -86,7 +86,7 @@ class RemainTask(Model):
     id = IntegerField()
     create_time = StringField(ddl='varchar(50)')
     update_time = StringField(ddl='varchar(50)')
-    status = IntegerField() # status=1:新增条目 status = 2 可以使用 status = 3 废弃
+    status = IntegerField() # status=1:新增条目    status = 2 :可以使用    status = 3 :废弃   status = 4 :占用
     last_date = StringField(ddl='varchar(50)')
     reach_date = StringField(ddl='varchar(50)')
     done_date = StringField(ddl='varchar(2000)')

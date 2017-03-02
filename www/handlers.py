@@ -98,7 +98,24 @@ async def check_newTask_limit(task_name):
     else:
         return 'no_no'
 
+#向服务器获取留存任务
+@get('/remainTask')
+async def remainTask(*, task_name):
+    # status = 2 ; last_date > now(); reach_date < now()
+    # pass
+    status = 2
+    remain_task = await RemainTask.selectByTableForRemain(task_name, status)
+    if remain_task:
+        remain_task.status = 4 #表明该task已经被申请过了
+        row = await remain_task.update_by_table(task_name)
+        if row:
+            return remain_task.id
+        else:
+            return -1 #表示申请出错了
+    else:
+        return 0 #表示没有留存任务可做了
 
+#新增任务完成提交服务器
 @get('/newTaskComplete')
 async def newTaskComplete(*, table_name, id):
     rs = await check_newTask_limit(table_name)
@@ -127,12 +144,15 @@ async def newTaskComplete(*, table_name, id):
 
 
 
-#客户端执行完新增任务，将该任务的id号提交到服务器
+#留存任务完成提交服务器
 @get('/remaintaskComplete')
 async def taskComplete(*, table_name, id):
 
     remain_task = await RemainTask.selectByTable(table_name, 'id', id)
     if remain_task:
+        if remain_task.status != 4: #必须是从服务器获取的留存任务,才能再次向服务器提交,否则无法提交
+            return 'failed'
+        remain_task.status = 2 #新增任务执行完毕后，将status恢复回2值
         remain_task.reach_date = getDate()
         remain_task.done_date = remain_task.done_date + ',' + getDate()
         row = await remain_task.update_by_table(table_name)

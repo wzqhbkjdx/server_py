@@ -175,6 +175,7 @@ class ModelMetaclass(type):
         attrs['__select_date__'] = 'select count(*) from %s where date(%s) = date(now())'
         attrs['__select_by_table__'] = 'select * from %s where %s = %s'
         attrs['__select_by_table_limit__'] = 'select * from %s where date(%s) = date(now()) and status = %s order by rand() limit %s'
+        attrs['__select_by_table_remain__'] = 'select * from %s where status = %s and date(last_date) > date(now()) and date(reach_date) < date(now()) order by rand() limit 1;'
 
         attrs['__insert_by_table__'] = 'insert into %s(%s, %s) values (%s)' % ('%s', ','.join(escaped_fields), primary_key, create_args_string(len(escaped_fields) + 1))
         attrs['__update_by_table__'] = 'update %s set %s where %s=?' % ('%s', ', '.join(map(lambda f: '%s=?' % f, fields)), primary_key)
@@ -305,6 +306,14 @@ class Model(dict, metaclass=ModelMetaclass):
         if(len(rs) == 0):
             return None
         return [cls(**r) for r in rs]
+
+    @classmethod
+    async def selectByTableForRemain(cls, tab_name, status):
+        rs = await select(cls.__select_by_table_remain__ % (tab_name, status), [], 1)
+        print(cls.__select_by_table_remain__ % (tab_name, status))
+        if(len(rs) == 0):
+            return None
+        return cls(**rs[0])
 
     @classmethod
     async def selectMaxId(cls, sp):
