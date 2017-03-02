@@ -27,6 +27,7 @@ $(function () {
             level_7_percents:'',
             level_8_days:'',
             level_8_percents:'',
+            new_limit:'',
         },
         methods: {
             submit: function (event) {
@@ -54,6 +55,7 @@ $(function () {
                     	level_7_percents:this.level_7_percents,
                     	level_8_days:this.level_8_days,
                     	level_8_percents:this.level_8_percents,
+                        new_limit:this.new_limit,
 	                }, function (err, r) {
 
 	                    if (err) {
@@ -201,6 +203,13 @@ $(function () {
                 <label class="uk-form-label">留存8级百分比</label>
                 <div class="uk-form-controls">
                     <input v-model="level_8_percents" type="text" maxlength="50" class="">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label class="uk-form-label">每日新增上限</label>
+                <div class="uk-form-controls">
+                    <input v-model="new_limit" type="text" maxlength="50" class="">
                 </div>
             </div>
 

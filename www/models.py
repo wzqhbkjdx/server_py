@@ -78,6 +78,19 @@ class Task(Model):
     level_8_days = IntegerField()
     level_8_percents = FloatField()
 
+    new_limit = IntegerField()
+
+class RemainTask(Model):
+    __table__ = 'remain_table'
+    idenf = StringField(primary_key=True, default=next_id, ddl='varchar(100)')
+    id = IntegerField()
+    create_time = StringField(ddl='varchar(50)')
+    update_time = StringField(ddl='varchar(50)')
+    status = IntegerField() # status=1:新增条目 status = 2 可以使用 status = 3 废弃
+    last_date = StringField(ddl='varchar(50)')
+    reach_date = StringField(ddl='varchar(50)')
+    done_date = StringField(ddl='varchar(2000)')
+
 class DeviceInfo(Model):
     __table__ = 'deviceInfo'
 

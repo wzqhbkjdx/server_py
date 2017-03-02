@@ -3,63 +3,51 @@
 
 #' url handlers '
 
-import re, time, json, logging, hashlib, base64, asyncio
+import re, time, json, logging, hashlib, base64, asyncio, sched, os
 
 from aiohttp import web
 
 from apis import APIValueError, APIResourceNotFoundError, APIError
 
 from coroweb import get, post
-from models import User, Comment, Blog, next_id, DeviceInfo, Remain, Task, ExDeviceInfo
+from models import User, Comment, Blog, next_id, DeviceInfo, Remain, Task, ExDeviceInfo, RemainTask
 from config import configs
 import random
 from json import *
 from IpAddrGetter import IpGetter
 
-#@get('/')
-#async def index(request):
-#    users = await User.findAll()
-#    return {
-#        '__template__' : 'test.html',
-#        'users': users
-#    }
+import datetime
+import collections
 
-create_table = ['create table if not exists %s (',
-    'id integer not null primary key,' , 
-    'create_time datetime not null,',
-    'update_time timestamp not null,' ,
-    'status integer not null,' ,
-    'day_1 integer not null,' ,
-    'day_2 integer not null,' ,
-    'day_3 integer not null,' ,
-    'day_4 integer not null,' ,
-    'day_5 integer not null,' ,
-    'day_6 integer not null,' ,
-    'day_7 integer not null,' ,
-    'day_8 integer not null,' ,
-    'day_9 integer not null,' ,
-    'day_10 integer not null,',
-    'day_11 integer not null,',
-    'day_12 integer not null,',
-    'day_13 integer not null,',
-    'day_14 integer not null,',
-    'day_15 integer not null,',
-    'day_16 integer not null,',
-    'day_17 integer not null,',
-    'day_18 integer not null,',
-    'day_19 integer not null,',
-    'day_20 integer not null,',
-    'day_21 integer not null,',
-    'day_22 integer not null,',
-    'day_23 integer not null,',
-    'day_24 integer not null,',
-    'day_25 integer not null,',
-    'day_26 integer not null,',
-    'day_27 integer not null,',
-    'day_28 integer not null,',
-    'day_29 integer not null,',
-    'day_30 integer not null',
-') engine=innodb default charset=utf8']
+schedule = sched.scheduler(time.time, time.sleep)
+
+#下面三个方法用于实现定时任务
+def perform_command(cmd, inc):
+
+    time_out()
+
+    schedule.enter(inc, 0, perform_command, (cmd, inc))
+    # os.system(cmd)
+
+def timming_exe(cmd, inc=5):
+    schedule.enter(inc, 0, perform_command, (cmd, inc))
+    schedule.run()
+
+def time_out():
+    print('time out')
+
+@get('/timer')
+def time_test():
+    pass
+    # timming_exe('', 3)
+
+def getDate():
+    now = datetime.datetime.now()
+    return now.strftime('%Y-%m-%d')
+
+def getDateTime():
+    now = datetime.datetime.now()
+    return now.strftime('%Y-%m-%d %H:%M:%S')
 
 
 @get('/')
@@ -75,6 +63,7 @@ def index(request):
         'blogs':blogs
     }
 
+#下面注释掉的方法用于获取客户端ip地址
 # @get('/ipTest')
 # async def index(request):
     # ip_getter = IpGetter()
@@ -90,6 +79,211 @@ def index(request):
     # print(''.join(create_table) % 'table_name_remain')
     # await DeviceInfo.createTable('remain_test_1')
 
+#向服务器请示，查看是否允许今日新增任务
+@get('/newTask')
+async def newTask(*, task_name):
+    rs = await check_newTask_limit(task_name)
+    return rs
+
+async def check_newTask_limit(task_name):
+    counts = await Task.selectDate(task_name)
+    # print('result counts: %s' % counts)
+    if counts >= 0:
+        result = await Task.selectSpecItem('task_name', task_name)
+        # print('new_limit: %s' % result['new_limit'])
+        if(counts < result['new_limit']):
+            return 'yes'
+        else:
+            return 'no'
+    else:
+        return 'no_no'
+
+
+@get('/newTaskComplete')
+async def newTaskComplete(*, table_name, id):
+    rs = await check_newTask_limit(table_name)
+
+    if rs == 'no':
+
+        return 'failed'
+
+    elif rs == 'yes':
+        remain_task = await RemainTask.selectByTable(table_name, 'id', id)
+        if remain_task:
+            return 'failed'
+        else:
+            remain_task = RemainTask()
+            remain_task.id = int(id)
+            remain_task.create_time = getDateTime()
+            remain_task.update_time = getDateTime()
+            remain_task.status = 1
+            remain_task.reach_date = getDate()
+            remain_task.done_date = getDate()
+            row = await remain_task.saveByTable(table_name)
+            if row == 1:
+                return 'success'
+            else:
+                return 'failed'
+
+
+
+#客户端执行完新增任务，将该任务的id号提交到服务器
+@get('/remaintaskComplete')
+async def taskComplete(*, table_name, id):
+
+    remain_task = await RemainTask.selectByTable(table_name, 'id', id)
+    if remain_task:
+        remain_task.reach_date = getDate()
+        remain_task.done_date = remain_task.done_date + ',' + getDate()
+        row = await remain_task.update_by_table(table_name)
+        if row == 1:
+            return 'success'
+        else:
+            return 'failed'
+    else:
+        return 'failed'
+
+
+@get('/schedule')
+async def schedule_reamin(*, user_name, user_password, task_name):
+
+    if user_name == 'wzq' and user_password == 'password':
+
+        result = await Task.selectSpecItem('task_name', task_name)
+
+        print(result)
+
+        day_level = []
+
+        day_level.append(result['level_2_days'])
+        day_level.append(result['level_3_days'])
+        day_level.append(result['level_4_days'])
+        day_level.append(result['level_5_days'])
+        day_level.append(result['level_6_days'])
+        day_level.append(result['level_7_days'])
+        day_level.append(result['level_8_days'])
+
+        day_level = list(a for a in day_level if a > 0)
+
+        print(day_level)
+
+        day_percent = []
+
+        day_percent.append(result['level_2_percents'])
+        day_percent.append(result['level_3_percents'])
+        day_percent.append(result['level_4_percents'])
+        day_percent.append(result['level_5_percents'])
+        day_percent.append(result['level_6_percents'])
+        day_percent.append(result['level_7_percents'])
+        day_percent.append(result['level_8_percents'])
+
+        day_percent = list(a for a in day_percent if a > 0.0)
+
+        print(day_percent)
+
+
+        range_dict = collections.OrderedDict()
+
+        #获取当前数据库中新增的任务总数
+        total_counts = await Task.selectDate(task_name)
+        if total_counts < 10:
+            return 'the counts of new tasks are less than the limit'
+
+
+        # print('total_counts: %s ' % total_counts)
+        #生成关键节点上的 day-count 的键值对
+        # day_level   [2,    7,    15,   30]
+        # day_percent [25.0, 20.0, 10.0, 5.0]
+
+        for i in range(len(day_level)):
+            range_dict[day_level[i]] = day_percent[i]
+
+        # print(range_dict)
+
+        days = collections.OrderedDict() #每天留存比例dict
+
+        #根据关键节点上的 day-count 键值对生成其他day对应的count （根据首尾节点的值计算平均值）
+
+        for i in range(2, 31):
+
+            for key in day_level:
+                if i == key:
+                    days[i] = range_dict[key]
+                    break
+                    # print('index: %s' % day_level.index(key))
+                elif i > key:
+                    continue
+                elif i < key:
+                    forward = day_level[day_level.index(key) - 1] # 找到day_level中的当前key的前一个key值 因为day_level中没有相同的值，所以这个方法可行，如果有相同的值，每次index都返回当前list中的第一个，会引发错误
+                    forward_value = range_dict[forward]
+                    # print('forward_value: %s ' % forward_value)
+                    next_value = range_dict[key]
+                    avrage_slice = (forward_value - next_value) / (key - forward) # 平均切片
+                    slice_result = forward_value - (i - forward) * avrage_slice
+                    # print('slice_result %s' % slice_result)
+                    days[i] = round(slice_result, 2)
+                    break
+
+        # print(days)
+        #处理每天留存比例dict
+        for key in days.keys():
+            days[key] = round((days[key] * total_counts) / 100, 0) # 先圆整，再转为int值，这样不会出现小于0的现象
+            # days[key] = int((days[key] * total_counts) / 100)
+        print(days)
+        #遍历dict 从value的最小值到最大值，如果本次的和上次的value相等，则不变，如果本次的比上次多，则求差值后从数据库中选取相应个数改变它们的last_time即可
+
+        day = []
+        remain_counts = []
+
+        # days ([(2, 12.0), (3, 12.0), (4, 12.0), (5, 11.0), (6, 10.0), (7, 10.0), (8, 9.0), (9, 9.0), (10, 8.0), (11, 8.0), (12, 7.0), 
+        # (13, 6.0), (14, 6.0), (15, 5.0), (16, 5.0), (17, 5.0), (18, 4.0), (19, 4.0), (20, 4.0), (21, 4.0), (22, 4.0), (23, 4.0), (24, 4.0), 
+        # (25, 3.0), (26, 3.0), (27, 3.0), (28, 3.0), (29, 3.0), (30, 2.0)])
+
+        for key in days.keys():
+            day.append(key)
+            if days[key] == 0:
+                days[key] = 1
+            remain_counts.append(int(days[key]))
+
+        print('day: %s' % day)
+        print('remain_counts: %s' % remain_counts)
+
+        # day:           [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+        # remain_counts: [25,24,23,22,21,20,18,17,16, 15, 13, 12, 11, 10,  9,  9,  9,  8,  8,  8,  7,  7,  7,  6,  6,  6,  5, 5,  5]
+
+        for i in range(len(remain_counts) - 1, -1, -1): #倒序遍历
+
+            if i == (len(remain_counts) - 1): #最后一天的那一个
+                #从数据库中随机取出remain_counts[i]对应的条目,
+                status = 1
+                remain_items = await RemainTask.selectByTableLimit(task_name, 'create_time', status, remain_counts[i])
+                print(remain_items)
+                for remain_item in remain_items:
+                    last_date = remain_item.create_time + datetime.timedelta(days = (day[i] - 1))
+                    remain_item.last_date = last_date
+                    remain_item.status = 2; # 1-> 2 表示这个新增已经可以使用
+                    print(remain_item.last_date)
+                    await remain_item.update_by_table(task_name)
+
+            else:
+                if remain_counts[i] <= remain_counts[i + 1]:
+                    continue
+                elif remain_counts[i] > remain_counts[i + 1]:
+                    print('>>')
+                    div_counts = remain_counts[i] - remain_counts[i + 1]
+                    status = 1
+                    remain_items = await RemainTask.selectByTableLimit(task_name, 'create_time', status, div_counts)
+                    for remain_item in remain_items:
+                        last_date = remain_item.create_time + datetime.timedelta(days = (day[i] - 1))
+                        remain_item.last_date = last_date
+                        remain_item.status = 2; # 1-> 2 表示这个新增已经可以使用
+                        print(remain_item.last_date)
+                        await remain_item.update_by_table(task_name)
+        return 'success'
+
+    else:
+        return 'failed'
+    
 
 @get('/deviceInfo')
 async def get_all_deviceInfo():
@@ -222,9 +416,12 @@ async def get_by_id(*, id):
     #k = JSONEncoder.encode(deviceInfo)
     return deviceInfo
 
+# @get('/newTask')
+# def get_new_task(*, task_name):
+
+
 @post('/api/cc')
 async def check_test(*, id):
-    #print('check by id' % id)
     deviceInfo = await DeviceInfo.findById(id)
     print('deviceInfo dpi: %s' % deviceInfo.dpi)
     print('deviceInfo idenf: %s ' % deviceInfo.idenf)
@@ -259,10 +456,6 @@ async def api_register_user(*, email, name, passwd):
     r.body = json.dumps(user, ensure_ascii=False).encode('utf-8')
     return r
 
-#@get('/delete')
-#async def delete_test():
-    #row = await DeviceInfo.deleteById(15)
-    #print(delete affected row: ' % str(row))
 
 @post('/api/task')
 async def task_add(*, task_name, 
@@ -280,7 +473,8 @@ async def task_add(*, task_name,
                     level_7_days,
                     level_7_percents,
                     level_8_days,
-                    level_8_percents):
+                    level_8_percents,
+                    new_limit):
     
     print('task_name: %s' % task_name)
 
@@ -301,7 +495,8 @@ async def task_add(*, task_name,
             level_7_days = int(level_7_days),
             level_7_percents = float(level_6_percents),
             level_8_days = int(level_7_days),
-            level_8_percents = float(level_6_percents)
+            level_8_percents = float(level_6_percents),
+            new_limit = int(new_limit)
             )
 
     result = await Task.selectSpecItem('task_name', task_name)
@@ -578,7 +773,6 @@ async def update_device_info(*,
                     codeName = codeName,
                     incremental = incremental,
                     buildID = buildID
-
 
                    ) 
 

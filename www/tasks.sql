@@ -18,5 +18,6 @@ create table tasks (
 	level_7_days integer,
 	level_7_percents real,
 	level_8_days integer,
-	level_8_percents real
+	level_8_percents real,
+	new_limit integer
 ) engine=innodb default charset=utf8;

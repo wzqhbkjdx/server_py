@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
 
 import asyncio, logging
@@ -8,39 +8,13 @@ import os
 
 create_table = ['create table if not exists %s (',
     'id integer not null primary key,' , 
+    'idenf varchar(50) not null,' ,
     'create_time datetime not null,',
     'update_time timestamp not null,' ,
     'status integer not null,' ,
-    'day_1 integer not null,' ,
-    'day_2 integer not null,' ,
-    'day_3 integer not null,' ,
-    'day_4 integer not null,' ,
-    'day_5 integer not null,' ,
-    'day_6 integer not null,' ,
-    'day_7 integer not null,' ,
-    'day_8 integer not null,' ,
-    'day_9 integer not null,' ,
-    'day_10 integer not null,',
-    'day_11 integer not null,',
-    'day_12 integer not null,',
-    'day_13 integer not null,',
-    'day_14 integer not null,',
-    'day_15 integer not null,',
-    'day_16 integer not null,',
-    'day_17 integer not null,',
-    'day_18 integer not null,',
-    'day_19 integer not null,',
-    'day_20 integer not null,',
-    'day_21 integer not null,',
-    'day_22 integer not null,',
-    'day_23 integer not null,',
-    'day_24 integer not null,',
-    'day_25 integer not null,',
-    'day_26 integer not null,',
-    'day_27 integer not null,',
-    'day_28 integer not null,',
-    'day_29 integer not null,',
-    'day_30 integer not null',
+    'last_date date,',
+    'reach_date date,',
+    'done_date varchar(2000)'
 ') engine=innodb default charset=utf8']
 
 
@@ -189,7 +163,6 @@ class ModelMetaclass(type):
         attrs['__fields__'] = fields
         attrs['__select__'] = 'select %s, %s from %s' % (primary_key, ', '.join(escaped_fields),tableName)
         attrs['__insert__'] = 'insert into %s(%s, %s) values (%s)' % (tableName, ','.join(escaped_fields), primary_key, create_args_string(len(escaped_fields) + 1))
-        # attrs['__update__'] = 'update %s set %s where %s=?' % (tableName, ', '.join(map(lambda f: '%s=?' % (mappings.get(f).name or f), fields)), primary_key)
         attrs['__delete__'] = 'delete from %s where %s=?' % (tableName, primary_key)
         attrs['__delete_by_id__'] = 'delete from %s where id=?' % tableName
         attrs['__select_max_id__'] = 'select max(id) from %s' % tableName
@@ -199,6 +172,13 @@ class ModelMetaclass(type):
         attrs['__update__'] = 'update %s set %s where %s=?' % (tableName, ', '.join(map(lambda f: '%s=?' % f, fields)), primary_key)
         attrs['__update_by_id__'] = 'update %s set %s where %s=?' % (tableName, ', '.join(map(lambda f: '%s=?' % f, fields)), 'id')
         attrs['__create_table__'] = ''.join(create_table)
+        attrs['__select_date__'] = 'select count(*) from %s where date(%s) = date(now())'
+        attrs['__select_by_table__'] = 'select * from %s where %s = %s'
+        attrs['__select_by_table_limit__'] = 'select * from %s where date(%s) = date(now()) and status = %s order by rand() limit %s'
+
+        attrs['__insert_by_table__'] = 'insert into %s(%s, %s) values (%s)' % ('%s', ','.join(escaped_fields), primary_key, create_args_string(len(escaped_fields) + 1))
+        attrs['__update_by_table__'] = 'update %s set %s where %s=?' % ('%s', ', '.join(map(lambda f: '%s=?' % f, fields)), primary_key)
+
         return type.__new__(cls, name, bases, attrs)
         
 
@@ -311,6 +291,22 @@ class Model(dict, metaclass=ModelMetaclass):
         return rs[0]
 
     @classmethod
+    async def selectByTable(cls, tab_name, id, id_value):
+        rs = await select(cls.__select_by_table__ % (tab_name, id, id_value), [], 1)
+        print(cls.__select_by_table__ % (tab_name, id, id_value))
+        if(len(rs) == 0):
+            return None
+        return cls(**rs[0])
+
+    @classmethod
+    async def selectByTableLimit(cls, tab_name, date_name, status, limit):
+        rs = await select(cls.__select_by_table_limit__ % (tab_name, date_name, status, limit), [], 0)
+        print(cls.__select_by_table_limit__ % (tab_name, date_name, status, limit))
+        if(len(rs) == 0):
+            return None
+        return [cls(**r) for r in rs]
+
+    @classmethod
     async def selectMaxId(cls, sp):
         rs = await select(cls.__select_max_id__,[])
         if len(rs) == 0:
@@ -342,12 +338,32 @@ class Model(dict, metaclass=ModelMetaclass):
             logging.warn('failed to insert record: affected rows: %s' % rows)
         return rows
 
+    async def saveByTable(self, tab_name):
+        args = list(map(self.getValueOrDefault, self.__fields__))
+        args.append(self.getValueOrDefault(self.__primary_key__))
+        print(args)
+        print(self.__insert__)
+        rows = await execute(self.__insert_by_table__ % tab_name, args, False)
+        if rows != 1:
+            logging.warn('failed to insert record: affected rows: %s' % rows)
+        return rows
+
     async def update(self):
         args = list(map(self.getValue, self.__fields__))
         args.append(self.getValue(self.__primary_key__))
         print("update agrs: %s" % args)
         print("update self update: %s" % self.__update__)
         rows = await execute(self.__update__, args, False)
+        if rows != 1:
+            logging.warn('failed to insert record: affected rows: %s' % rows)
+        return rows
+
+    async def update_by_table(self, tab_name):
+        args = list(map(self.getValue, self.__fields__))
+        args.append(self.getValue(self.__primary_key__))
+        print("update agrs: %s" % args)
+        print("update self update: %s" % self.__update__)
+        rows = await execute(self.__update_by_table__ % tab_name, args, False)
         if rows != 1:
             logging.warn('failed to insert record: affected rows: %s' % rows)
         return rows
@@ -379,4 +395,10 @@ class Model(dict, metaclass=ModelMetaclass):
     @classmethod
     async def createTable(cls, tab_name):
         rows = await execute(cls.__create_table__ % tab_name, [], False)
+        # print('create table row: %s' % rows)
 
+    @classmethod
+    async def selectDate(cls, tab_name):
+        counts = await select(cls.__select_date__ % (tab_name, 'create_time'), [])
+        # print('select counts %s' % counts)
+        return counts[0]['count(*)']
