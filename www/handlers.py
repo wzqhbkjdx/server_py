@@ -79,6 +79,11 @@ def index(request):
     # print(''.join(create_table) % 'table_name_remain')
     # await DeviceInfo.createTable('remain_test_1')
 
+
+@get('/netCheck')
+def netCheck():
+    return 'ok'
+
 #向服务器请示，查看是否允许今日新增任务
 @get('/newTask')
 async def newTask(*, task_name):
@@ -109,11 +114,11 @@ async def remainTask(*, task_name):
         remain_task.status = 4 #表明该task已经被申请过了
         row = await remain_task.update_by_table(task_name)
         if row:
-            return remain_task.id
+            return str(remain_task.id)
         else:
-            return -1 #表示申请出错了
+            return '-1' #表示申请出错了
     else:
-        return 0 #表示没有留存任务可做了
+        return '0' #表示没有留存任务可做了
 
 #新增任务完成提交服务器
 @get('/newTaskComplete')
@@ -432,7 +437,7 @@ async def check_by_idenf(* ,idenf):
 
 @get('/getById')
 async def get_by_id(*, id):
-    deviceInfo = await DeviceInfo.findById(id)
+    deviceInfo = await ExDeviceInfo.findById(id)
     #k = JSONEncoder.encode(deviceInfo)
     return deviceInfo
 
