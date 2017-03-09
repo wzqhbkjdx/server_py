@@ -41,9 +41,9 @@ elif rd == 2:
     deviceInfo.bestProvider = 'passive'
 
     deviceInfo.networkOperator = '46001'
-    deviceInfo.networkOperatorName = 'CHINA TELECOM'
+    deviceInfo.networkOperatorName = 'CHINA UNICOM'
     deviceInfo.simOperator = '46001'
-    deviceInfo.simOperatorName = 'CHINA TELECOM'
+    deviceInfo.simOperatorName = 'CHINA UNICOM'
 
     deviceInfo.subscriberId = '46001' + ''.join(subscriberList)
     print(deviceInfo.subscriberId)
@@ -53,9 +53,9 @@ else:
     deviceInfo.bestProvider = 'gps'
 
     deviceInfo.networkOperator = '46003'
-    deviceInfo.networkOperatorName = 'CHINA UNICOM'
+    deviceInfo.networkOperatorName = 'CHINA TELECOM'
     deviceInfo.simOperator = '46003'
-    deviceInfo.simOperatorName = 'CHINA UNICOM'
+    deviceInfo.simOperatorName = 'CHINA TELECOM'
     
     deviceInfo.subscriberId = '46003' + ''.join(subscriberList)
     print(deviceInfo.subscriberId)
@@ -82,7 +82,8 @@ print(simSerialNumber)
 deviceInfo.simSerialNumber = simSerialNumber
 
 #getSerial
-serialList = [random.choice(string.ascii_letters + string.digits) for i in range(8)]
+rd = random.randint(10,20)
+serialList = [random.choice(string.ascii_letters + string.digits) for i in range(rd)]
 deviceInfo.getSerial = ''.join(serialList)
 print(deviceInfo.getSerial)
 
@@ -120,7 +121,9 @@ def get_time():
 def get_random_time():
     start = int(get_time())
     end = int(time.time())
-    return random.randint(start, end)
+    rd = random.randint(100,999)
+    result = str(random.randint(start, end)) + str(rd)
+    return result
 
 
 

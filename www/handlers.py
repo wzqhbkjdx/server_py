@@ -19,6 +19,8 @@ from IpAddrGetter import IpGetter
 import datetime
 import collections
 
+from dev_generator import DevGenerator
+
 schedule = sched.scheduler(time.time, time.sleep)
 
 #下面三个方法用于实现定时任务
@@ -83,6 +85,109 @@ def index(request):
 @get('/netCheck')
 def netCheck():
     return 'ok'
+
+@get('/add_simple')
+def addSimple():
+    return {
+        '__template__':'simple_add.html'
+    }
+
+@post('/api/addSimple')
+async def addSimpleDeviceId(*, density,
+                    dpi,
+                    scaleDensity,
+                    board,
+                    brand,
+                    bootloader,
+                    display,
+                    device,
+                    fingerPrint,
+                    hardwear,
+                    manufacturer,
+                    model,
+                    product,
+                    relea,
+                    sdk,
+                    sdkInt,
+                    widthPixels,
+                    heightPixels,
+                    width,
+                    height,
+                    version,
+                    tags,
+                    phoneTime,
+                    phoneType,
+                    phoneUser,
+                    host,
+                    radioVersion,
+                    codeName,
+                    incremental,
+                    buildID):
+    # print('add simple')
+    deviceInfo = DeviceInfo()
+    deviceInfo.density = float(density)
+    deviceInfo.dpi = float(dpi)
+    deviceInfo.scaleDensity = float(scaleDensity)
+    deviceInfo.board = board
+    deviceInfo.brand = brand
+    deviceInfo.bootloader = bootloader
+    deviceInfo.display = display
+    deviceInfo.device = device
+    deviceInfo.fingerPrint = fingerPrint
+    deviceInfo.hardwear = hardwear
+    deviceInfo.manufacturer = manufacturer
+    deviceInfo.model = model
+    deviceInfo.product = product
+    deviceInfo.relea = relea
+    deviceInfo.sdk = int(sdk)
+    deviceInfo.sdkInt = int(sdkInt)
+    deviceInfo.widthPixels = widthPixels
+    deviceInfo.heightPixels = heightPixels
+    deviceInfo.width = int(width)
+    deviceInfo.height = int(height)
+    deviceInfo.version = version
+    deviceInfo.tags = tags
+    deviceInfo.phoneTime = phoneTime
+    deviceInfo.phoneType = phoneType
+    deviceInfo.phoneUser = phoneUser
+    deviceInfo.host = host
+    deviceInfo.radioVersion = radioVersion
+    deviceInfo.codeName = codeName
+    deviceInfo.incremental = incremental
+    deviceInfo.buildID = buildID
+
+    deviceInfo.bestProvider = 'network'
+    deviceInfo.gclGetCid = -1
+    deviceInfo.gclGetLac = -1
+    deviceInfo.gclGetPsc = 0
+    deviceInfo.cellLocation = '[-1,-1,0]'
+    deviceInfo.deviceId = DevGenerator.getDeviceId()
+    deviceInfo.androidid = DevGenerator.getAndroidId()
+    deviceInfo.networkOperator, deviceInfo.networkOperatorName, deviceInfo.simOperator, deviceInfo.simOperatorName, deviceInfo.subscriberId = DevGenerator.getFive()
+    deviceInfo.networkType = 0
+    deviceInfo.simSerialNumber = DevGenerator.get_simSerialNumber()
+    deviceInfo.getSerial = DevGenerator.get_serial()
+    deviceInfo.dataActivity = 0
+    wifi_name = DevGenerator.get_wifi_name()
+    deviceInfo.extraInfo = wifi_name
+    deviceInfo.ssid = wifi_name
+    deviceInfo.reason = ''
+    deviceInfo.subType = 0
+    deviceInfo.subTypeName = ''
+    deviceInfo.type = 1
+    deviceInfo.typeName = 'WIFI'
+    deviceInfo.macAddress = DevGenerator.randomAddress()
+    deviceInfo.bssid = DevGenerator.randomAddress()
+    deviceInfo.ipAddress = DevGenerator.get_random_ip()
+    deviceInfo.networkId = 0
+    deviceInfo.rssi = DevGenerator.get_rssi()
+    deviceInfo.rotation = 0
+    deviceInfo.line1Number = ''
+
+    rows = await deviceInfo.save()
+    return rows
+
+
 
 #向服务器请示，查看是否允许今日新增任务
 @get('/newTask')
