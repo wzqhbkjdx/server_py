@@ -9,6 +9,7 @@ import os
 create_table = ['create table if not exists %s (',
     'id integer not null primary key,' , 
     'idenf varchar(50) not null,' ,
+    'phoneNo varchar(100) not null,',
     'create_time datetime not null,',
     'update_time timestamp not null,' ,
     'status integer not null,' ,
@@ -176,6 +177,7 @@ class ModelMetaclass(type):
         attrs['__select_by_table__'] = 'select * from %s where %s = %s'
         attrs['__select_by_table_limit__'] = 'select * from %s where date(%s) = date(now()) and status = %s order by rand() limit %s'
         attrs['__select_by_table_remain__'] = 'select * from %s where status = %s and date(last_date) > date(now()) and date(reach_date) < date(now()) order by rand() limit 1;'
+        attrs['__select_by_table_remain_phoneNo__'] = 'select * from %s where status = %s and phoneNo = ? and date(last_date) > date(now()) and date(reach_date) < date(now()) order by rand() limit 1;'
 
         attrs['__insert_by_table__'] = 'insert into %s(%s, %s) values (%s)' % ('%s', ','.join(escaped_fields), primary_key, create_args_string(len(escaped_fields) + 1))
         attrs['__update_by_table__'] = 'update %s set %s where %s=?' % ('%s', ', '.join(map(lambda f: '%s=?' % f, fields)), primary_key)
@@ -292,6 +294,14 @@ class Model(dict, metaclass=ModelMetaclass):
         return rs[0]
 
     @classmethod
+    async def selectSpecCls(cls, sp, num):
+        rs = await select('%s where %s=?' % (cls.__select_all__, sp), [num], 1)
+        print('%s where %s=?' % (cls.__select_all__, sp))
+        if len(rs) == 0:
+            return None
+        return cls(**rs[0])
+
+    @classmethod
     async def selectByTable(cls, tab_name, id, id_value):
         rs = await select(cls.__select_by_table__ % (tab_name, id, id_value), [], 1)
         print(cls.__select_by_table__ % (tab_name, id, id_value))
@@ -314,6 +324,15 @@ class Model(dict, metaclass=ModelMetaclass):
         if(len(rs) == 0):
             return None
         return cls(**rs[0])
+
+    @classmethod
+    async def selectByTableForRemainPhoneNo(cls, tab_name, status, phoneNo):
+        rs = await select(cls.__select_by_table_remain_phoneNo__ % (tab_name, status), [phoneNo], 1)
+        print(cls.__select_by_table_remain_phoneNo__ % (tab_name, status))
+        if(len(rs) == 0):
+            return None
+        return cls(**rs[0])
+
 
     @classmethod
     async def selectMaxId(cls, sp):

@@ -225,9 +225,29 @@ async def remainTask(*, task_name):
     else:
         return '0' #表示没有留存任务可做了
 
+@get('/remainTaskPhoneNo')
+async def remainTaskPhoneNo(*, task_name, phoneNo):
+    status = 2
+    remain_task = await RemainTask.selectByTableForRemainPhoneNo(task_name, status, phoneNo)
+    if remain_task:
+        remain_task.status = 4 #表明该task已经被申请过了
+        row = await remain_task.update_by_table(task_name)
+        if row:
+            return str(remain_task.id)
+        else:
+            return '-1' #表示申请出错了
+    else:
+        return '0' #表示没有留存任务可做了
+
 #新增任务完成提交服务器
 @get('/newTaskComplete')
-async def newTaskComplete(*, table_name, id):
+async def newTaskComplete(*, table_name, id, phoneNo):
+
+    #查询扩展设备信息表，确认扩展设备信息表中有该id
+    ex = await ExDeviceInfo.selectSpecCls('id',id)
+    if not ex:
+        return 'failed'
+
     rs = await check_newTask_limit(table_name)
 
     if rs == 'no':
@@ -241,6 +261,7 @@ async def newTaskComplete(*, table_name, id):
         else:
             remain_task = RemainTask()
             remain_task.id = int(id)
+            remain_task.phoneNo = phoneNo
             remain_task.create_time = getDateTime()
             remain_task.update_time = getDateTime()
             remain_task.status = 1
@@ -256,7 +277,7 @@ async def newTaskComplete(*, table_name, id):
 
 #留存任务完成提交服务器
 @get('/remaintaskComplete')
-async def taskComplete(*, table_name, id):
+async def taskComplete(*, table_name, id, phoneNo):
 
     remain_task = await RemainTask.selectByTable(table_name, 'id', id)
     if remain_task:
@@ -523,7 +544,7 @@ async def get_remain():
     result = await Remain.findSpecItem('id', rd)
     return result['num']
 
-@get('/rd_device')
+@get('/rand_device')
 async def get_random_deviceInfo():
     result = await ExDeviceInfo.selectRandom()
     k = JSONEncoder().encode(result)
@@ -531,6 +552,86 @@ async def get_random_deviceInfo():
     #return json.dumps(result.__dict__, ensure_ascii = False)
     #return result
     #return result.simSerialNumber
+
+@get('/rd_device')
+async def generate_random_deviceInfo():
+    #从模板库里读取一条数据
+    base_deviceInfo = await DeviceInfo.selectRandom()
+    #随机修改该数据
+    ex_deviceInfo = ExDeviceInfo()
+    #保存到扩展库中
+    ex_deviceInfo.density = base_deviceInfo.density
+    ex_deviceInfo.dpi = base_deviceInfo.dpi
+    ex_deviceInfo.scaleDensity = base_deviceInfo.scaleDensity
+    ex_deviceInfo.board = base_deviceInfo.board
+    ex_deviceInfo.brand = base_deviceInfo.brand
+    ex_deviceInfo.bootloader = base_deviceInfo.bootloader
+    ex_deviceInfo.display = base_deviceInfo.display
+    ex_deviceInfo.device = base_deviceInfo.device
+    ex_deviceInfo.fingerPrint = base_deviceInfo.fingerPrint
+    ex_deviceInfo.hardwear = base_deviceInfo.hardwear
+    ex_deviceInfo.manufacturer = base_deviceInfo.manufacturer
+    ex_deviceInfo.model = base_deviceInfo.model
+    ex_deviceInfo.product = base_deviceInfo.product
+    ex_deviceInfo.relea = base_deviceInfo.relea
+    ex_deviceInfo.sdk = base_deviceInfo.sdk
+    ex_deviceInfo.sdkInt = base_deviceInfo.sdkInt
+    ex_deviceInfo.widthPixels = base_deviceInfo.widthPixels
+    ex_deviceInfo.heightPixels = base_deviceInfo.heightPixels
+    ex_deviceInfo.width = base_deviceInfo.width
+    ex_deviceInfo.height = base_deviceInfo.height
+    ex_deviceInfo.version = base_deviceInfo.version
+    ex_deviceInfo.tags = base_deviceInfo.tags
+    ex_deviceInfo.phoneTime = base_deviceInfo.phoneTime
+    ex_deviceInfo.phoneType = base_deviceInfo.phoneType
+    ex_deviceInfo.phoneUser = base_deviceInfo.phoneUser
+    ex_deviceInfo.host = base_deviceInfo.host
+    ex_deviceInfo.radioVersion = base_deviceInfo.radioVersion
+    ex_deviceInfo.codeName = base_deviceInfo.codeName
+    ex_deviceInfo.incremental = base_deviceInfo.incremental
+    ex_deviceInfo.buildID = base_deviceInfo.buildID
+
+    ex_deviceInfo.bestProvider = 'network'
+    ex_deviceInfo.gclGetCid = -1
+    ex_deviceInfo.gclGetLac = -1
+    ex_deviceInfo.gclGetPsc = 0
+    ex_deviceInfo.cellLocation = '[-1,-1,0]'
+    ex_deviceInfo.deviceId = DevGenerator.getDeviceId()
+    ex_deviceInfo.androidid = DevGenerator.getAndroidId()
+    ex_deviceInfo.networkOperator, ex_deviceInfo.networkOperatorName, ex_deviceInfo.simOperator, ex_deviceInfo.simOperatorName, ex_deviceInfo.subscriberId = DevGenerator.getFive()
+    ex_deviceInfo.networkType = 0
+    ex_deviceInfo.simSerialNumber = DevGenerator.get_simSerialNumber()
+    ex_deviceInfo.getSerial = DevGenerator.get_serial()
+    ex_deviceInfo.dataActivity = 0
+    wifi_name = DevGenerator.get_wifi_name()
+    ex_deviceInfo.extraInfo = wifi_name
+    ex_deviceInfo.ssid = wifi_name
+    ex_deviceInfo.reason = ''
+    ex_deviceInfo.subType = 0
+    ex_deviceInfo.subTypeName = ''
+    ex_deviceInfo.type = 1
+    ex_deviceInfo.typeName = 'WIFI'
+    ex_deviceInfo.macAddress = DevGenerator.randomAddress()
+    ex_deviceInfo.bssid = DevGenerator.randomAddress()
+    ex_deviceInfo.ipAddress = DevGenerator.get_random_ip()
+    ex_deviceInfo.networkId = 0
+    ex_deviceInfo.rssi = DevGenerator.get_rssi()
+    ex_deviceInfo.rotation = 0
+    ex_deviceInfo.line1Number = ''
+
+    rows = await ex_deviceInfo.save()
+    #返回json字符串给客户端
+
+    if rows == 1:
+        ret_deviceInfo = await ExDeviceInfo.selectSpecCls('idenf', ex_deviceInfo.idenf)
+        if ret_deviceInfo:
+            ret_deviceInfo.ret = 'success'
+            return ret_deviceInfo
+        else:
+            return {'ret':'failure'}
+    else:
+        return {'ret':'failure'}
+
 
 @post('/api/check')
 async def check_by_idenf(* ,idenf):
@@ -556,6 +657,8 @@ async def check_test(*, id):
     print('deviceInfo dpi: %s' % deviceInfo.dpi)
     print('deviceInfo idenf: %s ' % deviceInfo.idenf)
     return deviceInfo
+
+
 
 
     
@@ -623,11 +726,13 @@ async def task_add(*, task_name,
             level_6_days = int(level_6_days),
             level_6_percents = float(level_6_percents),
             level_7_days = int(level_7_days),
-            level_7_percents = float(level_6_percents),
-            level_8_days = int(level_7_days),
-            level_8_percents = float(level_6_percents),
+            level_7_percents = float(level_7_percents),
+            level_8_days = int(level_8_days),
+            level_8_percents = float(level_8_percents),
             new_limit = int(new_limit)
             )
+
+    # print('task before save %s ' % task)
 
     result = await Task.selectSpecItem('task_name', task_name)
 

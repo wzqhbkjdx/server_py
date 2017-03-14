@@ -84,6 +84,7 @@ class RemainTask(Model):
     __table__ = 'remain_table'
     idenf = StringField(primary_key=True, default=next_id, ddl='varchar(100)')
     id = IntegerField()
+    phoneNo = StringField(ddl='varchar(100)')
     create_time = StringField(ddl='varchar(50)')
     update_time = StringField(ddl='varchar(50)')
     status = IntegerField() # status=1:新增条目    status = 2 :可以使用    status = 3 :废弃   status = 4 :占用
