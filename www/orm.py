@@ -174,10 +174,12 @@ class ModelMetaclass(type):
         attrs['__update_by_id__'] = 'update %s set %s where %s=?' % (tableName, ', '.join(map(lambda f: '%s=?' % f, fields)), 'id')
         attrs['__create_table__'] = ''.join(create_table)
         attrs['__select_date__'] = 'select count(*) from %s where date(%s) = date(now())'
+        attrs['__select_spec_date__'] = 'select count(*) from %s where date(%s) = date(?)'
         attrs['__select_by_table__'] = 'select * from %s where %s = %s'
         attrs['__select_by_table_limit__'] = 'select * from %s where date(%s) = date(now()) and status = %s order by rand() limit %s'
-        attrs['__select_by_table_remain__'] = 'select * from %s where status = %s and date(last_date) > date(now()) and date(reach_date) < date(now()) order by rand() limit 1;'
-        attrs['__select_by_table_remain_phoneNo__'] = 'select * from %s where status = %s and phoneNo = ? and date(last_date) > date(now()) and date(reach_date) < date(now()) order by rand() limit 1;'
+        attrs['__select_by_table_limit_date__'] = 'select * from %s where date(%s) = date(?) and status = %s order by rand() limit %s'
+        attrs['__select_by_table_remain__'] = 'select * from %s where status = %s and date(last_date) >= date(now()) and date(reach_date) < date(now()) order by rand() limit 1;'
+        attrs['__select_by_table_remain_phoneNo__'] = 'select * from %s where status = %s and phoneNo = ? and date(last_date) >= date(now()) and date(reach_date) < date(now()) order by rand() limit 1;'
 
         attrs['__insert_by_table__'] = 'insert into %s(%s, %s) values (%s)' % ('%s', ','.join(escaped_fields), primary_key, create_args_string(len(escaped_fields) + 1))
         attrs['__update_by_table__'] = 'update %s set %s where %s=?' % ('%s', ', '.join(map(lambda f: '%s=?' % f, fields)), primary_key)
@@ -318,6 +320,16 @@ class Model(dict, metaclass=ModelMetaclass):
         return [cls(**r) for r in rs]
 
     @classmethod
+    async def selectByTableLimitDate(cls, tab_name, date_name, status, limit, cre_date):
+        rs = await select(cls.__select_by_table_limit_date__ % (tab_name, date_name, status, limit), [cre_date], 0)
+        logging.debug(cls.__select_by_table_limit_date__ % (tab_name, date_name, status, limit))
+        print(cls.__select_by_table_limit_date__ % (tab_name, date_name, status, limit))
+        if(len(rs) == 0):
+            return None
+        return [cls(**r) for r in rs]
+
+
+    @classmethod
     async def selectByTableForRemain(cls, tab_name, status):
         rs = await select(cls.__select_by_table_remain__ % (tab_name, status), [], 1)
         print(cls.__select_by_table_remain__ % (tab_name, status))
@@ -428,5 +440,11 @@ class Model(dict, metaclass=ModelMetaclass):
     @classmethod
     async def selectDate(cls, tab_name):
         counts = await select(cls.__select_date__ % (tab_name, 'create_time'), [])
+        # print('select counts %s' % counts)
+        return counts[0]['count(*)']
+
+    @classmethod
+    async def selectSpecDate(cls, tab_name, cre_date):
+        counts = await select(cls.__select_spec_date__ % (tab_name, 'create_time'), [cre_date])
         # print('select counts %s' % counts)
         return counts[0]['count(*)']

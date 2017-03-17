@@ -21,27 +21,7 @@ import collections
 
 from dev_generator import DevGenerator
 
-schedule = sched.scheduler(time.time, time.sleep)
 
-#下面三个方法用于实现定时任务
-def perform_command(cmd, inc):
-
-    time_out()
-
-    schedule.enter(inc, 0, perform_command, (cmd, inc))
-    # os.system(cmd)
-
-def timming_exe(cmd, inc=5):
-    schedule.enter(inc, 0, perform_command, (cmd, inc))
-    schedule.run()
-
-def time_out():
-    print('time out')
-
-@get('/timer')
-def time_test():
-    pass
-    # timming_exe('', 3)
 
 def getDate():
     now = datetime.datetime.now()
@@ -294,6 +274,154 @@ async def taskComplete(*, table_name, id, phoneNo):
     else:
         return 'failed'
 
+@get('/now_test')
+async def now_test():
+    # return 'ok'
+    total_counts = await Task.selectSpecDate('xiaoyun_test9', '2017-03-14')
+    print(total_counts)
+
+@get('/schedule_manul')
+async def schedule_manul(*, user_name, user_password, task_name, cre_time):
+    # rs = await RemainTask.selectByTableLimitDate('xiaoyun_test9','create_time',1,1,cre_time)
+    # print(rs)
+    if user_name == 'wzq' and user_password == 'password':
+
+        result = await Task.selectSpecItem('task_name', task_name)
+
+        # print(result)
+
+        day_level = []
+
+        day_level.append(result['level_2_days'])
+        day_level.append(result['level_3_days'])
+        day_level.append(result['level_4_days'])
+        day_level.append(result['level_5_days'])
+        day_level.append(result['level_6_days'])
+        day_level.append(result['level_7_days'])
+        day_level.append(result['level_8_days'])
+
+        day_level = list(a for a in day_level if a > 0)
+
+        print(day_level)
+
+        day_percent = []
+
+        day_percent.append(result['level_2_percents'])
+        day_percent.append(result['level_3_percents'])
+        day_percent.append(result['level_4_percents'])
+        day_percent.append(result['level_5_percents'])
+        day_percent.append(result['level_6_percents'])
+        day_percent.append(result['level_7_percents'])
+        day_percent.append(result['level_8_percents'])
+
+        day_percent = list(a for a in day_percent if a > 0.0)
+
+        print(day_percent)
+
+
+        range_dict = collections.OrderedDict()
+
+        #获取当前数据库中新增的任务总数
+        total_counts = await Task.selectSpecDate(task_name, cre_time)
+        if total_counts < 10:
+            return 'the counts of new tasks are less than the limit'
+
+
+        # print('total_counts: %s ' % total_counts)
+        #生成关键节点上的 day-count 的键值对
+        # day_level   [2,    7,    15,   30]
+        # day_percent [25.0, 20.0, 10.0, 5.0]
+
+        for i in range(len(day_level)):
+            range_dict[day_level[i]] = day_percent[i]
+
+        # print(range_dict)
+
+        days = collections.OrderedDict() #每天留存比例dict
+
+        #根据关键节点上的 day-count 键值对生成其他day对应的count （根据首尾节点的值计算平均值）
+
+        for i in range(2, 31):
+
+            for key in day_level:
+                if i == key:
+                    days[i] = range_dict[key]
+                    break
+                    # print('index: %s' % day_level.index(key))
+                elif i > key:
+                    continue
+                elif i < key:
+                    forward = day_level[day_level.index(key) - 1] # 找到day_level中的当前key的前一个key值 因为day_level中没有相同的值，所以这个方法可行，如果有相同的值，每次index都返回当前list中的第一个，会引发错误
+                    forward_value = range_dict[forward]
+                    # print('forward_value: %s ' % forward_value)
+                    next_value = range_dict[key]
+                    avrage_slice = (forward_value - next_value) / (key - forward) # 平均切片
+                    slice_result = forward_value - (i - forward) * avrage_slice
+                    # print('slice_result %s' % slice_result)
+                    days[i] = round(slice_result, 2)
+                    break
+
+        # print(days)
+        #处理每天留存比例dict
+        for key in days.keys():
+            days[key] = round((days[key] * total_counts) / 100, 0) # 先圆整，再转为int值，这样不会出现小于0的现象
+            # days[key] = int((days[key] * total_counts) / 100)
+        print(days)
+        #遍历dict 从value的最小值到最大值，如果本次的和上次的value相等，则不变，如果本次的比上次多，则求差值后从数据库中选取相应个数改变它们的last_time即可
+
+        day = []
+        remain_counts = []
+
+        # days ([(2, 12.0), (3, 12.0), (4, 12.0), (5, 11.0), (6, 10.0), (7, 10.0), (8, 9.0), (9, 9.0), (10, 8.0), (11, 8.0), (12, 7.0), 
+        # (13, 6.0), (14, 6.0), (15, 5.0), (16, 5.0), (17, 5.0), (18, 4.0), (19, 4.0), (20, 4.0), (21, 4.0), (22, 4.0), (23, 4.0), (24, 4.0), 
+        # (25, 3.0), (26, 3.0), (27, 3.0), (28, 3.0), (29, 3.0), (30, 2.0)])
+
+        for key in days.keys():
+            day.append(key)
+            if days[key] == 0:
+                days[key] = 1
+            remain_counts.append(int(days[key]))
+
+        print('day: %s' % day)
+        print('remain_counts: %s' % remain_counts)
+
+        # day:           [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+        # remain_counts: [25,24,23,22,21,20,18,17,16, 15, 13, 12, 11, 10,  9,  9,  9,  8,  8,  8,  7,  7,  7,  6,  6,  6,  5, 5,  5]
+
+        for i in range(len(remain_counts) - 1, -1, -1): #倒序遍历
+
+            if i == (len(remain_counts) - 1): #最后一天的那一个
+                #从数据库中随机取出remain_counts[i]对应的条目,
+                status = 1
+                remain_items = await RemainTask.selectByTableLimitDate(task_name, 'create_time', status, remain_counts[i], cre_time)
+                print(remain_items)
+                for remain_item in remain_items:
+                    last_date = remain_item.create_time + datetime.timedelta(days = (day[i] - 1))
+                    remain_item.last_date = last_date
+                    remain_item.status = 2; # 1-> 2 表示这个新增已经可以使用
+                    print(remain_item.last_date)
+                    await remain_item.update_by_table(task_name)
+
+            else:
+                if remain_counts[i] <= remain_counts[i + 1]:
+                    continue
+                elif remain_counts[i] > remain_counts[i + 1]:
+                    print('>>')
+                    div_counts = remain_counts[i] - remain_counts[i + 1]
+                    status = 1
+                    remain_items = await RemainTask.selectByTableLimitDate(task_name, 'create_time', status, div_counts, cre_time)
+                    for remain_item in remain_items:
+                        last_date = remain_item.create_time + datetime.timedelta(days = (day[i] - 1))
+                        remain_item.last_date = last_date
+                        remain_item.status = 2; # 1-> 2 表示这个新增已经可以使用
+                        print(remain_item.last_date)
+                        await remain_item.update_by_table(task_name)
+        return 'success'
+
+    else:
+        return 'failed'
+
+
 
 @get('/schedule')
 async def schedule_reamin(*, user_name, user_password, task_name):
@@ -302,7 +430,7 @@ async def schedule_reamin(*, user_name, user_password, task_name):
 
         result = await Task.selectSpecItem('task_name', task_name)
 
-        print(result)
+        # print(result)
 
         day_level = []
 
