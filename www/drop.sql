@@ -1,3 +1,3 @@
 use awesome;
-drop table deviceInfo;
+drop table ip_dev_info;
 

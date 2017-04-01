@@ -21,6 +21,45 @@ import collections
 
 from dev_generator import DevGenerator
 
+from xml.etree.ElementTree import ElementTree,Element
+
+from XmlParser import *
+
+
+@get('/now_test')
+def now_test():
+    with open('templates/iphone_dev_model.xml') as file:
+        data = file.read()
+    return ' $$' + data
+
+@get('/rd_iphone_devInfo')
+def rd_iphone_devInfo():
+    tree = read_xml('templates/iphone_dev_model.xml')
+    nodes = find_nodes(tree, 'dict')
+
+    BLUEADDRESS_KEY = create_node('key',{}, 'BLUEADDRESS')
+    BLUEADDRESS_VAKUE = create_node('string', {}, DevGenerator.randomAddress())
+    add_child_node(nodes, BLUEADDRESS_KEY)
+    add_child_node(nodes, BLUEADDRESS_VAKUE)
+
+    BUILDVERSION_KEY = create_node('key',{}, 'BUILDVERSION')
+    BUILDVERSION_VALUE = create_node('string', {}, DevGenerator.get_iphone_buildversion())
+    add_child_node(nodes, BUILDVERSION_KEY)
+    add_child_node(nodes, BUILDVERSION_VALUE)
+
+    DEVICETOKEN_KEY = create_node('key',{}, 'DEVICETOKEN')
+    DEVICETOKEN_VALUE = create_node('string', {}, DevGenerator.get_spec_num_str(64,'0123456789abcdef'))
+    add_child_node(nodes, DEVICETOKEN_KEY)
+    add_child_node(nodes, DEVICETOKEN_VALUE)
+
+    write_xml(tree, './iphone_dev/out.xml')
+
+    with open('./iphone_dev/out.xml') as file:
+        data = file.read()
+
+    os.remove('./iphone_dev/out.xml')
+
+    return data
 
 
 def getDate():
@@ -274,11 +313,7 @@ async def taskComplete(*, table_name, id, phoneNo):
     else:
         return 'failed'
 
-@get('/now_test')
-async def now_test():
-    # return 'ok'
-    total_counts = await Task.selectSpecDate('xiaoyun_test9', '2017-03-14')
-    print(total_counts)
+
 
 @get('/schedule_manul')
 async def schedule_manul(*, user_name, user_password, task_name, cre_time):
@@ -751,13 +786,22 @@ async def generate_random_deviceInfo():
     #返回json字符串给客户端
 
     if rows == 1:
+
+        logging.info('save ex_deviceInfo success')
+
         ret_deviceInfo = await ExDeviceInfo.selectSpecCls('idenf', ex_deviceInfo.idenf)
+
+        logging.info('exDeviceInfo: %s' % ex_deviceInfo.idenf)
+
+        logging.info('ret_deviceInfo %s' % ret_deviceInfo)
+
         if ret_deviceInfo:
             ret_deviceInfo.ret = 'success'
             return ret_deviceInfo
         else:
             return {'ret':'failure'}
     else:
+        logging.info('save ex_deviceInfo failure')
         return {'ret':'failure'}
 
 

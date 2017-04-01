@@ -92,6 +92,40 @@ class RemainTask(Model):
     reach_date = StringField(ddl='varchar(50)')
     done_date = StringField(ddl='varchar(2000)')
 
+class IphoneDevInfo(Model):
+    __table__ = 'ip_dev_info'
+    idenf = StringField(primary_key=True, default=next_id, ddl='varchar(50)')
+    id = IntegerField()
+
+    BLUEADDRESS = StringField(ddl='varchar(50)')
+    BUILDVERSION = StringField(ddl='varchar(50)')
+    DEVICETOKEN = StringField(ddl='varchar(100)')
+    ECID = StringField(ddl='varchar(50)')
+    IAD = StringField(ddl='varchar(100)')
+    IDFV = StringField(ddl='varchar(100)')
+    IP = StringField(ddl='varchar(50)')
+    IPS = StringField(ddl='varchar(50)')
+    MLBSERIAL = StringField(ddl='varchar(50)')
+    MODEL = StringField(ddl='varchar(50)')
+    MODELTYPE = StringField(ddl='varchar(50)')
+    NAME = StringField(ddl='varchar(50)')
+    ODIN = StringField(ddl='varchar(100)')
+    OPENUDID = StringField(ddl='varchar(100)')
+    ORG = StringField(ddl='varchar(50)')
+    ORGMODEL = StringField(ddl='varchar(50)')
+    PRODUCT = StringField(ddl='varchar(50)')
+    RSSID = StringField(ddl='varchar(50)')
+    SERIAL = StringField(ddl='varchar(50)')
+    UDID = StringField(ddl='varchar(100)')
+    VERSION = StringField(ddl='varchar(50)')
+    WIFIADDRESS = StringField(ddl='varchar(50)')
+    iGrimaceKey = StringField(ddl='varchar(50)')
+    rj = StringField(ddl='varchar(50)')
+    rj2 = StringField(ddl='varchar(50)')
+    rw = StringField(ddl='varchar(50)')
+    rw2 = StringField(ddl='varchar(50)')
+
+
 class DeviceInfo(Model):
     __table__ = 'deviceInfo'
 

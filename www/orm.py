@@ -58,6 +58,7 @@ async def select(sql, args, size=None):
             else:
                 rs = await cur.fetchall()
         logging.info('rows returned: %s' % len(rs))
+        await conn.commit()
         return rs
     
 async def execute(sql, args, autocommit=True):

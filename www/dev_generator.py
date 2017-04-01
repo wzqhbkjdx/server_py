@@ -118,3 +118,65 @@ class DevGenerator(object):
 	@classmethod
 	def get_rssi(cls):
 		return random.randint(-100, -55)
+
+	@classmethod
+	def get_iphone_buildversion(cls):
+		buildversion_list = ['11B651','11A501','11B511','11D257','11D167','11A465']
+		rs = random.randint(0, len(buildversion_list) - 1)
+		return buildversion_list[rs]
+
+	@classmethod
+	def get_spec_num_str(cls, num, str):
+		randomStr =  [random.choice(str) for i in range(num)]
+		rs = ''.join(randomStr)
+		return rs
+
+	@classmethod
+	def get_iphone_dev_product(cls):
+		ip_dev_product_list = ['iPhone4,1','iphone6,2','iphone5,2','iphone6,1','iphone7,1']
+		rs = random.randint(0, len(ip_dev_product_list) - 1)
+		return ip_dev_product_list[rs]
+
+	@classmethod
+	def get_ios_version(cls):
+		ios_version_list = ['7.0.1', '7.0.2', '7.1.1', '7.1.2', '8.0.1', '8.0.2', '8.1.1', '8.1.2', '9.0.1', '9.0.2', '9.1','9.2','10.0.2','10.1','10.2','10.3']
+		rs = random.randint(0, len(ios_version_list) - 1)
+		return ios_version_list[rs]
+
+	@classmethod
+	def get_igrimacekey(cls):
+		return random.randint(1490854310, 1490890000)
+
+	@classmethod
+	def get_rj_rj2(cls):
+		head = random.randint(75, 77)
+		return '118.' + str(head) + cls.get_spec_num_str(13,'0123456789')
+
+	@classmethod
+	def get_rw_rw2(cls):
+		second = random.randint(4,5)
+		return '32.0' + str(second) + cls.get_spec_num_str(13,'0123456789')
+
+
+# if __name__ == '__main__':
+# 	addr = DevGenerator.randomAddress()
+# 	androidid = DevGenerator.getAndroidId()
+# 	buildversion = DevGenerator.get_iphone_buildversion()
+# 	spec_num_str = DevGenerator.get_spec_num_str(5, '0123456789ABCDEF')
+# 	iad1 = DevGenerator.get_spec_num_str(8, '0123456789ABCDEF')
+# 	iad2 = DevGenerator.get_spec_num_str(4, '0123456789ABCDEF')
+# 	iad3 = DevGenerator.get_spec_num_str(4, '0123456789ABCDEF')
+# 	iad4 = DevGenerator.get_spec_num_str(4, '0123456789ABCDEF')
+# 	iad5 = DevGenerator.get_spec_num_str(12, '0123456789ABCDEF')
+# 	rs = iad1 + '-' + iad2 + '-' + iad3 + '-' + '-' + iad4 + '-' + iad5
+
+# 	name = DevGenerator.get_spec_num_str(8, string.ascii_letters + string.digits)
+
+# 	ios_version = DevGenerator.get_ios_version()
+
+# 	rand_time = DevGenerator.get_random_time()
+
+# 	igrimacekey = DevGenerator.get_igrimacekey()
+
+# 	rw = DevGenerator.get_rw_rw2()
+# 	print(rw)
