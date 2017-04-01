@@ -10,7 +10,7 @@ from aiohttp import web
 from apis import APIValueError, APIResourceNotFoundError, APIError
 
 from coroweb import get, post
-from models import User, Comment, Blog, next_id, DeviceInfo, Remain, Task, ExDeviceInfo, RemainTask
+from models import *
 from config import configs
 import random
 from json import *
@@ -25,6 +25,8 @@ from xml.etree.ElementTree import ElementTree,Element
 
 from XmlParser import *
 
+import string
+
 
 @get('/now_test')
 def now_test():
@@ -33,33 +35,233 @@ def now_test():
     return ' $$' + data
 
 @get('/rd_iphone_devInfo')
-def rd_iphone_devInfo():
+async def rd_iphone_devInfo():
     tree = read_xml('templates/iphone_dev_model.xml')
     nodes = find_nodes(tree, 'dict')
 
+    BLUEADDRESS = DevGenerator.randomAddress()
     BLUEADDRESS_KEY = create_node('key',{}, 'BLUEADDRESS')
-    BLUEADDRESS_VAKUE = create_node('string', {}, DevGenerator.randomAddress())
+    BLUEADDRESS_VAKUE = create_node('string', {}, BLUEADDRESS)
     add_child_node(nodes, BLUEADDRESS_KEY)
     add_child_node(nodes, BLUEADDRESS_VAKUE)
 
+    BUILDVERSION = DevGenerator.get_iphone_buildversion()
     BUILDVERSION_KEY = create_node('key',{}, 'BUILDVERSION')
-    BUILDVERSION_VALUE = create_node('string', {}, DevGenerator.get_iphone_buildversion())
+    BUILDVERSION_VALUE = create_node('string', {}, BUILDVERSION)
     add_child_node(nodes, BUILDVERSION_KEY)
     add_child_node(nodes, BUILDVERSION_VALUE)
 
+    DEVICETOKEN = DevGenerator.get_spec_num_str(64,'0123456789abcdef')
     DEVICETOKEN_KEY = create_node('key',{}, 'DEVICETOKEN')
-    DEVICETOKEN_VALUE = create_node('string', {}, DevGenerator.get_spec_num_str(64,'0123456789abcdef'))
+    DEVICETOKEN_VALUE = create_node('string', {}, DEVICETOKEN)
     add_child_node(nodes, DEVICETOKEN_KEY)
     add_child_node(nodes, DEVICETOKEN_VALUE)
 
-    write_xml(tree, './iphone_dev/out.xml')
+    ECID = DevGenerator.get_spec_num_str(5, '0123456789ABCDEF')
+    ECID_KEY = create_node('key',{},'ECID')
+    ECID_VALUE = create_node('string',{}, ECID)
+    add_child_node(nodes, ECID_KEY)
+    add_child_node(nodes, ECID_VALUE)
 
-    with open('./iphone_dev/out.xml') as file:
-        data = file.read()
+    IAD_KEY = create_node('key',{}, 'IAD')
+    iad1 = DevGenerator.get_spec_num_str(8, '0123456789ABCDEF')
+    iad2 = DevGenerator.get_spec_num_str(4, '0123456789ABCDEF')
+    iad3 = DevGenerator.get_spec_num_str(4, '0123456789ABCDEF')
+    iad4 = DevGenerator.get_spec_num_str(4, '0123456789ABCDEF')
+    iad5 = DevGenerator.get_spec_num_str(12, '0123456789ABCDEF')
+    iad_str = iad1 + '-' + iad2 + '-' + iad3 + '-' + '-' + iad4 + '-' + iad5
+    IAD_VALUE = create_node('string', {}, iad_str)
+    add_child_node(nodes, IAD_KEY)
+    add_child_node(nodes, IAD_VALUE)
 
-    os.remove('./iphone_dev/out.xml')
+    IDFV_KEY = create_node('key',{},'IDFV')
+    idfv1 = DevGenerator.get_spec_num_str(8, '0123456789ABCDEF')
+    idfv2 = DevGenerator.get_spec_num_str(4, '0123456789ABCDEF')
+    idfv3 = DevGenerator.get_spec_num_str(4, '0123456789ABCDEF')
+    idfv4 = DevGenerator.get_spec_num_str(4, '0123456789ABCDEF')
+    idfv5 = DevGenerator.get_spec_num_str(12, '0123456789ABCDEF')
+    idfv_str = idfv1 + '-' + idfv2 + '-' + idfv3 + '-' + '-' + idfv4 + '-' + idfv5
+    IDFV_VALUE = create_node('string', {}, idfv_str)
+    add_child_node(nodes, IDFV_KEY)
+    add_child_node(nodes, IDFV_VALUE)
 
-    return data
+    IP = DevGenerator.get_random_ip()
+    IP_KEY = create_node('key',{},'IP')
+    IP_VALUE = create_node('string',{}, IP)
+    add_child_node(nodes, IP_KEY)
+    add_child_node(nodes, IP_VALUE)
+
+    IPS = DevGenerator.get_random_ip()
+    IPS_KEY = create_node('key',{},'IPS')
+    IPS_VALUE = create_node('string',{}, IPS)
+    add_child_node(nodes, IPS_KEY)
+    add_child_node(nodes, IPS_VALUE)
+
+    MLBSERIAL = DevGenerator.get_spec_num_str(16, '0123456789ABCDEF')
+    MLBSERIAL_KEY = create_node('key', {}, 'MLBSERIAL')
+    MLBSERIAL_VALUE = create_node('string', {}, MLBSERIAL)
+    add_child_node(nodes, MLBSERIAL_KEY)
+    add_child_node(nodes, MLBSERIAL_VALUE)
+
+    MODEL_KEY = create_node('key',{}, 'MODEL')
+    MODEL_VALUE = create_node('string', {}, 'iPhone')
+    add_child_node(nodes, MODEL_KEY)
+    add_child_node(nodes, MODEL_VALUE)
+
+    MODELTYPE_KEY = create_node('key',{}, 'MODELTYPE')
+    MODELTYPE_VALUE = create_node('string', {}, 'iPhone')
+    add_child_node(nodes, MODEL_KEY)
+    add_child_node(nodes, MODEL_VALUE)
+
+    NAME = DevGenerator.get_spec_num_str(8, string.ascii_letters + string.digits)
+    NAME_KEY = create_node('key',{},'NAME')
+    NAME_VALUE = create_node('string',{},NAME)
+    add_child_node(nodes, NAME_KEY)
+    add_child_node(nodes, NAME_VALUE)
+
+    ODIN = DevGenerator.get_spec_num_str(40, '0123456789abcdef')
+    ODIN_KEY = create_node('key', {}, 'ODIN')
+    ODIN_VALUE = create_node('string', {}, ODIN)
+    add_child_node(nodes, ODIN_KEY)
+    add_child_node(nodes, ODIN_VALUE)
+
+    OPENUDID = DevGenerator.get_spec_num_str(40, '0123456789abcdef')
+    OPENUDID_KEY = create_node('key', {}, 'OPENUDID')
+    OPENUDID_VALUE = create_node('string', {}, OPENUDID)
+    add_child_node(nodes, OPENUDID_KEY)
+    add_child_node(nodes, OPENUDID_VALUE)
+
+    ORG_KEY = create_node('key',{},'ORG')
+    ORG_VALUE = create_node('string', {}, 'iPhone/7.1.2/11D257')
+    add_child_node(nodes, ORG_KEY)
+    add_child_node(nodes, ORG_VALUE)
+
+    ORGMODEL_KEY = create_node('key',{},'ORGMODEL')
+    ORGMODEL_VALUE = create_node('string', {}, 'iPhone')
+    add_child_node(nodes, ORGMODEL_KEY)
+    add_child_node(nodes, ORGMODEL_VALUE)
+
+    PRODUCT = DevGenerator.get_iphone_dev_product()
+    PRODUCT_KEY = create_node('key',{},'PRODUCT')
+    PRODUCT_VALUE = create_node('string', {}, PRODUCT)
+    add_child_node(nodes, PRODUCT_KEY)
+    add_child_node(nodes, PRODUCT_VALUE)
+
+    RSSID = DevGenerator.get_spec_num_str(12, string.ascii_letters + string.digits)
+    RSSID_KEY = create_node('key',{},'RSSID')
+    RSSID_VALUE = create_node('string',{}, RSSID)
+    add_child_node(nodes, RSSID_KEY)
+    add_child_node(nodes, RSSID_VALUE)
+
+    SERIAL = DevGenerator.get_spec_num_str(12, '0123456789ABCDEF')
+    SERIAL_KEY = create_node('key', {}, 'SERIAL')
+    SERIAL_VALUE = create_node('string',{}, SERIAL)
+    add_child_node(nodes, SERIAL_KEY)
+    add_child_node(nodes, SERIAL_VALUE)
+
+    UDID = DevGenerator.get_spec_num_str(40, '0123456789abcdef')
+    UDID_KEY = create_node('key',{},'UDID')
+    UDID_VALUE = create_node('string',{}, UDID)
+    add_child_node(nodes, UDID_KEY)
+    add_child_node(nodes, UDID_VALUE)
+
+    VERSION = DevGenerator.get_ios_version()
+    VERSION_KEY = create_node('key',{}, 'VERSION')
+    VERSION_VALUE = create_node('string',{}, VERSION)
+    add_child_node(nodes, VERSION_KEY)
+    add_child_node(nodes, VERSION_VALUE)
+
+    WIFIADDRESS = DevGenerator.randomAddress()
+    WIFIADDRESS_KEY = create_node('key',{}, 'WIFIADDRESS')
+    WIFIADDRESS_VALUE = create_node('string',{},WIFIADDRESS)
+    add_child_node(nodes, WIFIADDRESS_KEY)
+    add_child_node(nodes, WIFIADDRESS_VALUE)
+
+    iGrimaceKey = DevGenerator.get_igrimacekey()
+    iGrimaceKey_key = create_node('key', {}, 'iGrimaceKey')
+    iGrimaceKey_value = create_node('string', {}, iGrimaceKey)
+    add_child_node(nodes, iGrimaceKey_key)
+    add_child_node(nodes, iGrimaceKey_value)
+
+    rj_str = DevGenerator.get_rj_rj2()
+    rj_key = create_node('key',{}, 'rj')
+    rj_value = create_node('string',{}, rj_str)
+    add_child_node(nodes, rj_key)
+    add_child_node(nodes, rj_value)
+
+    rj2_key = create_node('key',{}, 'rj2')
+    rj2_value = create_node('string',{}, rj_str)
+    add_child_node(nodes, rj2_key)
+    add_child_node(nodes, rj2_value)
+
+    rw_str = DevGenerator.get_rw_rw2()
+    rw_key = create_node('key',{},'rw')
+    rw_value = create_node('string', {}, rw_str)
+    add_child_node(nodes, rw_key)
+    add_child_node(nodes, rw_value)
+
+    rw2_key = create_node('key',{},'rw2')
+    rw2_value = create_node('string', {}, rw_str)
+    add_child_node(nodes, rw2_key)
+    add_child_node(nodes, rw2_value)
+
+    iphoneDevInfo = IphoneDevInfo()
+    iphoneDevInfo.BLUEADDRESS = BLUEADDRESS
+    iphoneDevInfo.BUILDVERSION = BUILDVERSION
+    iphoneDevInfo.DEVICETOKEN = DEVICETOKEN
+    iphoneDevInfo.ECID = ECID
+    iphoneDevInfo.IAD = iad_str
+    iphoneDevInfo.IDFV = idfv_str
+    iphoneDevInfo.IP = IP
+    iphoneDevInfo.IPS = IPS
+    iphoneDevInfo.MLBSERIAL = MLBSERIAL
+    iphoneDevInfo.MODEL = 'iPhone'
+    iphoneDevInfo.MODELTYPE = 'iPhone'
+    iphoneDevInfo.NAME = NAME
+    iphoneDevInfo.ODIN = ODIN
+    iphoneDevInfo.OPENUDID = OPENUDID
+    iphoneDevInfo.ORG = 'iPhone/7.1.2/11D257'
+    iphoneDevInfo.ORGMODEL = 'iPhone'
+    iphoneDevInfo.PRODUCT = PRODUCT
+    iphoneDevInfo.RSSID = RSSID
+    iphoneDevInfo.SERIAL = SERIAL
+    iphoneDevInfo.UDID = UDID
+    iphoneDevInfo.VERSION = VERSION
+    iphoneDevInfo.WIFIADDRESS = WIFIADDRESS
+    iphoneDevInfo.iGrimaceKey = iGrimaceKey
+    iphoneDevInfo.rj = rj_str
+    iphoneDevInfo.rj2 = rj_str
+    iphoneDevInfo.rw = rw_str
+    iphoneDevInfo.rw2 = rw_str
+
+    row = await iphoneDevInfo.save()
+
+    if row == 1:
+        logging.debug('save iphone deviceInfo success')
+
+        ret_ip_deviceInfo = await IphoneDevInfo.selectSpecCls('idenf', iphoneDevInfo.idenf)
+
+        if ret_ip_deviceInfo:
+
+            logging.debug('select iphone deviceInfo success')
+            ip_dev_id = ret_ip_deviceInfo.id
+
+            path = './iphone_dev/' + iphoneDevInfo.idenf + '.xml'
+
+            logging.debug('iphonedeviceInfo path: %s' % path)
+            write_xml(tree, path)
+
+            with open(path) as file:
+                data = file.read()
+
+            os.remove(path)
+            logging.debug('delete xml path: %s' % path)
+
+            return str(ip_dev_id) + '$$' + data
+        else:
+            return 'error$$error'
+    else:
+        return 'error$$error'
 
 
 def getDate():

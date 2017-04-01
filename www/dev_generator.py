@@ -145,7 +145,7 @@ class DevGenerator(object):
 
 	@classmethod
 	def get_igrimacekey(cls):
-		return random.randint(1490854310, 1490890000)
+		return str(random.randint(1490854310, 1490890000))
 
 	@classmethod
 	def get_rj_rj2(cls):
