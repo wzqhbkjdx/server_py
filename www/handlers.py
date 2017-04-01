@@ -495,6 +495,40 @@ async def newTaskComplete(*, table_name, id, phoneNo):
                 return 'failed'
 
 
+@get('/newIphoneTaskComplete')
+async def newIphoneTaskComplete(*, table_name, id, phoneNo):
+
+    #查询扩展设备信息表，确认扩展设备信息表中有该id
+    ex = await IphoneDevInfo.selectSpecCls('id',id)
+    if not ex:
+        return 'failed'
+
+    rs = await check_newTask_limit(table_name)
+
+    if rs == 'no':
+
+        return 'failed'
+
+    elif rs == 'yes':
+        remain_task = await RemainTask.selectByTable(table_name, 'id', id)
+        if remain_task:
+            return 'failed'
+        else:
+            remain_task = RemainTask()
+            remain_task.id = int(id)
+            remain_task.phoneNo = phoneNo
+            remain_task.create_time = getDateTime()
+            remain_task.update_time = getDateTime()
+            remain_task.status = 1
+            remain_task.reach_date = getDate()
+            remain_task.done_date = getDate()
+            row = await remain_task.saveByTable(table_name)
+            if row == 1:
+                return 'success'
+            else:
+                return 'failed'
+
+
 
 #留存任务完成提交服务器
 @get('/remaintaskComplete')
