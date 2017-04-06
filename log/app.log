@@ -10972,3 +10972,707 @@ args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', '
 args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType', 'phoneUser']
 args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host']INFO:root:add static /static/ => /home/bym/pytest/awesome-python3-webapp/www/static
 INFO:root:server started at http://127.0.0.1:9000...
+INFO:root:init_jinjia2...
+INFO:root:set jinja2 templates path: /home/bym/pytest/awesome-python3-webapp/www/templates
+INFO:root:found model: User (table: users)
+INFO:root: found mapping: admin ==> <BooleanField, boolean:None>
+INFO:root: found mapping: email ==> <StringField, varchar(50):None>
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: passwd ==> <StringField, varchar(50):None>
+INFO:root: found mapping: image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root:found model: Blog (table: blogs)
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: summary ==> <StringField, varchar(200):None>
+INFO:root:found model: Comment (table: comments)
+INFO:root: found mapping: content ==> <TextField, text:None>
+INFO:root: found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root: found mapping: id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root: found mapping: blog_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root: found mapping: created_at ==> <FloatField, real:None>
+INFO:root:found model: Remain (table: remain)
+INFO:root: found mapping: idenf ==> <StringField, varchar(50):None>
+INFO:root: found mapping: num ==> <StringField, varchar(50):None>
+INFO:root:found model: Task (table: tasks)
+INFO:root: found mapping: level_8_percents ==> <FloatField, real:None>
+INFO:root: found mapping: level_3_percents ==> <FloatField, real:None>
+INFO:root: found mapping: level_7_percents ==> <FloatField, real:None>
+INFO:root: found mapping: level_3_days ==> <IntegerField, bigint:None>
+INFO:root: found mapping: level_2_days ==> <IntegerField, bigint:None>
+INFO:root: found mapping: task_name ==> <StringField, varchar(100):None>
+INFO:root: found mapping: level_7_days ==> <IntegerField, bigint:None>
+INFO:root: found mapping: level_8_days ==> <IntegerField, bigint:None>
+INFO:root: found mapping: ip_repeat_days ==> <IntegerField, bigint:None>
+INFO:root: found mapping: level_5_days ==> <IntegerField, bigint:None>
+INFO:root: found mapping: level_6_days ==> <IntegerField, bigint:None>
+INFO:root: found mapping: level_4_percents ==> <FloatField, real:None>
+INFO:root: found mapping: idenf ==> <StringField, varchar(100):None>
+INFO:root: found mapping: new_limit ==> <IntegerField, bigint:None>
+INFO:root: found mapping: level_2_percents ==> <FloatField, real:None>
+INFO:root: found mapping: level_5_percents ==> <FloatField, real:None>
+INFO:root: found mapping: level_6_percents ==> <FloatField, real:None>
+INFO:root: found mapping: level_4_days ==> <IntegerField, bigint:None>
+INFO:root:found model: RemainTask (table: remain_table)
+INFO:root: found mapping: done_date ==> <StringField, varchar(2000):None>
+INFO:root: found mapping: id ==> <IntegerField, bigint:None>
+INFO:root: found mapping: reach_date ==> <StringField, varchar(50):None>
+INFO:root: found mapping: phoneNo ==> <StringField, varchar(100):None>
+INFO:root: found mapping: create_time ==> <StringField, varchar(50):None>
+INFO:root: found mapping: update_time ==> <StringField, varchar(50):None>
+INFO:root: found mapping: last_date ==> <StringField, varchar(50):None>
+INFO:root: found mapping: idenf ==> <StringField, varchar(100):None>
+INFO:root: found mapping: status ==> <IntegerField, bigint:None>
+INFO:root:found model: IphoneDevInfo (table: ip_dev_info)
+INFO:root: found mapping: ECID ==> <StringField, varchar(50):None>
+INFO:root: found mapping: MODELTYPE ==> <StringField, varchar(50):None>
+INFO:root: found mapping: IPS ==> <StringField, varchar(50):None>
+INFO:root: found mapping: BUILDVERSION ==> <StringField, varchar(50):None>
+INFO:root: found mapping: MODEL ==> <StringField, varchar(50):None>
+INFO:root: found mapping: ODIN ==> <StringField, varchar(100):None>
+INFO:root: found mapping: OPENUDID ==> <StringField, varchar(100):None>
+INFO:root: found mapping: rj2 ==> <StringField, varchar(50):None>
+INFO:root: found mapping: idenf ==> <StringField, varchar(50):None>
+INFO:root: found mapping: VERSION ==> <StringField, varchar(50):None>
+INFO:root: found mapping: ORG ==> <StringField, varchar(50):None>
+INFO:root: found mapping: MLBSERIAL ==> <StringField, varchar(50):None>
+INFO:root: found mapping: id ==> <IntegerField, bigint:None>
+INFO:root: found mapping: IDFV ==> <StringField, varchar(100):None>
+INFO:root: found mapping: iGrimaceKey ==> <StringField, varchar(50):None>
+INFO:root: found mapping: PRODUCT ==> <StringField, varchar(50):None>
+INFO:root: found mapping: BLUEADDRESS ==> <StringField, varchar(50):None>
+INFO:root: found mapping: NAME ==> <StringField, varchar(50):None>
+INFO:root: found mapping: DEVICETOKEN ==> <StringField, varchar(100):None>
+INFO:root: found mapping: UDID ==> <StringField, varchar(100):None>
+INFO:root: found mapping: RSSID ==> <StringField, varchar(50):None>
+INFO:root: found mapping: WIFIADDRESS ==> <StringField, varchar(50):None>
+INFO:root: found mapping: rj ==> <StringField, varchar(50):None>
+INFO:root: found mapping: rw2 ==> <StringField, varchar(50):None>
+INFO:root: found mapping: rw ==> <StringField, varchar(50):None>
+INFO:root: found mapping: SERIAL ==> <StringField, varchar(50):None>
+INFO:root: found mapping: ORGMODEL ==> <StringField, varchar(50):None>
+INFO:root: found mapping: IP ==> <StringField, varchar(50):None>
+INFO:root: found mapping: IAD ==> <StringField, varchar(100):None>
+INFO:root:found model: DeviceInfo (table: deviceInfo)
+INFO:root: found mapping: brand ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: manufacturer ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: simOperatorName ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: rotation ==> <IntegerField, bigint:None>
+INFO:root: found mapping: dataActivity ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: scaleDensity ==> <FloatField, real:None>
+INFO:root: found mapping: subType ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: typeName ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: dpi ==> <FloatField, real:None>
+INFO:root: found mapping: sdk ==> <IntegerField, bigint:None>
+INFO:root: found mapping: ssid ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: incremental ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: version ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: relea ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: fingerPrint ==> <StringField, varchar(100):varchar(100)>
+INFO:root: found mapping: radioVersion ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: networkOperatorName ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: line1Number ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: networkOperator ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: codeName ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: ipAddress ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: board ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: subscriberId ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: reason ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: widthPixels ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: device ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: rssi ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: bootloader ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: host ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: type ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: gclGetLac ==> <IntegerField, bigint:None>
+INFO:root: found mapping: density ==> <FloatField, real:None>
+INFO:root: found mapping: hardwear ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: heightPixels ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: model ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: phoneTime ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: height ==> <IntegerField, bigint:None>
+INFO:root: found mapping: androidid ==> <StringField, varchar(100):None>
+INFO:root: found mapping: getSerial ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: bestProvider ==> <StringField, varchar(50):None>
+INFO:root: found mapping: buildID ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: networkType ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: gclGetPsc ==> <IntegerField, bigint:None>
+INFO:root: found mapping: tags ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: phoneType ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: cellLocation ==> <StringField, varchar(50):None>
+INFO:root: found mapping: macAddress ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: simOperator ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: phoneUser ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: idenf ==> <StringField, varchar(50):None>
+INFO:root: found mapping: display ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: simSerialNumber ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: gclGetCid ==> <IntegerField, bigint:None>
+INFO:root: found mapping: sdkInt ==> <IntegerField, bigint:None>
+create dbconn
+create user
+found mapping: admin ==> <BooleanField, boolean:None>
+found mapping: email ==> <StringField, varchar(50):None>
+found mapping: id ==> <StringField, varchar(50):None>
+found mapping: passwd ==> <StringField, varchar(50):None>
+found mapping: image ==> <StringField, varchar(500):None>
+found mapping: name ==> <StringField, varchar(50):None>
+found mapping: created_at ==> <FloatField, real:None>
+found mapping: content ==> <TextField, text:None>
+found mapping: user_name ==> <StringField, varchar(50):None>
+found mapping: id ==> <StringField, varchar(50):None>
+found mapping: user_image ==> <StringField, varchar(500):None>
+found mapping: created_at ==> <FloatField, real:None>
+found mapping: user_id ==> <StringField, varchar(50):None>
+found mapping: name ==> <StringField, varchar(50):None>
+found mapping: summary ==> <StringField, varchar(200):None>
+found mapping: content ==> <TextField, text:None>
+found mapping: user_name ==> <StringField, varchar(50):None>
+found mapping: id ==> <StringField, varchar(50):None>
+found mapping: user_image ==> <StringField, varchar(500):None>
+found mapping: blog_id ==> <StringField, varchar(50):None>
+found mapping: user_id ==> <StringField, varchar(50):None>
+found mapping: created_at ==> <FloatField, real:None>
+found mapping: idenf ==> <StringField, varchar(50):None>
+found mapping: num ==> <StringField, varchar(50):None>
+found mapping: level_8_percents ==> <FloatField, real:None>
+found mapping: level_3_percents ==> <FloatField, real:None>
+found mapping: level_7_percents ==> <FloatField, real:None>
+found mapping: level_3_days ==> <IntegerField, bigint:None>
+found mapping: level_2_days ==> <IntegerField, bigint:None>
+found mapping: task_name ==> <StringField, varchar(100):None>
+found mapping: level_7_days ==> <IntegerField, bigint:None>
+found mapping: level_8_days ==> <IntegerField, bigint:None>
+found mapping: ip_repeat_days ==> <IntegerField, bigint:None>
+found mapping: level_5_days ==> <IntegerField, bigint:None>
+found mapping: level_6_days ==> <IntegerField, bigint:None>
+found mapping: level_4_percents ==> <FloatField, real:None>
+found mapping: idenf ==> <StringField, varchar(100):None>
+found mapping: new_limit ==> <IntegerField, bigint:None>
+found mapping: level_2_percents ==> <FloatField, real:None>
+found mapping: level_5_percents ==> <FloatField, real:None>
+found mapping: level_6_percents ==> <FloatField, real:None>
+found mapping: level_4_days ==> <IntegerField, bigint:None>
+found mapping: done_date ==> <StringField, varchar(2000):None>
+found mapping: id ==> <IntegerField, bigint:None>
+found mapping: reach_date ==> <StringField, varchar(50):None>
+found mapping: phoneNo ==> <StringField, varchar(100):None>
+found mapping: create_time ==> <StringField, varchar(50):None>
+found mapping: update_time ==> <StringField, varchar(50):None>
+found mapping: last_date ==> <StringField, varchar(50):None>
+found mapping: idenf ==> <StringField, varchar(100):None>
+found mapping: status ==> <IntegerField, bigint:None>
+found mapping: ECID ==> <StringField, varchar(50):None>
+found mapping: MODELTYPE ==> <StringField, varchar(50):None>
+found mapping: IPS ==> <StringField, varchar(50):None>
+found mapping: BUILDVERSION ==> <StringField, varchar(50):None>
+found mapping: MODEL ==> <StringField, varchar(50):None>
+found mapping: ODIN ==> <StringField, varchar(100):None>
+found mapping: OPENUDID ==> <StringField, varchar(100):None>
+found mapping: rj2 ==> <StringField, varchar(50):None>
+found mapping: idenf ==> <StringField, varchar(50):None>
+found mapping: VERSION ==> <StringField, varchar(50):None>
+found mapping: ORG ==> <StringField, varchar(50):None>
+found mapping: MLBSERIAL ==> <StringField, varchar(50):None>
+found mapping: id ==> <IntegerField, bigint:None>
+found mapping: IDFV ==> <StringField, varchar(100):None>
+found mapping: iGrimaceKey ==> <StringField, varchar(50):None>
+found mapping: PRODUCT ==> <StringField, varchar(50):None>
+found mapping: BLUEADDRESS ==> <StringField, varchar(50):None>
+found mapping: NAME ==> <StringField, varchar(50):None>
+found mapping: DEVICETOKEN ==> <StringField, varchar(100):None>
+found mapping: UDID ==> <StringField, varchar(100):None>
+found mapping: RSSID ==> <StringField, varchar(50):None>
+found mapping: WIFIADDRESS ==> <StringField, varchar(50):None>
+found mapping: rj ==> <StringField, varchar(50):None>
+found mapping: rw2 ==> <StringField, varchar(50):None>
+found mapping: rw ==> <StringField, varchar(50):None>
+found mapping: SERIAL ==> <StringField, varchar(50):None>
+found mapping: ORGMODEL ==> <StringField, varchar(50):None>
+found mapping: IP ==> <StringField, varchar(50):None>
+found mapping: IAD ==> <StringField, varchar(100):None>
+found mapping: brand ==> <StringField, varchar(100):varchar(50)>
+found mapping: manufacturer ==> <StringField, varchar(100):varchar(50)>
+found mapping: simOperatorName ==> <StringField, varchar(100):varchar(50)>
+found mapping: rotation ==> <IntegerField, bigint:None>
+found mapping: dataActivity ==> <StringField, varchar(100):varchar(50)>
+found mapping: scaleDensity ==> <FloatField, real:None>
+found mapping: subType ==> <StringField, varchar(100):varchar(50)>
+found mapping: typeName ==> <StringField, varchar(100):varchar(50)>
+found mapping: dpi ==> <FloatField, real:None>
+found mapping: sdk ==> <IntegerField, bigint:None>
+found mapping: ssid ==> <StringField, varchar(100):varchar(50)>
+found mapping: incremental ==> <StringField, varchar(100):varchar(50)>
+found mapping: version ==> <StringField, varchar(100):varchar(50)>
+found mapping: relea ==> <StringField, varchar(100):varchar(50)>
+found mapping: fingerPrint ==> <StringField, varchar(100):varchar(100)>
+found mapping: radioVersion ==> <StringField, varchar(100):varchar(50)>
+found mapping: networkOperatorName ==> <StringField, varchar(100):varchar(50)>
+found mapping: line1Number ==> <StringField, varchar(100):varchar(50)>
+found mapping: networkOperator ==> <StringField, varchar(100):varchar(50)>
+found mapping: codeName ==> <StringField, varchar(100):varchar(50)>
+found mapping: ipAddress ==> <StringField, varchar(100):varchar(50)>
+found mapping: board ==> <StringField, varchar(100):varchar(50)>
+found mapping: subscriberId ==> <StringField, varchar(100):varchar(50)>
+found mapping: reason ==> <StringField, varchar(100):varchar(50)>
+found mapping: widthPixels ==> <StringField, varchar(100):varchar(50)>
+found mapping: device ==> <StringField, varchar(100):varchar(50)>
+found mapping: rssi ==> <StringField, varchar(100):varchar(50)>
+found mapping: bootloader ==> <StringField, varchar(100):varchar(50)>
+found mapping: host ==> <StringField, varchar(100):varchar(50)>
+found mapping: type ==> <StringField, varchar(100):varchar(50)>
+found mapping: gclGetLac ==> <IntegerField, bigint:None>
+found mapping: density ==> <FloatField, real:None>
+found mapping: hardwear ==> <StringField, varchar(100):varchar(50)>
+found mapping: heightPixels ==> <StringField, varchar(100):varchar(50)>
+found mapping: model ==> <StringField, varchar(100):varchar(50)>
+found mapping: phoneTime ==> <StringField, varchar(100):varchar(50)>
+found mapping: height ==> <IntegerField, bigint:None>
+found mapping: androidid ==> <StringField, varchar(100):None>
+found mapping: getSerial ==> <StringField, varchar(100):varchar(50)>
+found mapping: bestProvider ==> <StringField, varchar(50):None>
+found mapping: buildID ==> <StringField, varchar(100):varchar(50)>
+found mapping: networkType ==> <StringField, varchar(100):varchar(50)>
+found mapping: gclGetPsc ==> <IntegerField, bigint:None>
+found mapping: tags ==> <StringField, varchar(100):varchar(50)>
+found mapping: phoneType ==> <StringField, varchar(100):varchar(50)>
+found mapping: cellLocation ==> <StringField, varchar(50):None>
+found mapping: macAddress ==> <StringField, varchar(100):varchar(50)>
+found mapping: simOperator ==> <StringField, varchar(100):varchar(50)>
+found mapping: phoneUser ==> <StringField, varchar(100):varchar(50)>
+found mapping: idenf ==> <StringField, varchar(50):None>
+found mapping: display ==> <StringField, varchar(100):varchar(50)>
+found mapping: simSerialNumber ==> <StringField, varchar(100):varchar(50)>
+found mapping: gclGetCid ==> <IntegerField, bigint:None>
+found mapping: sdkInt ==> <IntegerField, bigint:None>INFO:root: found mapping: subTypeName ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: product ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: bssid ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: networkId ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: width ==> <IntegerField, bigint:None>
+INFO:root: found mapping: extraInfo ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: deviceId ==> <StringField, varchar(100):None>
+INFO:root:found model: ExDeviceInfo (table: ex_deviceInfo)
+INFO:root: found mapping: brand ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: manufacturer ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: simOperatorName ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: rotation ==> <IntegerField, bigint:None>
+INFO:root: found mapping: dataActivity ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: scaleDensity ==> <FloatField, real:None>
+INFO:root: found mapping: subType ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: typeName ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: dpi ==> <FloatField, real:None>
+INFO:root: found mapping: sdk ==> <IntegerField, bigint:None>
+INFO:root: found mapping: ssid ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: incremental ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: version ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: relea ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: fingerPrint ==> <StringField, varchar(100):varchar(100)>
+INFO:root: found mapping: radioVersion ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: networkOperatorName ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: line1Number ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: networkOperator ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: codeName ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: ipAddress ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: board ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: subscriberId ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: reason ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: widthPixels ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: device ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: rssi ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: bootloader ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: host ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: type ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: gclGetLac ==> <IntegerField, bigint:None>
+INFO:root: found mapping: density ==> <FloatField, real:None>
+INFO:root: found mapping: hardwear ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: heightPixels ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: model ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: phoneTime ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: height ==> <IntegerField, bigint:None>
+INFO:root: found mapping: androidid ==> <StringField, varchar(100):None>
+INFO:root: found mapping: getSerial ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: bestProvider ==> <StringField, varchar(50):None>
+INFO:root: found mapping: buildID ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: networkType ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: gclGetPsc ==> <IntegerField, bigint:None>
+INFO:root: found mapping: tags ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: phoneType ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: cellLocation ==> <StringField, varchar(50):None>
+INFO:root: found mapping: macAddress ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: simOperator ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: phoneUser ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: idenf ==> <StringField, varchar(50):None>
+INFO:root: found mapping: display ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: ref ==> <IntegerField, bigint:None>
+INFO:root: found mapping: simSerialNumber ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: gclGetCid ==> <IntegerField, bigint:None>
+INFO:root: found mapping: sdkInt ==> <IntegerField, bigint:None>
+INFO:root: found mapping: subTypeName ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: product ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: bssid ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: networkId ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: width ==> <IntegerField, bigint:None>
+INFO:root: found mapping: extraInfo ==> <StringField, varchar(100):varchar(50)>
+INFO:root: found mapping: deviceId ==> <StringField, varchar(100):None>
+INFO:root:add route GET /add_simple => addSimple ()
+INFO:root:add route POST /api/addSimple => addSimpleDeviceId (density,dpi,scaleDensity,board,brand,bootloader,display,device,fingerPrint,hardwear,manufacturer,model,product,relea,sdk,sdkInt,widthPixels,heightPixels,width,height,version,tags,phoneTime,phoneType,phoneUser,host,radioVersion,codeName,incremental,buildID)
+
+found mapping: subTypeName ==> <StringField, varchar(100):varchar(50)>
+found mapping: product ==> <StringField, varchar(100):varchar(50)>
+found mapping: bssid ==> <StringField, varchar(100):varchar(50)>
+found mapping: networkId ==> <StringField, varchar(100):varchar(50)>
+found mapping: width ==> <IntegerField, bigint:None>
+found mapping: extraInfo ==> <StringField, varchar(100):varchar(50)>
+found mapping: deviceId ==> <StringField, varchar(100):None>
+found mapping: brand ==> <StringField, varchar(100):varchar(50)>
+found mapping: manufacturer ==> <StringField, varchar(100):varchar(50)>
+found mapping: simOperatorName ==> <StringField, varchar(100):varchar(50)>
+found mapping: rotation ==> <IntegerField, bigint:None>
+found mapping: dataActivity ==> <StringField, varchar(100):varchar(50)>
+found mapping: scaleDensity ==> <FloatField, real:None>
+found mapping: subType ==> <StringField, varchar(100):varchar(50)>
+found mapping: typeName ==> <StringField, varchar(100):varchar(50)>
+found mapping: dpi ==> <FloatField, real:None>
+found mapping: sdk ==> <IntegerField, bigint:None>
+found mapping: ssid ==> <StringField, varchar(100):varchar(50)>
+found mapping: incremental ==> <StringField, varchar(100):varchar(50)>
+found mapping: version ==> <StringField, varchar(100):varchar(50)>
+found mapping: relea ==> <StringField, varchar(100):varchar(50)>
+found mapping: fingerPrint ==> <StringField, varchar(100):varchar(100)>
+found mapping: radioVersion ==> <StringField, varchar(100):varchar(50)>
+found mapping: networkOperatorName ==> <StringField, varchar(100):varchar(50)>
+found mapping: line1Number ==> <StringField, varchar(100):varchar(50)>
+found mapping: networkOperator ==> <StringField, varchar(100):varchar(50)>
+found mapping: codeName ==> <StringField, varchar(100):varchar(50)>
+found mapping: ipAddress ==> <StringField, varchar(100):varchar(50)>
+found mapping: board ==> <StringField, varchar(100):varchar(50)>
+found mapping: subscriberId ==> <StringField, varchar(100):varchar(50)>
+found mapping: reason ==> <StringField, varchar(100):varchar(50)>
+found mapping: widthPixels ==> <StringField, varchar(100):varchar(50)>
+found mapping: device ==> <StringField, varchar(100):varchar(50)>
+found mapping: rssi ==> <StringField, varchar(100):varchar(50)>
+found mapping: bootloader ==> <StringField, varchar(100):varchar(50)>
+found mapping: host ==> <StringField, varchar(100):varchar(50)>
+found mapping: type ==> <StringField, varchar(100):varchar(50)>
+found mapping: gclGetLac ==> <IntegerField, bigint:None>
+found mapping: density ==> <FloatField, real:None>
+found mapping: hardwear ==> <StringField, varchar(100):varchar(50)>
+found mapping: heightPixels ==> <StringField, varchar(100):varchar(50)>
+found mapping: model ==> <StringField, varchar(100):varchar(50)>
+found mapping: phoneTime ==> <StringField, varchar(100):varchar(50)>
+found mapping: height ==> <IntegerField, bigint:None>
+found mapping: androidid ==> <StringField, varchar(100):None>
+found mapping: getSerial ==> <StringField, varchar(100):varchar(50)>
+found mapping: bestProvider ==> <StringField, varchar(50):None>
+found mapping: buildID ==> <StringField, varchar(100):varchar(50)>
+found mapping: networkType ==> <StringField, varchar(100):varchar(50)>
+found mapping: gclGetPsc ==> <IntegerField, bigint:None>
+found mapping: tags ==> <StringField, varchar(100):varchar(50)>
+found mapping: phoneType ==> <StringField, varchar(100):varchar(50)>
+found mapping: cellLocation ==> <StringField, varchar(50):None>
+found mapping: macAddress ==> <StringField, varchar(100):varchar(50)>
+found mapping: simOperator ==> <StringField, varchar(100):varchar(50)>
+found mapping: phoneUser ==> <StringField, varchar(100):varchar(50)>
+found mapping: idenf ==> <StringField, varchar(50):None>
+found mapping: display ==> <StringField, varchar(100):varchar(50)>
+found mapping: ref ==> <IntegerField, bigint:None>
+found mapping: simSerialNumber ==> <StringField, varchar(100):varchar(50)>
+found mapping: gclGetCid ==> <IntegerField, bigint:None>
+found mapping: sdkInt ==> <IntegerField, bigint:None>
+found mapping: subTypeName ==> <StringField, varchar(100):varchar(50)>
+found mapping: product ==> <StringField, varchar(100):varchar(50)>
+found mapping: bssid ==> <StringField, varchar(100):varchar(50)>
+found mapping: networkId ==> <StringField, varchar(100):varchar(50)>
+found mapping: width ==> <IntegerField, bigint:None>
+found mapping: extraInfo ==> <StringField, varchar(100):varchar(50)>
+found mapping: deviceId ==> <StringField, varchar(100):None>
+args: ['density']
+args: ['density', 'dpi']
+args: ['density', 'dpi', 'scaleDensity']
+args: ['density', 'dpi', 'scaleDensity', 'board']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'widthPixels']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'widthPixels', 'heightPixels']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'widthPixels', 'heightPixels', 'width']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'widthPixels', 'heightPixels', 'width', 'height']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'widthPixels', 'heightPixels', 'width', 'height', 'version']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'widthPixels', 'heightPixels', 'width', 'height', 'version', 'tags']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'widthPixels', 'heightPixels', 'width', 'height', 'version', 'tags', 'phoneTime']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'widthPixels', 'heightPixels', 'width', 'height', 'version', 'tags', 'phoneTime', 'phoneType']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'widthPixels', 'heightPixels', 'width', 'height', 'version', 'tags', 'phoneTime', 'phoneType', 'phoneUser']INFO:root:add route POST /api/di => add_device_info (density,dpi,scaleDensity,bestProvider,gclGetCid,gclGetLac,gclGetPsc,cellLocation,deviceId,androidid,networkOperator,networkOperatorName,networkType,simSerialNumber,simOperator,simOperatorName,subscriberId,getSerial,dataActivity,board,brand,bootloader,display,device,fingerPrint,hardwear,manufacturer,model,product,relea,sdk,sdkInt,extraInfo,reason,subType,subTypeName,type,typeName,macAddress,bssid,ipAddress,networkId,ssid,rssi,widthPixels,heightPixels,width,height,rotation,version,line1Number,tags,phoneTime,phoneType,phoneUser,host,radioVersion,codeName,incremental,buildID)
+
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'widthPixels', 'heightPixels', 'width', 'height', 'version', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'widthPixels', 'heightPixels', 'width', 'height', 'version', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host', 'radioVersion']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'widthPixels', 'heightPixels', 'width', 'height', 'version', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host', 'radioVersion', 'codeName']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'widthPixels', 'heightPixels', 'width', 'height', 'version', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host', 'radioVersion', 'codeName', 'incremental']
+args: ['density', 'dpi', 'scaleDensity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'widthPixels', 'heightPixels', 'width', 'height', 'version', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host', 'radioVersion', 'codeName', 'incremental', 'buildID']
+args: ['density']
+args: ['density', 'dpi']
+args: ['density', 'dpi', 'scaleDensity']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType', 'phoneUser']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host', 'radioVersion']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host', 'radioVersion', 'codeName']
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host', 'radioVersion', 'codeName', 'incremental']INFO:root:add route GET /addTask => add_task ()
+INFO:root:add route GET /api/users => api_get_users ()
+INFO:root:add route POST /api/users => api_register_user (email,name,passwd)
+INFO:root:add route POST /api/check => check_by_idenf (idenf)
+INFO:root:add route GET /check => check_edit_info ()
+INFO:root:add route POST /api/cc => check_test (id)
+INFO:root:add route POST /api/delete => delete_device_info (idenf,density,dpi,scaleDensity,bestProvider,gclGetCid,gclGetLac,gclGetPsc,cellLocation,deviceId,androidid,networkOperator,networkOperatorName,networkType,simSerialNumber,simOperator,simOperatorName,subscriberId,getSerial,dataActivity,board,brand,bootloader,display,device,fingerPrint,hardwear,manufacturer,model,product,relea,sdk,sdkInt,extraInfo,reason,subType,subTypeName,type,typeName,macAddress,bssid,ipAddress,networkId,ssid,rssi,widthPixels,heightPixels,width,height,rotation,version,line1Number,tags,phoneTime,phoneType,phoneUser,host,radioVersion,codeName,incremental,buildID,id)
+
+args: ['density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host', 'radioVersion', 'codeName', 'incremental', 'buildID']
+args: ['email']
+args: ['email', 'name']
+args: ['email', 'name', 'passwd']
+args: ['idenf']
+args: ['id']
+args: ['idenf']
+args: ['idenf', 'density']
+args: ['idenf', 'density', 'dpi']
+args: ['idenf', 'density', 'dpi', 'scaleDensity']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType', 'phoneUser']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host', 'radioVersion']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host', 'radioVersion', 'codeName']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host', 'radioVersion', 'codeName', 'incremental']INFO:root:add route GET /rd_device => generate_random_deviceInfo ()
+INFO:root:add route GET /devInfo => get_all_dev ()
+INFO:root:add route GET /deviceInfo => get_all_deviceInfo ()
+INFO:root:add route GET /exDeviceInfo => get_all_exDevideInfo ()
+INFO:root:add route GET /getById => get_by_id (id)
+INFO:root:add route GET /rand_device => get_random_deviceInfo ()
+INFO:root:add route GET /remain => get_remain ()
+INFO:root:add route GET / => index (request)
+INFO:root:add route GET /netCheck => netCheck ()
+INFO:root:add route GET /newIphoneTaskComplete => newIphoneTaskComplete (table_name,id,phoneNo)
+INFO:root:add route GET /newTask => newTask (task_name)
+INFO:root:add route GET /newTaskComplete => newTaskComplete (table_name,id,phoneNo)
+INFO:root:add route GET /now_test => now_test ()
+INFO:root:add route GET /rd_iphone_devInfo => rd_iphone_devInfo ()
+INFO:root:add route GET /register => register ()
+INFO:root:add route GET /register3 => register3 ()
+INFO:root:add route GET /remainTask => remainTask (task_name)
+INFO:root:add route GET /remainTaskPhoneNo => remainTaskPhoneNo (task_name,phoneNo)
+INFO:root:add route GET /schedule_manul => schedule_manul (user_name,user_password,task_name,cre_time)
+INFO:root:add route GET /schedule => schedule_reamin (user_name,user_password,task_name)
+INFO:root:add route GET /signin => signin ()
+INFO:root:add route GET /remaintaskComplete => taskComplete (table_name,id,phoneNo)
+INFO:root:add route POST /api/task => task_add (task_name,ip_repeat_days,level_2_days,level_2_percents,level_3_days,level_3_percents,level_4_days,level_4_percents,level_5_days,level_5_percents,level_6_days,level_6_percents,level_7_days,level_7_percents,level_8_days,level_8_percents,new_limit)
+INFO:root:add route POST /api/update => update_device_info (idenf,density,dpi,scaleDensity,bestProvider,gclGetCid,gclGetLac,gclGetPsc,cellLocation,deviceId,androidid,networkOperator,networkOperatorName,networkType,simSerialNumber,simOperator,simOperatorName,subscriberId,getSerial,dataActivity,board,brand,bootloader,display,device,fingerPrint,hardwear,manufacturer,model,product,relea,sdk,sdkInt,extraInfo,reason,subType,subTypeName,type,typeName,macAddress,bssid,ipAddress,networkId,ssid,rssi,widthPixels,heightPixels,width,height,rotation,version,line1Number,tags,phoneTime,phoneType,phoneUser,host,radioVersion,codeName,incremental,buildID,id)
+
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host', 'radioVersion', 'codeName', 'incremental', 'buildID']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType', 'phoneUser', 'host', 'radioVersion', 'codeName', 'incremental', 'buildID', 'id']
+args: ['id']
+args: ['table_name']
+args: ['table_name', 'id']
+args: ['table_name', 'id', 'phoneNo']
+args: ['task_name']
+args: ['table_name']
+args: ['table_name', 'id']
+args: ['table_name', 'id', 'phoneNo']
+args: ['task_name']
+args: ['task_name']
+args: ['task_name', 'phoneNo']
+args: ['user_name']
+args: ['user_name', 'user_password']
+args: ['user_name', 'user_password', 'task_name']
+args: ['user_name', 'user_password', 'task_name', 'cre_time']
+args: ['user_name']
+args: ['user_name', 'user_password']
+args: ['user_name', 'user_password', 'task_name']
+args: ['table_name']
+args: ['table_name', 'id']
+args: ['table_name', 'id', 'phoneNo']
+args: ['task_name']
+args: ['task_name', 'ip_repeat_days']
+args: ['task_name', 'ip_repeat_days', 'level_2_days']
+args: ['task_name', 'ip_repeat_days', 'level_2_days', 'level_2_percents']
+args: ['task_name', 'ip_repeat_days', 'level_2_days', 'level_2_percents', 'level_3_days']
+args: ['task_name', 'ip_repeat_days', 'level_2_days', 'level_2_percents', 'level_3_days', 'level_3_percents']
+args: ['task_name', 'ip_repeat_days', 'level_2_days', 'level_2_percents', 'level_3_days', 'level_3_percents', 'level_4_days']
+args: ['task_name', 'ip_repeat_days', 'level_2_days', 'level_2_percents', 'level_3_days', 'level_3_percents', 'level_4_days', 'level_4_percents']
+args: ['task_name', 'ip_repeat_days', 'level_2_days', 'level_2_percents', 'level_3_days', 'level_3_percents', 'level_4_days', 'level_4_percents', 'level_5_days']
+args: ['task_name', 'ip_repeat_days', 'level_2_days', 'level_2_percents', 'level_3_days', 'level_3_percents', 'level_4_days', 'level_4_percents', 'level_5_days', 'level_5_percents']
+args: ['task_name', 'ip_repeat_days', 'level_2_days', 'level_2_percents', 'level_3_days', 'level_3_percents', 'level_4_days', 'level_4_percents', 'level_5_days', 'level_5_percents', 'level_6_days']
+args: ['task_name', 'ip_repeat_days', 'level_2_days', 'level_2_percents', 'level_3_days', 'level_3_percents', 'level_4_days', 'level_4_percents', 'level_5_days', 'level_5_percents', 'level_6_days', 'level_6_percents']
+args: ['task_name', 'ip_repeat_days', 'level_2_days', 'level_2_percents', 'level_3_days', 'level_3_percents', 'level_4_days', 'level_4_percents', 'level_5_days', 'level_5_percents', 'level_6_days', 'level_6_percents', 'level_7_days']
+args: ['task_name', 'ip_repeat_days', 'level_2_days', 'level_2_percents', 'level_3_days', 'level_3_percents', 'level_4_days', 'level_4_percents', 'level_5_days', 'level_5_percents', 'level_6_days', 'level_6_percents', 'level_7_days', 'level_7_percents']
+args: ['task_name', 'ip_repeat_days', 'level_2_days', 'level_2_percents', 'level_3_days', 'level_3_percents', 'level_4_days', 'level_4_percents', 'level_5_days', 'level_5_percents', 'level_6_days', 'level_6_percents', 'level_7_days', 'level_7_percents', 'level_8_days']
+args: ['task_name', 'ip_repeat_days', 'level_2_days', 'level_2_percents', 'level_3_days', 'level_3_percents', 'level_4_days', 'level_4_percents', 'level_5_days', 'level_5_percents', 'level_6_days', 'level_6_percents', 'level_7_days', 'level_7_percents', 'level_8_days', 'level_8_percents']
+args: ['task_name', 'ip_repeat_days', 'level_2_days', 'level_2_percents', 'level_3_days', 'level_3_percents', 'level_4_days', 'level_4_percents', 'level_5_days', 'level_5_percents', 'level_6_days', 'level_6_percents', 'level_7_days', 'level_7_percents', 'level_8_days', 'level_8_percents', 'new_limit']
+args: ['idenf']
+args: ['idenf', 'density']
+args: ['idenf', 'density', 'dpi']
+args: ['idenf', 'density', 'dpi', 'scaleDensity']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime']
+args: ['idenf', 'density', 'dpi', 'scaleDensity', 'bestProvider', 'gclGetCid', 'gclGetLac', 'gclGetPsc', 'cellLocation', 'deviceId', 'androidid', 'networkOperator', 'networkOperatorName', 'networkType', 'simSerialNumber', 'simOperator', 'simOperatorName', 'subscriberId', 'getSerial', 'dataActivity', 'board', 'brand', 'bootloader', 'display', 'device', 'fingerPrint', 'hardwear', 'manufacturer', 'model', 'product', 'relea', 'sdk', 'sdkInt', 'extraInfo', 'reason', 'subType', 'subTypeName', 'type', 'typeName', 'macAddress', 'bssid', 'ipAddress', 'networkId', 'ssid', 'rssi', 'widthPixels', 'heightPixels', 'width', 'height', 'rotation', 'version', 'line1Number', 'tags', 'phoneTime', 'phoneType']INFO:root:add static /static/ => /home/bym/pytest/awesome-python3-webapp/www/static
+INFO:root:server started at http://127.0.0.1:9000...

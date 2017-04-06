@@ -27,6 +27,159 @@ from XmlParser import *
 
 import string
 
+def get_xml_str_from_iphoneDevInfo(dev_info):
+    
+
+    tree = read_xml('templates/iphone_dev_model.xml')
+    nodes = find_nodes(tree, 'dict')
+
+    BLUEADDRESS_KEY = create_node('key',{}, 'BLUEADDRESS')
+    BLUEADDRESS_VAKUE = create_node('string', {}, dev_info.BLUEADDRESS)
+    add_child_node(nodes, BLUEADDRESS_KEY)
+    add_child_node(nodes, BLUEADDRESS_VAKUE)
+
+    BUILDVERSION_KEY = create_node('key',{}, 'BUILDVERSION')
+    BUILDVERSION_VALUE = create_node('string', {}, dev_info.BUILDVERSION)
+    add_child_node(nodes, BUILDVERSION_KEY)
+    add_child_node(nodes, BUILDVERSION_VALUE)
+
+    DEVICETOKEN_KEY = create_node('key',{}, 'DEVICETOKEN')
+    DEVICETOKEN_VALUE = create_node('string', {}, dev_info.DEVICETOKEN)
+    add_child_node(nodes, DEVICETOKEN_KEY)
+    add_child_node(nodes, DEVICETOKEN_VALUE)
+
+    ECID_KEY = create_node('key',{},'ECID')
+    ECID_VALUE = create_node('string',{}, dev_info.ECID)
+    add_child_node(nodes, ECID_KEY)
+    add_child_node(nodes, ECID_VALUE)
+
+    IAD_KEY = create_node('key',{}, 'IAD')
+    IAD_VALUE = create_node('string', {}, dev_info.IAD)
+    add_child_node(nodes, IAD_KEY)
+    add_child_node(nodes, IAD_VALUE)
+
+    IDFV_KEY = create_node('key',{},'IDFV')
+    IDFV_VALUE = create_node('string', {}, dev_info.IDFV)
+    add_child_node(nodes, IDFV_KEY)
+    add_child_node(nodes, IDFV_VALUE)
+
+    IP_KEY = create_node('key',{},'IP')
+    IP_VALUE = create_node('string',{}, dev_info.IP)
+    add_child_node(nodes, IP_KEY)
+    add_child_node(nodes, IP_VALUE)
+
+    IPS_KEY = create_node('key',{},'IPS')
+    IPS_VALUE = create_node('string',{}, dev_info.IPS)
+    add_child_node(nodes, IPS_KEY)
+    add_child_node(nodes, IPS_VALUE)
+
+    MLBSERIAL_KEY = create_node('key', {}, 'MLBSERIAL')
+    MLBSERIAL_VALUE = create_node('string', {}, dev_info.MLBSERIAL)
+    add_child_node(nodes, MLBSERIAL_KEY)
+    add_child_node(nodes, MLBSERIAL_VALUE)
+
+    MODEL_KEY = create_node('key',{}, 'MODEL')
+    MODEL_VALUE = create_node('string', {}, dev_info.MODEL)
+    add_child_node(nodes, MODEL_KEY)
+    add_child_node(nodes, MODEL_VALUE)
+
+    MODELTYPE_KEY = create_node('key',{}, 'MODELTYPE')
+    MODELTYPE_VALUE = create_node('string', {}, dev_info.MODELTYPE)
+    add_child_node(nodes, MODELTYPE_KEY)
+    add_child_node(nodes, MODELTYPE_VALUE)
+
+    NAME_KEY = create_node('key',{},'NAME')
+    NAME_VALUE = create_node('string',{},dev_info.NAME)
+    add_child_node(nodes, NAME_KEY)
+    add_child_node(nodes, NAME_VALUE)
+
+    ODIN_KEY = create_node('key', {}, 'ODIN')
+    ODIN_VALUE = create_node('string', {}, dev_info.ODIN)
+    add_child_node(nodes, ODIN_KEY)
+    add_child_node(nodes, ODIN_VALUE)
+
+    OPENUDID_KEY = create_node('key', {}, 'OPENUDID')
+    OPENUDID_VALUE = create_node('string', {}, dev_info.OPENUDID)
+    add_child_node(nodes, OPENUDID_KEY)
+    add_child_node(nodes, OPENUDID_VALUE)
+
+    ORG_KEY = create_node('key',{},'ORG')
+    ORG_VALUE = create_node('string', {}, dev_info.ORG)
+    add_child_node(nodes, ORG_KEY)
+    add_child_node(nodes, ORG_VALUE)
+
+    ORGMODEL_KEY = create_node('key',{},'ORGMODEL')
+    ORGMODEL_VALUE = create_node('string', {}, dev_info.ORGMODEL)
+    add_child_node(nodes, ORGMODEL_KEY)
+    add_child_node(nodes, ORGMODEL_VALUE)
+
+    PRODUCT = DevGenerator.get_iphone_dev_product()
+    PRODUCT_KEY = create_node('key',{},'PRODUCT')
+    PRODUCT_VALUE = create_node('string', {}, dev_info.PRODUCT)
+    add_child_node(nodes, PRODUCT_KEY)
+    add_child_node(nodes, PRODUCT_VALUE)
+
+    RSSID = DevGenerator.get_spec_num_str(12, string.ascii_letters + string.digits)
+    RSSID_KEY = create_node('key',{},'RSSID')
+    RSSID_VALUE = create_node('string',{}, dev_info.RSSID)
+    add_child_node(nodes, RSSID_KEY)
+    add_child_node(nodes, RSSID_VALUE)
+
+    SERIAL_KEY = create_node('key', {}, 'SERIAL')
+    SERIAL_VALUE = create_node('string',{}, dev_info.SERIAL)
+    add_child_node(nodes, SERIAL_KEY)
+    add_child_node(nodes, SERIAL_VALUE)
+
+    UDID_KEY = create_node('key',{},'UDID')
+    UDID_VALUE = create_node('string',{}, dev_info.UDID)
+    add_child_node(nodes, UDID_KEY)
+    add_child_node(nodes, UDID_VALUE)
+
+    VERSION_KEY = create_node('key',{}, 'VERSION')
+    VERSION_VALUE = create_node('string',{}, dev_info.VERSION)
+    add_child_node(nodes, VERSION_KEY)
+    add_child_node(nodes, VERSION_VALUE)
+
+    WIFIADDRESS_KEY = create_node('key',{}, 'WIFIADDRESS')
+    WIFIADDRESS_VALUE = create_node('string',{}, dev_info.WIFIADDRESS)
+    add_child_node(nodes, WIFIADDRESS_KEY)
+    add_child_node(nodes, WIFIADDRESS_VALUE)
+
+    iGrimaceKey_key = create_node('key', {}, 'iGrimaceKey')
+    iGrimaceKey_value = create_node('string', {}, dev_info.iGrimaceKey)
+    add_child_node(nodes, iGrimaceKey_key)
+    add_child_node(nodes, iGrimaceKey_value)
+
+    rj_key = create_node('key',{}, 'rj')
+    rj_value = create_node('string',{}, dev_info.rj)
+    add_child_node(nodes, rj_key)
+    add_child_node(nodes, rj_value)
+
+    rj2_key = create_node('key', {}, 'rj2')
+    rj2_value = create_node('string',{}, dev_info.rj2)
+    add_child_node(nodes, rj2_key)
+    add_child_node(nodes, rj2_value)
+
+    rw_key = create_node('key',{},'rw')
+    rw_value = create_node('string', {}, dev_info.rw)
+    add_child_node(nodes, rw_key)
+    add_child_node(nodes, rw_value)
+
+    rw2_key = create_node('key',{},'rw2')
+    rw2_value = create_node('string', {}, dev_info.rw2)
+    add_child_node(nodes, rw2_key)
+    add_child_node(nodes, rw2_value)
+
+    path = './iphone_dev/' + dev_info.idenf + '.xml'
+
+    write_xml(tree, path)
+
+    with open(path) as file:
+        data = file.read()
+
+    os.remove(path)
+    return data
+
 
 @get('/now_test')
 def now_test():
@@ -69,7 +222,7 @@ async def rd_iphone_devInfo():
     iad3 = DevGenerator.get_spec_num_str(4, '0123456789ABCDEF')
     iad4 = DevGenerator.get_spec_num_str(4, '0123456789ABCDEF')
     iad5 = DevGenerator.get_spec_num_str(12, '0123456789ABCDEF')
-    iad_str = iad1 + '-' + iad2 + '-' + iad3 + '-' + '-' + iad4 + '-' + iad5
+    iad_str = iad1 + '-' + iad2 + '-' + iad3 + '-' + iad4 + '-' + iad5
     IAD_VALUE = create_node('string', {}, iad_str)
     add_child_node(nodes, IAD_KEY)
     add_child_node(nodes, IAD_VALUE)
@@ -80,7 +233,7 @@ async def rd_iphone_devInfo():
     idfv3 = DevGenerator.get_spec_num_str(4, '0123456789ABCDEF')
     idfv4 = DevGenerator.get_spec_num_str(4, '0123456789ABCDEF')
     idfv5 = DevGenerator.get_spec_num_str(12, '0123456789ABCDEF')
-    idfv_str = idfv1 + '-' + idfv2 + '-' + idfv3 + '-' + '-' + idfv4 + '-' + idfv5
+    idfv_str = idfv1 + '-' + idfv2 + '-' + idfv3 + '-' + idfv4 + '-' + idfv5
     IDFV_VALUE = create_node('string', {}, idfv_str)
     add_child_node(nodes, IDFV_KEY)
     add_child_node(nodes, IDFV_VALUE)
@@ -110,8 +263,8 @@ async def rd_iphone_devInfo():
 
     MODELTYPE_KEY = create_node('key',{}, 'MODELTYPE')
     MODELTYPE_VALUE = create_node('string', {}, 'iPhone')
-    add_child_node(nodes, MODEL_KEY)
-    add_child_node(nodes, MODEL_VALUE)
+    add_child_node(nodes, MODELTYPE_KEY)
+    add_child_node(nodes, MODELTYPE_VALUE)
 
     NAME = DevGenerator.get_spec_num_str(8, string.ascii_letters + string.digits)
     NAME_KEY = create_node('key',{},'NAME')
@@ -459,6 +612,27 @@ async def remainTaskPhoneNo(*, task_name, phoneNo):
             return '-1' #表示申请出错了
     else:
         return '0' #表示没有留存任务可做了
+
+@get('/iphoneRemainTaskPhoneNo')
+async def iphoneRemainTaskPhoneNo(*,task_name, phoneNo):
+    status = 2
+    remain_task = await RemainTask.selectByTableForRemainPhoneNo(task_name, status, phoneNo)
+    if remain_task:
+        remain_task.status = 4 #表明该task已经被申请过了
+        row = await remain_task.update_by_table(task_name)
+        if row:
+            ret_iphone_devInfo = await IphoneDevInfo.selectSpecCls('id',remain_task.id)
+
+            if ret_iphone_devInfo:
+                ret_str = get_xml_str_from_iphoneDevInfo(ret_iphone_devInfo)
+                return str(remain_task.id) + '$$' + ret_str
+            else:
+                return '-2$$error'
+        else:
+            return '-1$$error'
+    else:
+        return '0$$empty'
+
 
 #新增任务完成提交服务器
 @get('/newTaskComplete')
