@@ -1,0 +1,337 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+
+{% extends '__base__.html' %}
+
+{% block title %}修改{% endblock %}
+
+{% block beforehead %}
+
+<script>
+
+var flag = 0;
+var deleteFlag = false;
+
+
+// flag = 0 : normal
+// flag = 1 : check
+// flag = 2 : edit
+// flag = 3 : save
+// flag = 4 : delete
+
+$(function () {
+    var vm = new Vue({
+        el: '#vm',
+        data: {
+            task_name:'',
+            idenf:'',
+            id:'',
+            ip_repeat_days:'',
+            level_2_days:'',
+            level_2_percents:'',
+            level_3_days:'',
+            level_3_percents:'',
+            level_4_days:'',
+            level_4_percents:'',
+            level_5_days:'',
+            level_5_percents:'',
+            level_6_days:'',
+            level_6_percents:'',
+            level_7_days:'',
+            level_7_percents:'',
+            level_8_days:'',
+            level_8_percents:'',
+            new_limit:'',
+            
+        },
+        methods: {
+            submit: function (event) {
+                event.preventDefault();
+                var $form = $('#vm');
+
+                if(flag === 1) {
+
+                	// alert(this.id);
+                	$form.postJSON(
+                        // '/api/check', 
+                        '/api/check_tasks', 
+                    { 
+                        // idenf:this.idenf,
+                		task_name:this.task_name, 
+                	}, 
+                		function (err, r) {
+                			if(r === undefined) {
+                				alert('查询失败，数据库中没有该条目存在');
+                				return;
+                			}
+                			// 
+                			document.getElementById("idenfer").value = r.idenf;
+                            document.getElementById("id").value = r.id;
+                            document.getElementById("ip_repeat_days").value = r.ip_repeat_days;
+                            document.getElementById("level_2_days").value = r.level_2_days;
+                            document.getElementById("level_2_percents").value = r.level_2_percents;
+                            document.getElementById("level_3_days").value = r.level_3_days;
+                            document.getElementById("level_3_percents").value = r.level_3_percents;
+                            document.getElementById("level_4_days").value = r.level_4_days;
+                            document.getElementById("level_4_percents").value = r.level_4_percents;
+                            document.getElementById("level_5_days").value = r.level_5_days;
+                            document.getElementById("level_5_percents").value = r.level_5_percents;
+                            document.getElementById("level_6_days").value = r.level_6_days;
+                            document.getElementById("level_6_percents").value = r.level_6_percents;
+                            document.getElementById("level_7_days").value = r.level_7_days;
+                            document.getElementById("level_7_percents").value = r.level_7_percents;
+                            document.getElementById("level_8_days").value = r.level_8_days;
+                            document.getElementById("level_8_percents").value = r.level_8_percents;
+                            document.getElementById("new_limit").value = r.new_limit;
+
+                			document.getElementById("task_name").readOnly = true;
+                			document.getElementById("idenfer").readOnly = true;
+                            document.getElementById("id").readOnly = true;
+                            document.getElementById("ip_repeat_days").readOnly = true;
+                            document.getElementById("level_2_days").readOnly = true;
+                            document.getElementById("level_2_percents").readOnly = true;
+                            document.getElementById("level_3_days").readOnly = true;
+                            document.getElementById("level_3_percents").readOnly = true;
+                            document.getElementById("level_4_days").readOnly = true;
+                            document.getElementById("level_4_percents").readOnly = true;
+                            document.getElementById("level_5_days").readOnly = true;
+                            document.getElementById("level_5_percents").readOnly = true;
+                            document.getElementById("level_6_days").readOnly = true;
+                            document.getElementById("level_6_percents").readOnly = true;
+                            document.getElementById("level_7_days").readOnly = true;
+                            document.getElementById("level_7_percents").readOnly = true;
+                            document.getElementById("level_8_days").readOnly = true;
+                            document.getElementById("level_8_percents").readOnly = true;
+                            document.getElementById("new_limit").readOnly = true;
+
+
+                    		if (err) {
+                        		return $form.showFormError(err);
+                    		}
+                    		return;
+                    	
+                	});
+
+                } else if (flag === 2) {
+                	alert("已进入编辑状态");
+                } else if (flag === 3) {
+                	// alert("save");
+
+                	$form.postJSON('api/update_tasks', {
+                        task_name:document.getElementById("task_name").value,
+                		idenf:document.getElementById("idenfer").value,
+                        id: document.getElementById("id").value,
+	                    ip_repeat_days: document.getElementById('ip_repeat_days').value,
+                        level_2_days: document.getElementById('level_2_days').value,
+                        level_2_percents: document.getElementById('level_2_percents').value,
+                        level_3_days: document.getElementById('level_3_days').value,
+                        level_3_percents: document.getElementById('level_3_percents').value,
+                        level_4_days: document.getElementById('level_4_days').value,
+                        level_4_percents: document.getElementById('level_4_percents').value,
+                        level_5_days: document.getElementById('level_5_days').value,
+                        level_5_percents: document.getElementById('level_5_percents').value,
+                        level_6_days: document.getElementById('level_6_days').value,
+                        level_6_percents: document.getElementById('level_6_percents').value,
+                        level_7_days: document.getElementById('level_7_days').value,
+                        level_7_percents: document.getElementById('level_7_percents').value,
+                        level_8_days: document.getElementById('level_8_days').value,
+                        level_8_percents: document.getElementById('level_8_percents').value,
+                        new_limit: document.getElementById('new_limit').value,
+                	}, 
+                		function (err, r) {
+                			// alert(r.dpi);
+                			
+                			if(r === 1) {
+                				alert("保存修改成功！")
+                			} else {
+                				alert("修改失败，请稍后重试。")
+                			}
+
+                    		if (err) {
+                        		return $form.showFormError(err);
+                    		}
+                    		return;
+                    	
+                	});
+
+
+                } else if (flag === 4) {
+
+                	if(deleteFlag === false) {
+                		// alert("deleteFlag: " + deleteFlag);
+                		return;
+                	} else {
+                		alert("无法删除，请联系管理员。");
+                	}
+                	
+                }
+                
+                
+                	
+            }
+        }
+    });
+    $('#vm').show();
+});
+
+function check() {
+	flag = 1;
+}
+
+function edit() {
+	flag = 2;
+	document.getElementById("idenfer").readOnly = true;
+    document.getElementById("task_name").readOnly = true;
+    document.getElementById("id").readOnly = true;
+    document.getElementById("ip_repeat_days").readOnly = false;
+    document.getElementById("level_2_days").readOnly = false;
+    document.getElementById("level_2_percents").readOnly = false;
+    document.getElementById("level_3_days").readOnly = false;
+    document.getElementById("level_3_percents").readOnly = false;
+    document.getElementById("level_4_days").readOnly = false;
+    document.getElementById("level_4_percents").readOnly = false;
+    document.getElementById("level_5_days").readOnly = false;
+    document.getElementById("level_5_percents").readOnly = false;
+    document.getElementById("level_6_days").readOnly = false;
+    document.getElementById("level_6_percents").readOnly = false;
+    document.getElementById("level_7_days").readOnly = false;
+    document.getElementById("level_7_percents").readOnly = false;
+    document.getElementById("level_8_days").readOnly = false;
+    document.getElementById("level_8_percents").readOnly = false;
+    document.getElementById("new_limit").readOnly = false;
+}
+
+
+
+function save() {
+	flag = 3;
+}
+
+function delet() {
+
+	var a = window.confirm("确定删除该条目吗？");
+
+	if(a === true) {
+		deleteFlag = true;
+	} else {
+		deleteFlag = false;
+	}
+
+
+	flag = 4;
+}
+
+</script>
+
+{% endblock %}
+
+{% block content %}
+
+    <!-- <div class="uk-width-2-3"> -->
+        <form id="vm" v-on="submit: submit" class="uk-form uk-form-stacked">
+
+        <font color="#1de9b6"><label><b>task_name:</b></label>
+        <!-- <input type="text" v-model="idenf" name="idenf" id = "input_idenf" style="width:450px;"> -->
+        <input type="text" v-model="task_name" name="task_name" id = "task_name" style="width:450px;">
+        <button type="submit" class="uk-button uk-button-primary" onclick="check()">查询</button>
+        <button type="submit" class="uk-button uk-button-primary" onclick="edit()">编辑</button>
+        <button type="submit" class="uk-button uk-button-primary" onclick="save()">保存</button>
+        <button type="submit" class="uk-button uk-button-primary" onclick="delet()">删除</button>
+
+            <table >
+            	
+            	<tr>
+            		<td><label><b>idenf:</b></label></td>
+            		<td><input type="text" v-model="idenfer" name="idenfer" id = "idenfer" style="width:450px;"></td> 
+
+                    <td><label><b>id:</b></label></td>
+                    <td><input type="text" v-model="id" name="id" id = "id" style="width:100px;"></td>      
+            	</tr>
+
+            	<tr>
+            		<td><label><b>做新增时多少天内IP不能重复:</b></label></td>
+            		<td><input type="text" v-model="ip_repeat_days" name="ip_repeat_days" id = "ip_repeat_days" style="width:400px;"></td>
+
+            	</tr>
+
+            		<td><label><b>留存2级天数:</b></label></td>
+            		<td><input type="text" v-model="level_2_days" name="level_2_days" id = "level_2_days" style="width:400px;"></td>
+
+            		<td><label><b>留存2级百分比:</b></label></td>
+            		<td><input type="text" v-model="level_2_percents" name="level_2_percents" id = "level_2_percents" style="width:400px;"></td>
+
+            	<tr>
+            		
+            		<td><label><b>留存3级天数:</b></label></td>
+            		<td><input type="text" v-model="level_3_days" name="level_3_days" id = "level_3_days" style="width:400px;"></td>
+
+            		<td><label><b>留存3级百分比:</b></label></td>
+            		<td><input type="text" v-model="level_3_percents" name="level_3_percents" id = "level_3_percents" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		
+            		<td><label><b>留存4级天数:</b></label></td>
+            		<td><input type="text" v-model="level_4_days" name="level_4_days" id = "level_4_days" style="width:400px;"></td>
+
+            		<td><label><b>留存4级百分比:</b></label></td>
+            		<td><input type="text" v-model="level_4_percents" name="level_4_percents" id = "level_4_percents" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+
+            		<td><label><b>留存5级天数:</b></label></td>
+            		<td><input type="text" v-model="level_5_days" name="level_5_days" id = "level_5_days" style="width:400px;"></td>
+
+            		<td><label><b>留存5级百分比:</b></label></td>
+            		<td><input type="text" v-model="level_5_percents" name="level_5_percents" id = "level_5_percents" style="width:400px;"></td>
+            		
+            	</tr>
+
+            	<tr>
+            		<td><label><b>留存6级天数:</b></label></td>
+            		<td><input type="text" v-model="level_6_days" name="level_6_days" id = "level_6_days" style="width:400px;"></td>
+
+            		<td><label><b>留存6级百分比:</b></label></td>
+            		<td><input type="text" v-model="level_6_percents" name="level_6_percents" id = "level_6_percents" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		<td><label><b>留存7级天数:</b></label></td>
+            		<td><input type="text" v-model="level_7_days" name="level_7_days" id = "level_7_days" style="width:400px;"></td>
+
+            		<td><label><b>留存7级百分比:</b></label></td>
+            		<td><input type="text" v-model="level_7_percents" name="level_7_percents" id = "level_7_percents" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		<td><label><b>留存8级天数:</b></label></td>
+            		<td><input type="text" v-model="level_8_days" name="level_8_days" id = "level_8_days" style="width:400px;"></td>
+
+            		<td><label><b>留存8级百分比:</b></label></td>
+            		<td><input type="text" v-model="level_8_percents" name="level_8_percents" id = "level_8_percents" style="width:400px;"></td>
+
+            	</tr>
+
+            	<tr>
+            		<td><label><b>每日新增上限:</b></label></td>
+            		<td><input type="text" v-model="new_limit" name="new_limit" id = "new_limit" style="width:400px;"></td>
+
+            	</tr>
+
+            	
+
+            	   	
+
+            </table>
+
+
+        </form>
+
+    <!-- </div> -->
+
+{% endblock %}
+	

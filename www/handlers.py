@@ -1752,3 +1752,58 @@ async def delete_device_info(*,
     return rows
 
 
+@get('/che_tasks')
+def che_tasks():
+    return {
+        '__template__':'check_tasks.html'
+    }
+
+@post('/api/check_tasks')
+async def check_tasks(*, task_name):
+    task = await Task.selectSpecCls('task_name', task_name)
+    return task
+
+@post('/api/update_tasks')
+async def update_tasks(*, task_name, 
+                            idenf,
+                            id,
+                            ip_repeat_days,
+                            level_2_days,
+                            level_2_percents,
+                            level_3_days,
+                            level_3_percents,
+                            level_4_days,
+                            level_4_percents,
+                            level_5_days,
+                            level_5_percents,
+                            level_6_days,
+                            level_6_percents,
+                            level_7_days,
+                            level_7_percents,
+                            level_8_days,
+                            level_8_percents,
+                            new_limit):
+
+    logging.debug('update_tasks')
+    task = await Task.selectSpecCls('task_name', task_name)
+    task.ip_repeat_days = ip_repeat_days
+    task.level_2_days = level_2_days
+    task.level_2_percents = level_2_percents
+    task.level_3_days = level_3_days
+    task.level_3_percents = level_3_percents
+    task.level_4_days = level_4_days
+    task.level_4_percents = level_4_percents
+    task.level_5_days = level_5_days
+    task.level_5_percents = level_5_percents
+    task.level_6_days = level_6_days
+    task.level_6_percents = level_6_percents
+    task.level_7_days = level_7_days
+    task.level_7_percents = level_7_percents
+    task.level_8_days = level_8_days
+    task.level_8_percents = level_8_percents
+    task.new_limit = new_limit
+
+    row = await task.update()
+    return row
+
+    
