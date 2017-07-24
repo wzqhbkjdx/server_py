@@ -169,7 +169,10 @@ class ModelMetaclass(type):
         attrs['__delete_by_id__'] = 'delete from %s where id=?' % tableName
         attrs['__select_max_id__'] = 'select max(id) from %s' % tableName
         attrs['__select_random__'] = 'select * from %s order by rand() limit 1' % tableName
-        attrs['__select_all__'] = 'select * from %s' % tableName;
+        attrs['__select_all__'] = 'select * from %s' % tableName
+        attrs['__select_by_range__'] = 'select * from %s where id >= %s and id <= %s'
+        attrs['__select_max_id_by_tab__'] = 'select max(id) from %s'
+        attrs['__select_min_id_by_tab__'] = 'select min(id) from %s'
 
         attrs['__update__'] = 'update %s set %s where %s=?' % (tableName, ', '.join(map(lambda f: '%s=?' % f, fields)), primary_key)
         attrs['__update_by_id__'] = 'update %s set %s where %s=?' % (tableName, ', '.join(map(lambda f: '%s=?' % f, fields)), 'id')
@@ -367,6 +370,20 @@ class Model(dict, metaclass=ModelMetaclass):
         if len(rs) == 0:
             return None
         return [cls(**r) for r in rs]
+
+    @classmethod
+    async def selectByRange(cls, tab_name, range_min, range_max):
+        rs = await select(cls.__select_by_range__ % (tab_name, range_min, range_max), [])
+        logging.debug(cls.__select_by_range__ % (tab_name, range_min, range_max))
+        if len(rs) == 0:
+            return None
+        return [cls(**r) for r in rs]
+
+    @classmethod
+    async def selectMaxAndMinIdByTab(cls, tab_name):
+        max_id = await select(cls.__select_max_id_by_tab__ % tab_name, [])
+        min_id = await select(cls.__select_min_id_by_tab__ % tab_name, [])
+        return {'max_id':max_id, 'min_id':min_id}
 
 
     async def save(self):

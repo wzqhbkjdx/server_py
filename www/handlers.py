@@ -1046,6 +1046,24 @@ def check_edit_info():
         '__template__':'check.html'
     }
 
+@get('/remain_details')
+async def remain_details(*, task_name, floor_id, upper_id):
+    details = await RemainTask.selectByRange(task_name, floor_id, upper_id)
+    max_min_id = await RemainTask.selectMaxAndMinIdByTab(task_name)
+    return {
+        '__template__':'remain_detail.html',
+        'details':details,
+        'max_id':max_min_id['max_id'],
+        'min_id':max_min_id['min_id']
+    }
+
+@post('/api/remain_detail')
+async def remain_detail(*, task_name):
+    details = await RemainTask.selectByRange(task_name, 6, 10)
+    for detail in details:
+        print(detail)
+    return details
+
 
 _RE_EMAIL = re.compile(r'^[a-z0-9\.\-\_]+\@[a-z0-9\-\_]+(\.[a-z0-9\-\_]+){1,4}$')
 _RE_SHA1 = re.compile(r'^[0-9a-f]{40}$')
